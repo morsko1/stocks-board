@@ -1,0 +1,23 @@
+table, th, td {
+    border: 1px solid black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #eee;
+    padding: 0.3em;
+}
+
+td {
+    text-align: center;
+    padding: 0.2em;
+}
+
+h3 {
+    text-align: center;
+}
+
+tr:nth-child(odd) {
+    background-color: #eee;
+}
