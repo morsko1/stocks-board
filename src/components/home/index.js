@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import * as util from '../../common/util'
 
 const getRow = (item) => {
     return (
@@ -7,7 +8,11 @@ const getRow = (item) => {
             <td key={`col_ticker${item.ticker}`}>{item.ticker}</td>
             <td key={`col_name${item.ticker}`}>{item.shortName}</td>
             <td key={`col_open${item.ticker}`}>{item.open}</td>
-            <td key={`col_last${item.ticker}`}>{item.last}</td>
+            <td
+                key={`col_last${item.ticker}`}
+                className={util.getClassNameForCellColor(item.last - item.previousPrice)}>
+                {item.last}
+            </td>
             <td key={`col_volume${item.ticker}`}>{(item.volumeToday/1000000).toFixed(2)}</td>
             {/*
                 capitalization in $ billions.
@@ -28,12 +33,28 @@ const HomeView = props => (
                     <table>
                         <tbody>
                             <tr>
-                                <th key={'head_ticker'}>Тикер</th>
+                                <th key={'head_ticker'}>{'Тикер'}</th>
                                 <th key={'head_name'}>{'Наименование'}</th>
-                                <th key={'head_open'}>{'Цена,\nоткр'}</th>
-                                <th key={'head_last'}>{'Цена,\nпосл'}</th>
-                                <th key={'head_volume'}>{'Объем,\nмлн р'}</th>
-                                <th key={'head_cap'}>{'Капитализация,\nмлрд $'}</th>
+                                <th key={'head_open'}>
+                                    {'Цена,'}
+                                    <br/>
+                                    {'откр'}
+                                </th>
+                                <th key={'head_last'}>
+                                    {'Цена,'}
+                                    <br/>
+                                    {'посл'}
+                                </th>
+                                <th key={'head_volume'}>
+                                    {'Объем,'}
+                                    <br/>
+                                    {'млн р'}
+                                </th>
+                                <th key={'head_cap'}>
+                                    {'Капитализация,'}
+                                    <br/>
+                                    {'млрд $'}
+                                </th>
                             </tr>
                             {
                                 // first 30 stocks

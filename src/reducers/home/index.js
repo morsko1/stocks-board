@@ -1,4 +1,5 @@
-import * as actionsHome from '../../actions/home'
+import * as actionsHome from '../../actions/home';
+import * as util from '../../common/util';
 
 const initialState = {
     stocks: {data: []},
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
                 stocksFetching: false,
                 stocksFetchingError: null,
                 stocks: {
-                    data: action.payload.data
+                    data: util.setStocksData(action.payload.data, state.stocks.data)
                 }
             };
 

@@ -50,3 +50,12 @@ tr:nth-child(odd) {
     loader end
 /////////////////////
 */
+
+/*color price cell*/
+.price-upper {
+    background-color: palegreen;
+}
+.price-lower {
+    background-color: indianred;
+}
+/*color price cell end*/

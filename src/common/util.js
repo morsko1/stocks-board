@@ -39,3 +39,28 @@ export const convertStocksResponseToStocks = (data) => {
 
     return result;
 }
+
+// if stocks data exist in state => set 'previousPrice' property for each stock
+export const setStocksData = (nextData, previousData) => {
+    if (!previousData.length) {
+        return nextData
+    }
+    for (let i = 0; i < nextData.length; i++) {
+        nextData[i].previousPrice = previousData[i].last
+    }
+    return nextData
+}
+
+export const getClassNameForCellColor = (diff) => {
+    switch (true) {
+        case diff > 0: {
+            return 'price-upper'
+        }
+        case diff < 0: {
+            return 'price-lower'
+        }
+        default: {
+            return ''
+        }
+    }
+}
