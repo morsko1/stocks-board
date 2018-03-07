@@ -54,8 +54,19 @@ tr:nth-child(odd) {
 /*color price cell*/
 .price-upper {
     background-color: palegreen;
+    transition: all ease-out 1s;
 }
 .price-lower {
     background-color: indianred;
+    transition: all ease-out 1s;
 }
 /*color price cell end*/
+
+/*color change font*/
+.change-up-font {
+    color: limegreen;
+}
+.change-down-font {
+    color: indianred;
+}
+/*color change font end*/

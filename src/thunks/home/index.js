@@ -1,7 +1,16 @@
 import * as actionsHome from '../../actions/home';
 import * as util from '../../common/util';
 
-export const getStocks = () => dispatch => {
+export const getStocks = () => (dispatch, getState) => {
+    const stocksExist = getState().home.stocks.data.length;
+    const date = new Date();
+    const day = date.getDay();
+    const hours = date.getHours();
+    // avoid unnecessary calls at non-working days and time
+    if (stocksExist && ((day === 0 || day === 6) || (hours < 10 || hours > 19))) {
+        return;
+    }
+
     dispatch(actionsHome.getStocksRequest());
 
     fetch(util.url)

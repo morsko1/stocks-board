@@ -64,3 +64,17 @@ export const getClassNameForCellColor = (diff) => {
         }
     }
 }
+
+export const getClassNameForChangeFont = (diff) => {
+    switch (true) {
+        case diff > 0: {
+            return 'change-up-font'
+        }
+        case diff < 0: {
+            return 'change-down-font'
+        }
+        default: {
+            return ''
+        }
+    }
+}
