@@ -2,7 +2,9 @@
   "name": "stocks-board",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://morsko1.github.io/stocks-board",
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "react-scripts": "^1.0.17"
   },
   "dependencies": {
@@ -17,6 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
