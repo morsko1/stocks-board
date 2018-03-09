@@ -23,11 +23,24 @@ export const getStocks = () => (dispatch, getState) => {
                 return;
             }
 
-            const convertedData = util.convertStocksResponseToStocks(data);
+            const sort = getState().home.sort;
+            const convertedData = util.convertStocksResponseToStocks(data, sort);
 
-            dispatch(actionsHome.getStocksSuccess(convertedData));
+            dispatch(getStocksSuccess(convertedData));
         })
         .catch(
             error => dispatch(actionsHome.getStocksFailure(error))
         );
 };
+
+const getStocksSuccess = (data) => (dispatch, getState) => {
+    const sort = getState().home.sort;
+    dispatch(actionsHome.getStocksSuccess(data, sort));
+}
+
+export const sortRowsBy = (value) => (dispatch, getState) => {
+    if (!value) return;
+    const stocks = getState().home.stocks;
+    dispatch(actionsHome.setSortParameters(value));
+    dispatch(getStocksSuccess(stocks.data));
+}

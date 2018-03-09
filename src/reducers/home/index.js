@@ -5,6 +5,10 @@ const initialState = {
     stocks: {data: []},
     stocksFetching: false,
     stocksFetchingError: null,
+    sort: {
+        parameter: 'capitalization',
+        orderByDesc: false,
+    }
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +26,11 @@ export default (state = initialState, action) => {
                 stocksFetching: false,
                 stocksFetchingError: null,
                 stocks: {
-                    data: util.setStocksData(action.payload.data, state.stocks.data)
+                    data: util.setStocksData(
+                        action.payload.data,
+                        state.stocks.data,
+                        action.payload.sort
+                    )
                 }
             };
 
@@ -31,6 +39,15 @@ export default (state = initialState, action) => {
                 ...state,
                 stocksFetching: false,
                 stocksFetchingError: action.payload.error,
+            };
+
+        case actionsHome.SET_SORT_PARAMETERS:
+            return {
+                ...state,
+                sort: {
+                    parameter: action.payload.value,
+                    orderByDesc: (action.payload.value === state.sort.parameter) ? !state.sort.orderByDesc : false
+                }
             };
 
         default:

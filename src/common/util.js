@@ -4,7 +4,7 @@ export const url = 'https://iss.moex.com/iss/engines/stock/markets/shares/boards
 // "columns securities": ["SECID", "SHORTNAME", "PREVPRICE", "SECNAME", "DECIMALS"],
 // "columns marketdata": ["SECID", "LAST", "LOW", "HIGH", "OPEN", "VALTODAY_RUR", "ISSUECAPITALIZATION"],
 
-export const convertStocksResponseToStocks = (data) => {
+export const convertStocksResponseToStocks = (data, sort) => {
     let securities = data.securities.data.map(item => {
         return {
             ticker: item[0],
@@ -15,6 +15,7 @@ export const convertStocksResponseToStocks = (data) => {
         }
     });
     let marketData = data.marketdata.data.map(item => {
+        const change = item[1] && item[4] ? (((item[1] - item[4]) / item[4]) * 100).toFixed(2) : null
         return {
             last: item[1],
             low: item[2],
@@ -22,6 +23,7 @@ export const convertStocksResponseToStocks = (data) => {
             open: item[4],
             volumeToday: item[5],
             capitalization: item[6],
+            change: change,
         }
     });
 
@@ -33,22 +35,36 @@ export const convertStocksResponseToStocks = (data) => {
         }
         result.push(item);
     }
+
+    result = result.filter(item => item.prevPrice !== null);
     result.sort((a, b) => {
-        return b.capitalization - a.capitalization;
+        if (sort.orderByDesc) {
+            return a[sort.parameter] - b[sort.parameter];
+        }
+        return b[sort.parameter] - a[sort.parameter];
     });
 
     return result;
 }
 
+const sortDataBy = (data, sort) => {
+    return data.sort((a, b) => {
+        if (sort.orderByDesc) {
+            return a[sort.parameter] - b[sort.parameter]
+        }
+        return b[sort.parameter] - a[sort.parameter]
+    })
+}
+
 // if stocks data exist in state => set 'previousPrice' property for each stock
-export const setStocksData = (nextData, previousData) => {
+export const setStocksData = (nextData, previousData, sort) => {
     if (!previousData.length) {
-        return nextData
+        return sortDataBy(nextData, sort)
     }
     for (let i = 0; i < nextData.length; i++) {
         nextData[i].previousPrice = previousData[i].last
     }
-    return nextData
+    return sortDataBy(nextData, sort)
 }
 
 export const getClassNameForCellColor = (diff) => {
