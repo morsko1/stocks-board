@@ -9,11 +9,16 @@ th {
     padding: 0.3em;
 }
 
+.head-active {
+    background-color: #ddd;
+}
+
 td {
     text-align: center;
     padding: 0.2em;
     white-space: nowrap;
     overflow:hidden;
+    color: #333;
 }
 
 h3 {
@@ -21,7 +26,7 @@ h3 {
 }
 
 tr:nth-child(odd) {
-    background-color: #eee;
+    background-color: aliceblue;
 }
 /*
 /////////////////////
@@ -55,7 +60,7 @@ tr:nth-child(odd) {
 
 /*color price cell*/
 .price-upper {
-    background-color: palegreen;
+    background-color: limegreen;
     transition: all ease-out 1s;
 }
 .price-lower {

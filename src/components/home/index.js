@@ -3,49 +3,84 @@ import './index.css';
 import * as util from '../../common/util'
 
 const getTableHead = (props) => {
+    const getSortArrow = (parameter) => {
+        return props.sort.parameter === parameter ?
+            (props.sort.orderByDesc ? '\u2191' : '\u2193') :
+            null
+    }
     return (
         <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
             <th key={'head_ticker'}>{'Тикер'}</th>
             <th key={'head_name'}>{'Наименование'}</th>
             <th
                 key={'head_prev'}
+                className={getSortArrow('prevPrice') ? 'head-active' : ''}
                 data-sort-parameter={'prevPrice'}>
-                {'Закрытие,'}
+                {'Цена,'}
                 <br/>
-                {'пред'}
+                {'закр'}
+                <br/>
+                {
+                    getSortArrow('prevPrice')
+                }
             </th>
             <th
                 key={'head_open'}
+                className={getSortArrow('open') ? 'head-active' : ''}
                 data-sort-parameter={'open'}>
                 {'Цена,'}
                 <br/>
                 {'откр'}
+                <br/>
+                {
+                    getSortArrow('open')
+                }
             </th>
             <th
                 key={'head_last'}
+                className={getSortArrow('last') ? 'head-active' : ''}
                 data-sort-parameter={'last'}>
                 {'Цена,'}
                 <br/>
                 {'посл'}
+                <br/>
+                {
+                    getSortArrow('last')
+                }
             </th>
             <th
                 key={'head_change'}
+                className={getSortArrow('change') ? 'head-active' : ''}
                 data-sort-parameter={'change'}>
                 {'% изм'}
+                <br/>
+                {
+                    getSortArrow('change')
+                }
             </th>
             <th
                 key={'head_volume'}
+                className={getSortArrow('volumeToday') ? 'head-active' : ''}
                 data-sort-parameter={'volumeToday'}>
                 {'Объем,'}
                 <br/>
                 {'млн р'}
+                <br/>
+                {
+                    getSortArrow('volumeToday')
+                }
             </th>
             <th
                 key={'head_cap'}
+                className={getSortArrow('capitalization') ? 'head-active' : ''}
                 data-sort-parameter={'capitalization'}>
                 {'Капитализация,'}
                 <br/>
                 {'млрд $'}
+                <br/>
+                {
+                    getSortArrow('capitalization')
+                }
             </th>
         </tr>
     )
