@@ -33,14 +33,30 @@ export const getStocks = () => (dispatch, getState) => {
         );
 };
 
-const getStocksSuccess = (data) => (dispatch, getState) => {
-    const sort = getState().home.sort;
-    dispatch(actionsHome.getStocksSuccess(data, sort));
+const getStocksSuccess = (data) => (dispatch) => {
+    dispatch(actionsHome.getStocksSuccess(data));
 }
 
 export const sortRowsBy = (value) => (dispatch, getState) => {
     if (!value) return;
     const stocks = getState().home.stocks;
     dispatch(actionsHome.setSortParameters(value));
+    dispatch(getStocksSuccess(stocks.data));
+    if (getState().home.isFiltersVisible) {
+        dispatch(applyFilters());
+    }
+}
+
+export const showOrHideFilters = () => (dispatch) => {
+    dispatch(actionsHome.showOrHideFilters());
+}
+
+export const handleFiltersInput = (filter, type, value) => (dispatch) => {
+    dispatch(actionsHome.handleFiltersInput(filter, type, value));
+}
+
+export const applyFilters = () => (dispatch, getState) => {
+    const stocks = getState().home.stocks;
+    dispatch(actionsHome.applyFilters());
     dispatch(getStocksSuccess(stocks.data));
 }

@@ -8,7 +8,21 @@ const initialState = {
     sort: {
         parameter: 'capitalization',
         orderByDesc: false,
-    }
+    },
+    filteredStocks: {data: []},
+    isFiltersVisible: false,
+    filters: [
+        {
+            name: 'volumeToday',
+            from: '',
+            to: ''
+        },
+        {
+            name: 'capitalization',
+            from: '',
+            to: ''
+        }
+    ]
 };
 
 export default (state = initialState, action) => {
@@ -29,7 +43,14 @@ export default (state = initialState, action) => {
                     data: util.setStocksData(
                         action.payload.data,
                         state.stocks.data,
-                        action.payload.sort
+                        state.sort
+                    )
+                },
+                filteredStocks: {
+                    data: util.filterStocks(
+                        action.payload.data,
+                        state.filters,
+                        state.sort
                     )
                 }
             };
@@ -49,6 +70,29 @@ export default (state = initialState, action) => {
                     orderByDesc: (action.payload.value === state.sort.parameter) ? !state.sort.orderByDesc : false
                 }
             };
+
+        case actionsHome.SHOW_OR_HIDE_FILTERS:
+            return {
+                ...state,
+                isFiltersVisible: !state.isFiltersVisible
+            };
+
+        case actionsHome.HANDLE_INPUT:
+            return {
+                ...state,
+                filters: util.setFiltersState(
+                    state.filters,
+                    action.payload.filter,
+                    action.payload.type,
+                    action.payload.value
+                )
+            };
+
+        case actionsHome.APPLY_FILTERS:
+            return {
+                ...state,
+            };
+
 
         default:
             return state;

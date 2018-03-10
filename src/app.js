@@ -6,7 +6,7 @@ import Home from './containers/home';
 import About from  './containers/about';
 
 const App = () => (
-    <div>
+    <div className={'container'}>
         <main>
             <Route exact path='/' component={Home} />
             <Route exact path='/about-us' component={About} />

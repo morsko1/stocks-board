@@ -94,3 +94,40 @@ export const getClassNameForChangeFont = (diff) => {
         }
     }
 }
+
+export const setFiltersState = (data, filter, type, value) => {
+    return data.map(item => {
+        if (item.name === filter) {
+            switch (type) {
+                case 'from': {
+                    item.from = value;
+                    break;
+                }
+                case 'to': {
+                    item.to = value;
+                    break;
+                }
+                default: {}
+            }
+        }
+        return item;
+    });
+}
+
+export const filterStocks = (data, filters, sort) => {
+    if (!data.length) return [];
+    const filtered = data.filter(stock => {
+        for (let i = 0; i < filters.length; i++) {
+            if ((stock[filters[i].name] >= (filters[i].from || 0)) &&
+                (stock[filters[i].name] <= (filters[i].to || Infinity))) {
+                if (i === filters.length - 1) {
+                    return stock;
+                }
+            } else {
+                break;
+            }
+        }
+        return false;
+    });
+    return sortDataBy(filtered, sort);
+}

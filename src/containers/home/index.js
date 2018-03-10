@@ -21,6 +21,12 @@ class Home extends Component {
                 stocksFetchingError={this.props.stocksFetchingError}
                 sortRowsBy={this.props.sortRowsBy}
                 sort={this.props.sort}
+                filteredStocks={this.props.filteredStocks}
+                isFiltersVisible={this.props.isFiltersVisible}
+                filters={this.props.filters}
+                showOrHideFilters={this.props.showOrHideFilters}
+                handleFiltersInput={this.props.handleFiltersInput}
+                applyFilters={this.props.applyFilters}
             />
         );
     }
@@ -31,6 +37,9 @@ const mapStateToProps = state => ({
     stocksFetching: state.home.stocksFetching,
     stocksFetchingError: state.home.stocksFetchingError,
     sort: state.home.sort,
+    filteredStocks: state.home.filteredStocks,
+    isFiltersVisible: state.home.isFiltersVisible,
+    filters: state.home.filters,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -38,6 +47,9 @@ const mapDispatchToProps = dispatch =>
         changePage: () => push('/about-us'),
         getStocks: () => thunkHome.getStocks(),
         sortRowsBy: (e) => thunkHome.sortRowsBy(e),
+        showOrHideFilters: () => thunkHome.showOrHideFilters(),
+        handleFiltersInput: (filter, type, value) => thunkHome.handleFiltersInput(filter, type, value),
+        applyFilters: () => thunkHome.applyFilters(),
     },
     dispatch
 );

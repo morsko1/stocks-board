@@ -115,21 +115,108 @@ const getTableRow = (item) => {
     );
 }
 
+const getFiltersView = (props) => {
+    const getInputValue = (filterName, type) => {
+        return props.filters ? props.filters.find(item => item.name === filterName)[type] : ''
+    }
+    // '\u2191' : '\u2193'
+    return (
+        <div className={'filters-container centered-content'}>
+            <button className={'button-show-hide-filters'} onClick={props.showOrHideFilters}>
+                {props.isFiltersVisible ? 'фильтры \u2191': 'фильтры \u2193'}
+            </button>
+            <div className={props.isFiltersVisible ? 'filters': 'hidden'}>
+                <form
+                    onChange={(event) => props.handleFiltersInput(
+                        event.target.dataset.filterName,
+                        event.target.dataset.inputType,
+                        event.target.value
+                    )}
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        props.applyFilters()
+                    }}>
+                    <table className={'filters-table'}>
+                        <tbody>
+                            <tr>
+                                <td>Объем:</td>
+                                <td>
+                                    от
+                                    <input
+                                        type={'number'}
+                                        data-filter-name={'volumeToday'}
+                                        data-input-type={'from'}
+                                        size={'2'}
+                                        value={getInputValue('volumeToday', 'from')}/>
+                                </td>
+                                <td>
+                                    до
+                                    <input
+                                        type={'number'}
+                                        data-filter-name={'volumeToday'}
+                                        data-input-type={'to'}
+                                        value={getInputValue('volumeToday', 'to')}/>
+                                    <br/></td>
+                            </tr>
+                            <tr>
+                                <td>Капитализация:</td>
+                                <td>
+                                    от
+                                    <input
+                                        type={'number'}
+                                        data-filter-name={'capitalization'}
+                                        data-input-type={'from'}
+                                        value={getInputValue('capitalization', 'from')}/>
+                                </td>
+                                <td>
+                                    до
+                                    <input
+                                        type={'number'}
+                                        data-filter-name={'capitalization'}
+                                        data-input-type={'to'}
+                                        value={getInputValue('capitalization', 'to')}/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div className={'centered-content'}>
+                        <button className={'button-apply-filters'} onClick={props.applyFilters}>
+                            {'применить'}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
+
 
 const HomeView = props => (
     <div>
         <h3>Московская Биржа</h3>
+        {getFiltersView(props)}
         {
             props.stocksFetching && !props.stocks.data.length ?
                 <div className={'loader'} /> :
-                <div>
-                    <table>
+                <div className={'table-stocks-container'}>
+                    <table className={'table-stocks'}>
                         <tbody>
                         {
                             getTableHead(props)
                         }
                         {
-                            props.stocks.data.map(item => getTableRow(item))
+                            props.isFiltersVisible ?
+                                (
+                                    props.filteredStocks.data.length ?
+                                        props.filteredStocks.data.map(item => getTableRow(item)) :
+                                        <tr>
+                                            <td colSpan={'8'}>
+                                                {'Нет данных'}
+                                            </td>
+                                        </tr>
+                                ) :
+                                props.stocks.data.map(item => getTableRow(item))
                         }
                         </tbody>
                     </table>

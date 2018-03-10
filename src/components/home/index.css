@@ -1,19 +1,20 @@
-table, th, td {
+.table-stocks-container table, th, td {
     border: 1px solid black;
     margin: 0 auto;
     border-collapse: collapse;
 }
 
-th {
+.table-stocks th {
     background-color: #eee;
     padding: 0.3em;
+    cursor: pointer;
 }
 
-.head-active {
+.table-stocks .head-active {
     background-color: #ddd;
 }
 
-td {
+.table-stocks td {
     text-align: center;
     padding: 0.2em;
     white-space: nowrap;
@@ -25,8 +26,11 @@ h3 {
     text-align: center;
 }
 
-tr:nth-child(odd) {
+.table-stocks tr:nth-child(odd) {
     background-color: aliceblue;
+}
+.table-stocks tr:nth-child(even) {
+    background-color: #fff;
 }
 /*
 /////////////////////
@@ -70,10 +74,58 @@ tr:nth-child(odd) {
 /*color price cell end*/
 
 /*color change font*/
-.change-up-font {
+.table-stocks .change-up-font {
     color: limegreen;
 }
-.change-down-font {
+.table-stocks .change-down-font {
     color: indianred;
 }
 /*color change font end*/
+
+/*filters*/
+.hidden {
+    display: none;
+}
+
+.filters {
+    padding-bottom: 1em;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+.filters-container table {
+    border: none;
+    border-collapse: collapse;
+}
+.filters-table td {
+    border: none;
+}
+.filters-table tr:first-child {
+    text-align: right;
+}
+.filters-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.centered-content {
+    text-align: center;
+}
+.button-apply-filters {
+    border: none;
+    outline: none;
+    color: dodgerblue;
+    font-size: 16px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.button-show-hide-filters {
+    border: none;
+    outline: none;
+    color: dodgerblue;
+    font-size: 16px;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+/*filters end*/
