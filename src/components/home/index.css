@@ -84,11 +84,15 @@ h3 {
 
 /*filters*/
 .hidden {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-out;
 }
 
 .filters {
     padding-bottom: 1em;
+    max-height: 300px;
+    transition: max-height .5s ease-in;
 }
 
 input[type="number"] {

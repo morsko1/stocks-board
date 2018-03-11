@@ -22,7 +22,8 @@ const initialState = {
             from: '',
             to: ''
         }
-    ]
+    ],
+    currencies: {data: []}
 };
 
 export default (state = initialState, action) => {
@@ -91,6 +92,19 @@ export default (state = initialState, action) => {
         case actionsHome.APPLY_FILTERS:
             return {
                 ...state,
+            };
+
+        case actionsHome.GET_CURRENCIES_REQUEST:
+            return {
+                ...state,
+            };
+
+        case actionsHome.GET_CURRENCIES_SUCCESS:
+            return {
+                ...state,
+                currencies: {
+                    data: action.payload.data
+                }
             };
 
 

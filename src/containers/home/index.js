@@ -9,6 +9,7 @@ class Home extends Component {
     componentDidMount () {
         this.props.getStocks();
         setInterval(this.props.getStocks, 5000);
+        this.props.getCurrencies();
     }
 
     render() {
@@ -27,6 +28,7 @@ class Home extends Component {
                 showOrHideFilters={this.props.showOrHideFilters}
                 handleFiltersInput={this.props.handleFiltersInput}
                 applyFilters={this.props.applyFilters}
+                currencies={this.props.currencies}
             />
         );
     }
@@ -40,6 +42,7 @@ const mapStateToProps = state => ({
     filteredStocks: state.home.filteredStocks,
     isFiltersVisible: state.home.isFiltersVisible,
     filters: state.home.filters,
+    currencies: state.home.currencies,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -50,6 +53,7 @@ const mapDispatchToProps = dispatch =>
         showOrHideFilters: () => thunkHome.showOrHideFilters(),
         handleFiltersInput: (filter, type, value) => thunkHome.handleFiltersInput(filter, type, value),
         applyFilters: () => thunkHome.applyFilters(),
+        getCurrencies: () => thunkHome.getCurrencies(),
     },
     dispatch
 );

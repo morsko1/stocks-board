@@ -13,7 +13,7 @@ export const getStocks = () => (dispatch, getState) => {
 
     dispatch(actionsHome.getStocksRequest());
 
-    fetch(util.url)
+    fetch(util.urlStocks)
         .then((response) => {
             return response.json();
         })
@@ -59,4 +59,21 @@ export const applyFilters = () => (dispatch, getState) => {
     const stocks = getState().home.stocks;
     dispatch(actionsHome.applyFilters());
     dispatch(getStocksSuccess(stocks.data));
+}
+
+export const getCurrencies = () => (dispatch) => {
+    dispatch(actionsHome.getCurrenciesRequest());
+    fetch(util.urlCurrencies)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            const convertedData = util.convertCurrenciesResponseToCurrencies(data.securities.data);
+            dispatch(getCurrenciesSuccess(convertedData));
+        })
+        .catch();
+}
+
+const getCurrenciesSuccess = (data) => (dispatch) => {
+    dispatch(actionsHome.getCurrenciesSuccess(data));
 }

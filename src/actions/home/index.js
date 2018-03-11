@@ -10,6 +10,10 @@ export const HANDLE_INPUT = 'home/HANDLE_INPUT';
 
 export const APPLY_FILTERS = 'home/APPLY_FILTERS';
 
+export const GET_CURRENCIES_REQUEST = 'home/GET_CURRENCIES_REQUEST';
+export const GET_CURRENCIES_SUCCESS = 'home/GET_CURRENCIES_SUCCESS';
+export const GET_CURRENCIES_FAILURE = 'home/GET_CURRENCIES_FAILURE';
+
 export const getStocksRequest = () => ({
     type: GET_STOCKS_REQUEST
 });
@@ -52,3 +56,13 @@ export const applyFilters = () => ({
     type: APPLY_FILTERS
 });
 
+export const getCurrenciesRequest = () => ({
+    type: GET_CURRENCIES_REQUEST
+});
+
+export const getCurrenciesSuccess = (data) => ({
+    type: GET_CURRENCIES_SUCCESS,
+    payload: {
+        data
+    }
+});

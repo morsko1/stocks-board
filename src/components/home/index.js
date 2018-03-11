@@ -86,8 +86,10 @@ const getTableHead = (props) => {
     )
 }
 
-const getTableRow = (item) => {
-    const capToDollars = parseFloat(item.capitalization/(1000000000*57)).toFixed(3);
+const getTableRow = (item, props) => {
+    const usdRub = props.currencies.data.length &&
+        props.currencies.data.find(item => item.name === 'USD/RUB').value
+    const capToDollars = parseFloat(item.capitalization/(1000000000*usdRub)).toFixed(3);
 
     return (
         <tr key={`row_${item.ticker}`}>
@@ -106,10 +108,6 @@ const getTableRow = (item) => {
                 {item.change ? item.change + ' %' : ''}
             </td>
             <td key={`col_volume${item.ticker}`}>{(item.volumeToday/1000000).toFixed(2)}</td>
-            {/*
-                capitalization in $ billions.
-                to fix: get correct $ price
-            */}
             <td key={`col_cap${item.ticker}`}>{capToDollars}</td>
         </tr>
     );
@@ -209,14 +207,14 @@ const HomeView = props => (
                             props.isFiltersVisible ?
                                 (
                                     props.filteredStocks.data.length ?
-                                        props.filteredStocks.data.map(item => getTableRow(item)) :
+                                        props.filteredStocks.data.map(item => getTableRow(item, props)) :
                                         <tr>
                                             <td colSpan={'8'}>
                                                 {'Нет данных'}
                                             </td>
                                         </tr>
                                 ) :
-                                props.stocks.data.map(item => getTableRow(item))
+                                props.stocks.data.map(item => getTableRow(item, props))
                         }
                         </tbody>
                     </table>
