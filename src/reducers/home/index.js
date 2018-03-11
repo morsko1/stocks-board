@@ -93,6 +93,22 @@ export default (state = initialState, action) => {
             return {
                 ...state,
             };
+        case actionsHome.RESET_FILTERS:
+            return {
+                ...state,
+                filters: [
+                    {
+                        name: 'volumeToday',
+                        from: '',
+                        to: ''
+                    },
+                    {
+                        name: 'capitalization',
+                        from: '',
+                        to: ''
+                    }
+                ]
+            };
 
         case actionsHome.GET_CURRENCIES_REQUEST:
             return {

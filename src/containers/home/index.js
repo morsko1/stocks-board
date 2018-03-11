@@ -29,6 +29,7 @@ class Home extends Component {
                 handleFiltersInput={this.props.handleFiltersInput}
                 applyFilters={this.props.applyFilters}
                 currencies={this.props.currencies}
+                resetFilters={this.props.resetFilters}
             />
         );
     }
@@ -54,6 +55,7 @@ const mapDispatchToProps = dispatch =>
         handleFiltersInput: (filter, type, value) => thunkHome.handleFiltersInput(filter, type, value),
         applyFilters: () => thunkHome.applyFilters(),
         getCurrencies: () => thunkHome.getCurrencies(),
+        resetFilters: () => thunkHome.resetFilters(),
     },
     dispatch
 );

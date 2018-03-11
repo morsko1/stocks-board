@@ -97,6 +97,9 @@ h3 {
 
 input[type="number"] {
     width: 100px;
+    background-image:none;
+    box-shadow: none;
+    outline: none;
 }
 .filters-container table {
     border: none;
@@ -115,7 +118,8 @@ input[type="number"] {
 .centered-content {
     text-align: center;
 }
-.button-apply-filters {
+.button-apply-filters,
+.button-reset-filters {
     border: none;
     outline: none;
     color: dodgerblue;
@@ -130,6 +134,9 @@ input[type="number"] {
     font-size: 16px;
     margin-bottom: 1em;
     cursor: pointer;
+}
+.button-apply-filters span {
+    font-size: 8px;
 }
 
 /*filters end*/

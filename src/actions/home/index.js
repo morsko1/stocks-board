@@ -9,6 +9,7 @@ export const SHOW_OR_HIDE_FILTERS = 'home/SHOW_OR_HIDE_FILTERS';
 export const HANDLE_INPUT = 'home/HANDLE_INPUT';
 
 export const APPLY_FILTERS = 'home/APPLY_FILTERS';
+export const RESET_FILTERS = 'home/RESET_FILTERS';
 
 export const GET_CURRENCIES_REQUEST = 'home/GET_CURRENCIES_REQUEST';
 export const GET_CURRENCIES_SUCCESS = 'home/GET_CURRENCIES_SUCCESS';
@@ -54,6 +55,10 @@ export const handleFiltersInput = (filter, type, value) => ({
 
 export const applyFilters = () => ({
     type: APPLY_FILTERS
+});
+
+export const resetFilters = () => ({
+    type: RESET_FILTERS
 });
 
 export const getCurrenciesRequest = () => ({

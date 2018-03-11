@@ -42,9 +42,9 @@ export const sortRowsBy = (value) => (dispatch, getState) => {
     const stocks = getState().home.stocks;
     dispatch(actionsHome.setSortParameters(value));
     dispatch(getStocksSuccess(stocks.data));
-    if (getState().home.isFiltersVisible) {
-        dispatch(applyFilters());
-    }
+    // if (getState().home.isFiltersVisible) {
+    //     dispatch(applyFilters());
+    // }
 }
 
 export const showOrHideFilters = () => (dispatch) => {
@@ -76,4 +76,8 @@ export const getCurrencies = () => (dispatch) => {
 
 const getCurrenciesSuccess = (data) => (dispatch) => {
     dispatch(actionsHome.getCurrenciesSuccess(data));
+}
+
+export const resetFilters = () => (dispatch) => {
+    dispatch(actionsHome.resetFilters());
 }

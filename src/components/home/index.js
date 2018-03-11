@@ -117,11 +117,15 @@ const getFiltersView = (props) => {
     const getInputValue = (filterName, type) => {
         return props.filters ? props.filters.find(item => item.name === filterName)[type] : ''
     }
-    // '\u2191' : '\u2193'
+
     return (
         <div className={'filters-container centered-content'}>
-            <button className={'button-show-hide-filters'} onClick={props.showOrHideFilters}>
-                {props.isFiltersVisible ? 'фильтры \u2191': 'фильтры \u2193'}
+            <button
+                className={'button-show-hide-filters'}
+                onClick={props.showOrHideFilters}>
+                {
+                    `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
+                }
             </button>
             <div className={props.isFiltersVisible ? 'filters': 'hidden'}>
                 <form
@@ -132,7 +136,7 @@ const getFiltersView = (props) => {
                     )}
                     onSubmit={(event) => {
                         event.preventDefault();
-                        props.applyFilters()
+                        props.applyFilters();
                     }}>
                     <table className={'filters-table'}>
                         <tbody>
@@ -177,10 +181,16 @@ const getFiltersView = (props) => {
                             </tr>
                         </tbody>
                     </table>
-
                     <div className={'centered-content'}>
-                        <button className={'button-apply-filters'} onClick={props.applyFilters}>
+                        <button
+                            type={'submit'}
+                            className={'button-apply-filters'}>
                             {'применить'}
+                        </button>
+                        <button
+                            className={'button-reset-filters'}
+                            onClick={props.resetFilters}>
+                            {'сбросить'}
                         </button>
                     </div>
                 </form>
@@ -188,7 +198,6 @@ const getFiltersView = (props) => {
         </div>
     )
 }
-
 
 const HomeView = props => (
     <div>
@@ -209,9 +218,7 @@ const HomeView = props => (
                                     props.filteredStocks.data.length ?
                                         props.filteredStocks.data.map(item => getTableRow(item, props)) :
                                         <tr>
-                                            <td colSpan={'8'}>
-                                                {'Нет данных'}
-                                            </td>
+                                            <td colSpan={'8'}>{'Нет данных'}</td>
                                         </tr>
                                 ) :
                                 props.stocks.data.map(item => getTableRow(item, props))
