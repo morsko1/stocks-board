@@ -6,7 +6,7 @@ const initialState = {
     stocksFetching: false,
     stocksFetchingError: null,
     sort: {
-        parameter: 'capitalization',
+        parameter: 'volumeToday',
         orderByDesc: false,
     },
     filteredStocks: {data: []},
@@ -96,18 +96,7 @@ export default (state = initialState, action) => {
         case actionsHome.RESET_FILTERS:
             return {
                 ...state,
-                filters: [
-                    {
-                        name: 'volumeToday',
-                        from: '',
-                        to: ''
-                    },
-                    {
-                        name: 'capitalization',
-                        from: '',
-                        to: ''
-                    }
-                ]
+                filters: util.resetFilters(state.filters)
             };
 
         case actionsHome.GET_CURRENCIES_REQUEST:

@@ -49,6 +49,13 @@ export const sortRowsBy = (value) => (dispatch, getState) => {
 
 export const showOrHideFilters = () => (dispatch) => {
     dispatch(actionsHome.showOrHideFilters());
+
+    // animation for filters dropdown
+    const filtersDiv = document.querySelector('.filters');
+    const filtersForm = document.querySelector('.filters-form');
+    filtersDiv.clientHeight ?
+        filtersDiv.style.height = 0 :
+        filtersDiv.style.height = filtersForm.clientHeight + 'px';
 }
 
 export const handleFiltersInput = (filter, type, value) => (dispatch) => {

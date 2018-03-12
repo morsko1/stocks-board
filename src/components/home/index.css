@@ -64,11 +64,11 @@ h3 {
 
 /*color price cell*/
 .price-upper {
-    background-color: limegreen;
+    background-color: palegreen;
     transition: all ease-out 1s;
 }
 .price-lower {
-    background-color: indianred;
+    background-color: lightpink;
     transition: all ease-out 1s;
 }
 /*color price cell end*/
@@ -83,41 +83,46 @@ h3 {
 /*color change font end*/
 
 /*filters*/
-.hidden {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .5s ease-out;
-}
-
-.filters {
-    padding-bottom: 1em;
-    max-height: 300px;
-    transition: max-height .5s ease-in;
-}
 
 input[type="number"] {
     width: 100px;
-    background-image:none;
     box-shadow: none;
     outline: none;
 }
+
 .filters-container table {
     border: none;
     border-collapse: collapse;
 }
+
+.filters {
+    -moz-transition: height .5s;
+    -ms-transition: height .5s;
+    -o-transition: height .5s;
+    -webkit-transition: height .5s;
+    transition: height .5s;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
 .filters-table td {
     border: none;
 }
+
 .filters-table tr:first-child {
     text-align: right;
 }
+
 .filters-table {
     margin-left: auto;
     margin-right: auto;
 }
+
 .centered-content {
     text-align: center;
 }
+
 .button-apply-filters,
 .button-reset-filters {
     border: none;
@@ -127,6 +132,7 @@ input[type="number"] {
     margin-top: 1em;
     cursor: pointer;
 }
+
 .button-show-hide-filters {
     border: none;
     outline: none;
@@ -135,6 +141,7 @@ input[type="number"] {
     margin-bottom: 1em;
     cursor: pointer;
 }
+
 .button-apply-filters span {
     font-size: 8px;
 }

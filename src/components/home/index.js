@@ -127,8 +127,9 @@ const getFiltersView = (props) => {
                     `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
                 }
             </button>
-            <div className={props.isFiltersVisible ? 'filters': 'hidden'}>
+            <div className={'filters'}>
                 <form
+                    className={'filters-form'}
                     onChange={(event) => props.handleFiltersInput(
                         event.target.dataset.filterName,
                         event.target.dataset.inputType,

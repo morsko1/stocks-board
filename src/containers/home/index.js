@@ -7,9 +7,9 @@ import HomeView from '../../components/home';
 
 class Home extends Component {
     componentDidMount () {
+        this.props.getCurrencies();
         this.props.getStocks();
         setInterval(this.props.getStocks, 5000);
-        this.props.getCurrencies();
     }
 
     render() {

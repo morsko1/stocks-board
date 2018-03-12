@@ -142,3 +142,15 @@ export const convertCurrenciesResponseToCurrencies = (data) => {
         };
     })
 }
+
+export const resetFilters = (data) => {
+    return data.map(item => {
+        Object.keys(item).map(prop => {
+            if (prop !== 'name') {
+                item[prop] = ''
+            }
+            return false;
+        })
+        return item
+    })
+}
