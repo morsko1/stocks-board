@@ -4,8 +4,47 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkHome from '../../thunks/home';
 import HomeView from '../../components/home';
+import * as util from '../../common/util'
 
 class Home extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            filtersInput: [
+                {
+                    name: 'volumeToday',
+                    from: '',
+                    to: ''
+                },
+                {
+                    name: 'capitalization',
+                    from: '',
+                    to: ''
+                }
+            ]
+        }
+
+        this.handleFiltersInput = this.handleFiltersInput.bind(this)
+        this.resetFiltersInput = this.resetFiltersInput.bind(this)
+    }
+
+    handleFiltersInput(filter, type, value) {
+        this.setState({
+            filtersInput: util.setFiltersState(
+                this.state.filtersInput,
+                filter,
+                type,
+                value
+            )
+        })
+    }
+
+    resetFiltersInput() {
+        this.setState({
+            filtersInput: util.resetFilters(this.state.filtersInput)
+        })
+    }
+
     componentDidMount () {
         this.props.getCurrencies();
         this.props.getStocks();
@@ -26,10 +65,13 @@ class Home extends Component {
                 isFiltersVisible={this.props.isFiltersVisible}
                 filters={this.props.filters}
                 showOrHideFilters={this.props.showOrHideFilters}
-                handleFiltersInput={this.props.handleFiltersInput}
+                // handleFiltersInput={this.props.handleFiltersInput}
                 applyFilters={this.props.applyFilters}
                 currencies={this.props.currencies}
                 resetFilters={this.props.resetFilters}
+                filtersInput={this.state.filtersInput}
+                handleFiltersInput={this.handleFiltersInput}
+                resetFiltersInput={this.resetFiltersInput}
             />
         );
     }
@@ -52,8 +94,8 @@ const mapDispatchToProps = dispatch =>
         getStocks: () => thunkHome.getStocks(),
         sortRowsBy: (e) => thunkHome.sortRowsBy(e),
         showOrHideFilters: () => thunkHome.showOrHideFilters(),
-        handleFiltersInput: (filter, type, value) => thunkHome.handleFiltersInput(filter, type, value),
-        applyFilters: () => thunkHome.applyFilters(),
+        // handleFiltersInput: (filter, type, value) => thunkHome.handleFiltersInput(filter, type, value),
+        applyFilters: (filters) => thunkHome.applyFilters(filters),
         getCurrencies: () => thunkHome.getCurrencies(),
         resetFilters: () => thunkHome.resetFilters(),
     },

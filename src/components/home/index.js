@@ -114,15 +114,22 @@ const getTableRow = (item, props) => {
 }
 
 const getFiltersView = (props) => {
+    const filtersInput = JSON.parse(JSON.stringify(props.filtersInput))
     const getInputValue = (filterName, type) => {
-        return props.filters ? props.filters.find(item => item.name === filterName)[type] : ''
+        return props.filtersInput ? props.filtersInput.find(item => item.name === filterName)[type] : ''
     }
 
     return (
         <div className={'filters-container centered-content'}>
             <button
                 className={'button-show-hide-filters'}
-                onClick={props.showOrHideFilters}>
+                onClick={() => {
+                    if (props.isFiltersVisible) {
+                        // reset react state
+                        props.resetFiltersInput();
+                    }
+                    props.showOrHideFilters();
+                }}>
                 {
                     `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
                 }
@@ -137,7 +144,7 @@ const getFiltersView = (props) => {
                     )}
                     onSubmit={(event) => {
                         event.preventDefault();
-                        props.applyFilters();
+                        props.applyFilters(filtersInput);
                     }}>
                     <table className={'filters-table'}>
                         <tbody>
@@ -149,7 +156,6 @@ const getFiltersView = (props) => {
                                         type={'number'}
                                         data-filter-name={'volumeToday'}
                                         data-input-type={'from'}
-                                        size={'2'}
                                         value={getInputValue('volumeToday', 'from')}/>
                                 </td>
                                 <td>
@@ -159,7 +165,8 @@ const getFiltersView = (props) => {
                                         data-filter-name={'volumeToday'}
                                         data-input-type={'to'}
                                         value={getInputValue('volumeToday', 'to')}/>
-                                    <br/></td>
+                                    <br/>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Капитализация:</td>
@@ -190,7 +197,10 @@ const getFiltersView = (props) => {
                         </button>
                         <button
                             className={'button-reset-filters'}
-                            onClick={props.resetFilters}>
+                            onClick={() => {
+                                props.resetFiltersInput();
+                                props.resetFilters();
+                            }}>
                             {'сбросить'}
                         </button>
                     </div>
@@ -203,7 +213,9 @@ const getFiltersView = (props) => {
 const HomeView = props => (
     <div>
         <h3>Московская Биржа</h3>
-        {getFiltersView(props)}
+        {
+            getFiltersView(props)
+        }
         {
             props.stocksFetching && !props.stocks.data.length ?
                 <div className={'loader'} /> :

@@ -6,7 +6,7 @@ export const SET_SORT_PARAMETERS = 'home/SET_SORT_PARAMETERS';
 
 export const SHOW_OR_HIDE_FILTERS = 'home/SHOW_OR_HIDE_FILTERS';
 
-export const HANDLE_INPUT = 'home/HANDLE_INPUT';
+// export const HANDLE_INPUT = 'home/HANDLE_INPUT';
 
 export const APPLY_FILTERS = 'home/APPLY_FILTERS';
 export const RESET_FILTERS = 'home/RESET_FILTERS';
@@ -44,17 +44,20 @@ export const showOrHideFilters = () => ({
     type: SHOW_OR_HIDE_FILTERS
 });
 
-export const handleFiltersInput = (filter, type, value) => ({
-    type: HANDLE_INPUT,
-    payload: {
-        filter,
-        type,
-        value
-    }
-});
+// export const handleFiltersInput = (filter, type, value) => ({
+//     type: HANDLE_INPUT,
+//     payload: {
+//         filter,
+//         type,
+//         value
+//     }
+// });
 
-export const applyFilters = () => ({
-    type: APPLY_FILTERS
+export const applyFilters = (filters) => ({
+    type: APPLY_FILTERS,
+    payload: {
+        filters
+    }
 });
 
 export const resetFilters = () => ({

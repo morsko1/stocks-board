@@ -78,20 +78,21 @@ export default (state = initialState, action) => {
                 isFiltersVisible: !state.isFiltersVisible
             };
 
-        case actionsHome.HANDLE_INPUT:
-            return {
-                ...state,
-                filters: util.setFiltersState(
-                    state.filters,
-                    action.payload.filter,
-                    action.payload.type,
-                    action.payload.value
-                )
-            };
+        // case actionsHome.HANDLE_INPUT:
+        //     return {
+        //         ...state,
+        //         filters: util.setFiltersState(
+        //             state.filters,
+        //             action.payload.filter,
+        //             action.payload.type,
+        //             action.payload.value
+        //         )
+        //     };
 
         case actionsHome.APPLY_FILTERS:
             return {
                 ...state,
+                filters: action.payload.filters
             };
         case actionsHome.RESET_FILTERS:
             return {
@@ -111,7 +112,6 @@ export default (state = initialState, action) => {
                     data: action.payload.data
                 }
             };
-
 
         default:
             return state;

@@ -47,7 +47,12 @@ export const sortRowsBy = (value) => (dispatch, getState) => {
     // }
 }
 
-export const showOrHideFilters = () => (dispatch) => {
+export const showOrHideFilters = () => (dispatch, getState) => {
+    const isFiltersVisible = getState().home.isFiltersVisible
+    if (isFiltersVisible) {
+        dispatch(resetFilters());
+    }
+
     dispatch(actionsHome.showOrHideFilters());
 
     // animation for filters dropdown
@@ -58,13 +63,13 @@ export const showOrHideFilters = () => (dispatch) => {
         filtersDiv.style.height = filtersForm.clientHeight + 'px';
 }
 
-export const handleFiltersInput = (filter, type, value) => (dispatch) => {
-    dispatch(actionsHome.handleFiltersInput(filter, type, value));
-}
+// export const handleFiltersInput = (filter, type, value) => (dispatch) => {
+//     dispatch(actionsHome.handleFiltersInput(filter, type, value));
+// }
 
-export const applyFilters = () => (dispatch, getState) => {
+export const applyFilters = (filters) => (dispatch, getState) => {
     const stocks = getState().home.stocks;
-    dispatch(actionsHome.applyFilters());
+    dispatch(actionsHome.applyFilters(filters));
     dispatch(getStocksSuccess(stocks.data));
 }
 
