@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
-import * as util from '../../common/util'
+import * as util from '../../common/util';
 
 const getTableHead = (props) => {
     const getSortArrow = (parameter) => {
         return props.sort.parameter === parameter ?
             (props.sort.orderByDesc ? '\u2191' : '\u2193') :
-            null
+            null;
     }
     return (
         <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
@@ -76,7 +76,7 @@ const getTableHead = (props) => {
                 data-sort-parameter={'capitalization'}>
                 {'Капитализация,'}
                 <br/>
-                {'млрд $'}
+                {'млрд р'}
                 <br/>
                 {
                     getSortArrow('capitalization')
@@ -86,10 +86,10 @@ const getTableHead = (props) => {
     )
 }
 
-const getTableRow = (item, props) => {
-    const usdRub = props.currencies.data.length &&
-        props.currencies.data.find(item => item.name === 'USD/RUB').value
-    const capToDollars = parseFloat(item.capitalization/(1000000000*usdRub)).toFixed(3);
+const getTableRow = (item) => {
+    // const usdRub = props.currencies.data.length &&
+    //     props.currencies.data.find(item => item.name === 'USD/RUB').value;
+    // const capToDollars = parseFloat(item.capitalization / (1000000000 * usdRub)).toFixed(3);
 
     return (
         <tr key={`row_${item.ticker}`}>
@@ -107,33 +107,20 @@ const getTableRow = (item, props) => {
                 className={util.getClassNameForChangeFont(item.change)}>
                 {item.change ? item.change + ' %' : ''}
             </td>
-            <td key={`col_volume${item.ticker}`}>{(item.volumeToday/1000000).toFixed(2)}</td>
-            <td key={`col_cap${item.ticker}`}>{capToDollars}</td>
+            <td key={`col_volume${item.ticker}`}>{(item.volumeToday / 1000000).toFixed(2)}</td>
+            <td key={`col_cap${item.ticker}`}>{(item.capitalization / 1000000000).toFixed(3)}</td>
         </tr>
     );
 }
 
 const getFiltersView = (props) => {
-    const filtersInput = JSON.parse(JSON.stringify(props.filtersInput))
+    const filtersInput = JSON.parse(JSON.stringify(props.filtersInput));
     const getInputValue = (filterName, type) => {
-        return props.filtersInput ? props.filtersInput.find(item => item.name === filterName)[type] : ''
+        return props.filtersInput ? props.filtersInput.find(item => item.name === filterName)[type] : '';
     }
 
     return (
         <div className={'filters-container centered-content'}>
-            <button
-                className={'button-show-hide-filters'}
-                onClick={() => {
-                    if (props.isFiltersVisible) {
-                        // reset react state
-                        props.resetFiltersInput();
-                    }
-                    props.showOrHideFilters();
-                }}>
-                {
-                    `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
-                }
-            </button>
             <div className={'filters'}>
                 <form
                     className={'filters-form'}
@@ -149,7 +136,7 @@ const getFiltersView = (props) => {
                     <table className={'filters-table'}>
                         <tbody>
                             <tr>
-                                <td>Объем:</td>
+                                <td className={'filters-table-td-label'}>Объем, млн р:</td>
                                 <td>
                                     от
                                     <input
@@ -169,7 +156,7 @@ const getFiltersView = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                                <td>Капитализация:</td>
+                                <td className={'filters-table-td-label'}>Капитализация, млрд р:</td>
                                 <td>
                                     от
                                     <input
@@ -210,37 +197,68 @@ const getFiltersView = (props) => {
     )
 }
 
-const HomeView = props => (
-    <div>
-        <h3>Московская Биржа</h3>
-        {
-            getFiltersView(props)
-        }
-        {
-            props.stocksFetching && !props.stocks.data.length ?
-                <div className={'loader'} /> :
-                <div className={'table-stocks-container'}>
-                    <table className={'table-stocks'}>
-                        <tbody>
-                        {
-                            getTableHead(props)
+const getHeader = (props) => {
+    return (
+        <div className={'header-wrapper'}>
+            <div className={'header'}>
+                <button
+                    className={'button-show-hide-filters'}
+                    onClick={() => {
+                        if (props.isFiltersVisible) {
+                            // reset react state
+                            props.resetFiltersInput();
                         }
-                        {
-                            props.isFiltersVisible ?
-                                (
-                                    props.filteredStocks.data.length ?
-                                        props.filteredStocks.data.map(item => getTableRow(item, props)) :
-                                        <tr>
-                                            <td colSpan={'8'}>{'Нет данных'}</td>
-                                        </tr>
-                                ) :
-                                props.stocks.data.map(item => getTableRow(item, props))
-                        }
-                        </tbody>
-                    </table>
-                </div>
-        }
-    </div>
-);
+                        props.showOrHideFilters();
+                    }}>
+                    {
+                        `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
+                    }
+                </button>
+                <span className={'header-title'}>Московская Биржа</span>
+                <button className={'button-show-hide-search'}>{'поиск'}</button>
+
+            </div>
+        </div>
+    );
+}
+
+const HomeView = props => {
+    return (
+        <div className={'home-container'}>
+            {
+                getHeader(props)
+            }
+            <div className={'home-content'}>
+                {
+                    getFiltersView(props)
+                }
+                {
+                    props.stocksFetching && !props.stocks.data.length ?
+                        <div className={'loader'} /> :
+                        <div className={'table-stocks-container'}>
+                            <table className={'table-stocks'}>
+                                <tbody>
+                                {
+                                    getTableHead(props)
+                                }
+                                {
+                                    props.isFiltersVisible ?
+                                        (
+                                            props.filteredStocks.data.length ?
+                                                props.filteredStocks.data.map(item => getTableRow(item)) :
+                                                <tr>
+                                                    <td colSpan={'8'}>{'Нет данных'}</td>
+                                                </tr>
+                                        ) :
+                                        props.stocks.data.map(item => getTableRow(item))
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                }
+            </div>
+        </div>
+    );
+}
 
 export default HomeView;

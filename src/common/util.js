@@ -140,7 +140,7 @@ export const convertCurrenciesResponseToCurrencies = (data) => {
             name: item[0],
             value: item[1]
         };
-    })
+    });
 }
 
 export const resetFilters = (data) => {
@@ -151,6 +151,30 @@ export const resetFilters = (data) => {
             }
             return false;
         })
-        return item
+        return item;
     })
+}
+
+export const convertFiltersValues = (data) => {
+    return data.map(item => {
+        Object.keys(item).map(prop => {
+            switch (item.name) {
+                case 'volumeToday': {
+                    if (prop !== 'name') {
+                        item[prop] = item[prop] ? item[prop] * 1000000 : '';
+                    }
+                    break;
+                }
+                case 'capitalization': {
+                    if (prop !== 'name') {
+                        item[prop] = item[prop] ? item[prop] * 1000000000 : '';
+                    }
+                    break;
+                }
+                default: {}
+            }
+            return false;
+        });
+        return item;
+    });
 }

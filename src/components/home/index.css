@@ -1,3 +1,24 @@
+.home-content{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-wrapper {
+    width: 100%;
+    background-color: aliceblue;
+    margin-bottom: 1em;
+}
+
+.header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    text-align: center;
+    padding: 1em;
+}
+
 .table-stocks-container table, th, td {
     border: 1px solid black;
     margin: 0 auto;
@@ -45,9 +66,9 @@ h3 {
     width: 150px;
     height: 150px;
     margin: -75px 0 0 -75px;
-    border: 8px solid #eee;
+    border: 8px solid aliceblue;
     border-radius: 50%;
-    border-top: 8px solid #000;
+    border-top: 8px solid dodgerblue;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
 }
@@ -85,7 +106,7 @@ h3 {
 /*filters*/
 
 input[type="number"] {
-    width: 100px;
+    width: 70px;
     box-shadow: none;
     outline: none;
 }
@@ -106,6 +127,11 @@ input[type="number"] {
     margin-bottom: 1em;
 }
 
+.filters-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .filters-table td {
     border: none;
 }
@@ -114,9 +140,8 @@ input[type="number"] {
     text-align: right;
 }
 
-.filters-table {
-    margin-left: auto;
-    margin-right: auto;
+.filters-table-td-label {
+    padding-right: .5em;
 }
 
 .centered-content {
@@ -131,19 +156,28 @@ input[type="number"] {
     font-size: 16px;
     margin-top: 1em;
     cursor: pointer;
+    background-color: transparent;
 }
 
-.button-show-hide-filters {
+.button-show-hide-filters,
+.button-show-hide-search {
     border: none;
     outline: none;
     color: dodgerblue;
     font-size: 16px;
     margin-bottom: 1em;
     cursor: pointer;
+    background-color: transparent;
 }
 
 .button-apply-filters span {
     font-size: 8px;
 }
 
+.button-show-hide-filters {
+    float: left;
+}
+.button-show-hide-search {
+    float: right;
+}
 /*filters end*/

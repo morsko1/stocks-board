@@ -92,7 +92,7 @@ export default (state = initialState, action) => {
         case actionsHome.APPLY_FILTERS:
             return {
                 ...state,
-                filters: action.payload.filters
+                filters: util.convertFiltersValues(action.payload.filters)
             };
         case actionsHome.RESET_FILTERS:
             return {
