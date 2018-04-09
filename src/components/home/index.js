@@ -86,13 +86,17 @@ const getTableHead = (props) => {
     )
 }
 
-const getTableRow = (item) => {
+const getTableRow = (item, props) => {
     // const usdRub = props.currencies.data.length &&
     //     props.currencies.data.find(item => item.name === 'USD/RUB').value;
     // const capToDollars = parseFloat(item.capitalization / (1000000000 * usdRub)).toFixed(3);
 
     return (
-        <tr key={`row_${item.ticker}`}>
+        <tr
+            key={`row_${item.ticker}`}
+            onClick={() => {
+                props.changePage(item.ticker);
+            }}>
             <td key={`col_ticker${item.ticker}`}>{item.ticker}</td>
             <td key={`col_name${item.ticker}`}>{item.shortName}</td>
             <td key={`col_prev${item.ticker}`}>{item.prevPrice}</td>
@@ -245,12 +249,12 @@ const HomeView = props => {
                                     props.isFiltersVisible ?
                                         (
                                             props.filteredStocks.data.length ?
-                                                props.filteredStocks.data.map(item => getTableRow(item)) :
+                                                props.filteredStocks.data.map(item => getTableRow(item, props)) :
                                                 <tr>
                                                     <td colSpan={'8'}>{'Нет данных'}</td>
                                                 </tr>
                                         ) :
-                                        props.stocks.data.map(item => getTableRow(item))
+                                        props.stocks.data.map(item => getTableRow(item, props))
                                 }
                                 </tbody>
                             </table>

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkHome from '../../thunks/home';
 import HomeView from '../../components/home';
-import * as util from '../../common/util'
+import * as util from '../../common/util';
 
 class Home extends Component {
     constructor(props){
@@ -24,8 +24,8 @@ class Home extends Component {
             ]
         }
 
-        this.handleFiltersInput = this.handleFiltersInput.bind(this)
-        this.resetFiltersInput = this.resetFiltersInput.bind(this)
+        this.handleFiltersInput = this.handleFiltersInput.bind(this);
+        this.resetFiltersInput = this.resetFiltersInput.bind(this);
     }
 
     handleFiltersInput(filter, type, value) {
@@ -36,13 +36,13 @@ class Home extends Component {
                 type,
                 value
             )
-        })
+        });
     }
 
     resetFiltersInput() {
         this.setState({
             filtersInput: util.resetFilters(this.state.filtersInput)
-        })
+        });
     }
 
     componentDidMount () {
@@ -90,7 +90,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        changePage: () => push('/about-us'),
+        changePage: (stock) => push(`/chart/${stock}`),
         getStocks: () => thunkHome.getStocks(),
         sortRowsBy: (e) => thunkHome.sortRowsBy(e),
         showOrHideFilters: () => thunkHome.showOrHideFilters(),

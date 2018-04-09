@@ -3,13 +3,13 @@ import {
     Route,
 } from 'react-router-dom';
 import Home from './containers/home';
-import About from  './containers/about';
+import Chart from  './containers/chart';
 
 const App = () => (
     <div className={'container'}>
         <main>
             <Route exact path='/' component={Home} />
-            <Route exact path='/about-us' component={About} />
+            <Route exact path='/chart/:ticker' component={Chart} />
         </main>
     </div>
 );
