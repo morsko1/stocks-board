@@ -4,7 +4,7 @@ import './index.css';
 const ChartView = props => {
     return (
         <div className={'chart-container'}>
-            {props.ticker}
+            {props.stock && props.stock.shortName}
         </div>
     );
 }

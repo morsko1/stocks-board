@@ -5,29 +5,41 @@ import * as thunkChart from '../../thunks/chart';
 import ChartView from '../../components/chart';
 
 class Chart extends Component {
-    componentDidMount () {
-        this.props.setCurrentTicker();
+    componentDidMount() {
+        this.props.init();
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
     }
 
     render() {
         return (
             <ChartView
-                setCurrentTicker={this.props.setCurrentTicker}
-                ticker={this.props.ticker}
                 stock={this.props.stock}
+                stockFetching={this.props.stockFetching}
+                stockFetchingError={this.props.stockFetchingError}
+                stockHistoryData={this.props.stockHistoryData}
+                stockHistoryDataFetching={this.props.stockHistoryDataFetching}
+                stockHistoryDataFetchingError={this.props.stockHistoryDataFetchingError}
             />
         );
     }
 }
 
 const mapStateToProps = state => ({
-    ticker: state.chart.ticker,
     stock: state.chart.stock,
+    stockFetching: state.chart.stockFetching,
+    stockFetchingError: state.chart.stockFetchingError,
+    stockHistoryData: state.chart.stockHistoryData,
+    stockHistoryDataFetching: state.chart.stockHistoryDataFetching,
+    stockHistoryDataFetchingError: state.chart.stockHistoryDataFetchingError
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        setCurrentTicker: () => thunkChart.setCurrentTicker(),
+        init: () => thunkChart.init(),
+        reset: () => thunkChart.reset(),
     },
     dispatch
 );

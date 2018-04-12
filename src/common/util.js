@@ -1,12 +1,10 @@
 export const urlStocks = 'https://iss.moex.com/iss/engines/stock/markets/shares/boards/tqbr/securities.json?iss.meta=off&iss.only=securities,marketdata&securities.columns=SECID,SHORTNAME,PREVPRICE,SECNAME,DECIMALS&marketdata.columns=SECID,LAST,LOW,HIGH,OPEN,VALTODAY_RUR,ISSUECAPITALIZATION';
 
+export const getUrlStock = (ticker) => `https://iss.moex.com/iss/engines/stock/markets/shares/boards/tqbr/securities/${ticker}.json?iss.meta=off&iss.only=securities&securities.columns=SECID,SHORTNAME,PREVPRICE,SECNAME`
+
 export const urlCurrencies = 'https://iss.moex.com/iss/statistics/engines/futures/markets/indicativerates/securities.json?iss.meta=off&iss.only=securities&securities.columns=secid,rate';
 
-export const getUrlDailyChart = (stock) => `https://iss.moex.com/iss/history/engines/stock/markets/shares/boards/tqbr/securities/${stock}.json?iss.meta=off&sort_order_desc=desc&history.columns=TRADEDATE,CLOSE`;
-
-// url
-// "columns securities": ["SECID", "SHORTNAME", "PREVPRICE", "SECNAME", "DECIMALS"],
-// "columns marketdata": ["SECID", "LAST", "LOW", "HIGH", "OPEN", "VALTODAY_RUR", "ISSUECAPITALIZATION"],
+export const getUrlDailyChart = (ticker) => `https://iss.moex.com/iss/history/engines/stock/markets/shares/boards/tqbr/securities/${ticker}.json?iss.meta=off&sort_order_desc=desc&history.columns=TRADEDATE,CLOSE`;
 
 export const convertStocksResponseToStocks = (data, sort) => {
     let securities = data.securities.data.map(item => {
@@ -74,13 +72,13 @@ export const setStocksData = (nextData, previousData, sort) => {
 export const getClassNameForCellColor = (diff) => {
     switch (true) {
         case diff > 0: {
-            return 'price-upper'
+            return 'price-upper';
         }
         case diff < 0: {
-            return 'price-lower'
+            return 'price-lower';
         }
         default: {
-            return ''
+            return '';
         }
     }
 }
@@ -88,13 +86,13 @@ export const getClassNameForCellColor = (diff) => {
 export const getClassNameForChangeFont = (diff) => {
     switch (true) {
         case diff > 0: {
-            return 'change-up-font'
+            return 'change-up-font';
         }
         case diff < 0: {
-            return 'change-down-font'
+            return 'change-down-font';
         }
         default: {
-            return ''
+            return '';
         }
     }
 }
@@ -137,7 +135,7 @@ export const filterStocks = (data, filters, sort) => {
 }
 
 export const convertCurrenciesResponseToCurrencies = (data) => {
-    return data.map(item => {
+    return data.securities.data.map(item => {
         return {
             name: item[0],
             value: item[1]
@@ -179,4 +177,23 @@ export const convertFiltersValues = (data) => {
         });
         return item;
     });
+}
+
+export const convertStockHistoryDataResponseToStockHistoryData = (data) => {
+    return data.history.data.map(item => {
+        return {
+            date: item[0],
+            value: item[1]
+        };
+    });
+}
+
+export const convertStockResponseToStock = (data) => {
+    const item = data.securities.data[0];
+    return {
+        ticker: item[0],
+        shortName: item[1],
+        prevPrice: item[2],
+        fullName: item[3]
+    };
 }

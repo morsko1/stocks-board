@@ -21,11 +21,13 @@ class Home extends Component {
                     from: '',
                     to: ''
                 }
-            ]
+            ],
+            intervalId: null
         }
 
         this.handleFiltersInput = this.handleFiltersInput.bind(this);
         this.resetFiltersInput = this.resetFiltersInput.bind(this);
+        this.setIntervalId = this.setIntervalId.bind(this);
     }
 
     handleFiltersInput(filter, type, value) {
@@ -45,10 +47,21 @@ class Home extends Component {
         });
     }
 
-    componentDidMount () {
+    setIntervalId(id) {
+        this.setState({
+            intervalId: id
+        });
+    }
+
+    componentDidMount() {
         this.props.getCurrencies();
         this.props.getStocks();
-        setInterval(this.props.getStocks, 5000);
+        const interval = setInterval(this.props.getStocks, 5000);
+        this.setIntervalId(interval);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
     }
 
     render() {

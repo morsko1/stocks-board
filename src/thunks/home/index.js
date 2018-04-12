@@ -48,7 +48,7 @@ export const sortRowsBy = (value) => (dispatch, getState) => {
 }
 
 export const showOrHideFilters = () => (dispatch, getState) => {
-    const isFiltersVisible = getState().home.isFiltersVisible
+    const isFiltersVisible = getState().home.isFiltersVisible;
     if (isFiltersVisible) {
         dispatch(resetFilters());
     }
@@ -73,21 +73,21 @@ export const applyFilters = (filters) => (dispatch, getState) => {
     dispatch(getStocksSuccess(stocks.data));
 }
 
-export const getCurrencies = () => (dispatch) => {
+export const getCurrencies = () => (dispatch, getState) => {
+    const currencies = getState().home.currencies;
+    if (currencies.data.length) {
+        return;
+    }
     dispatch(actionsHome.getCurrenciesRequest());
     fetch(util.urlCurrencies)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            const convertedData = util.convertCurrenciesResponseToCurrencies(data.securities.data);
-            dispatch(getCurrenciesSuccess(convertedData));
+            const convertedData = util.convertCurrenciesResponseToCurrencies(data);
+            dispatch(actionsHome.getCurrenciesSuccess(convertedData));
         })
         .catch();
-}
-
-const getCurrenciesSuccess = (data) => (dispatch) => {
-    dispatch(actionsHome.getCurrenciesSuccess(data));
 }
 
 export const resetFilters = () => (dispatch) => {
