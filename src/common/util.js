@@ -185,7 +185,7 @@ export const convertStockHistoryDataResponseToStockHistoryData = (data) => {
             date: item[0],
             value: item[1]
         };
-    });
+    }).reverse();
 }
 
 export const convertStockResponseToStock = (data) => {

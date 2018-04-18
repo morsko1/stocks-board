@@ -94,6 +94,7 @@ const getTableRow = (item, props) => {
     return (
         <tr
             key={`row_${item.ticker}`}
+            className={'table-stocks-row'}
             onClick={() => {
                 props.changePage(item.ticker);
             }}>

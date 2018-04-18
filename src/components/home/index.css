@@ -43,6 +43,10 @@
     color: #333;
 }
 
+.table-stocks-row {
+    cursor: pointer;
+}
+
 h3 {
     text-align: center;
 }
@@ -52,6 +56,9 @@ h3 {
 }
 .table-stocks tr:nth-child(even) {
     background-color: #fff;
+}
+.table-stocks tr:hover {
+    background-color: #ddd;
 }
 /*
 /////////////////////
