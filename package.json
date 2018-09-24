@@ -4,11 +4,27 @@
   "private": true,
   "homepage": "http://morsko1.github.io/stocks-board",
   "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
     "gh-pages": "^1.1.0",
-    "react-scripts": "^1.0.17"
+    "html-webpack-plugin": "^4.0.0-alpha.2",
+    "nodemon": "^1.18.4",
+    "react-scripts": "^1.0.17",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
     "d3": "^5.0.2",
+    "express": "^4.16.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -19,8 +35,12 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "client": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "server:dev": "nodemon server/index.js",
+    "server:prod": "node server/index.js",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "prod": "npm run build && npm run server:prod",
     "deploy": "npm run build&&gh-pages -d build"
   }
 }
