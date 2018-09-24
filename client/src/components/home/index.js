@@ -148,7 +148,9 @@ const getFiltersView = (props) => {
                                         type={'number'}
                                         data-filter-name={'volumeToday'}
                                         data-input-type={'from'}
-                                        value={getInputValue('volumeToday', 'from')}/>
+                                        value={getInputValue('volumeToday', 'from')}
+                                        onChange={() => getInputValue('volumeToday', 'from')}
+                                    />
                                 </td>
                                 <td>
                                     до
@@ -156,7 +158,9 @@ const getFiltersView = (props) => {
                                         type={'number'}
                                         data-filter-name={'volumeToday'}
                                         data-input-type={'to'}
-                                        value={getInputValue('volumeToday', 'to')}/>
+                                        value={getInputValue('volumeToday', 'to')}
+                                        onChange={() => getInputValue('volumeToday', 'to')}
+                                    />
                                     <br/>
                                 </td>
                             </tr>
@@ -168,7 +172,9 @@ const getFiltersView = (props) => {
                                         type={'number'}
                                         data-filter-name={'capitalization'}
                                         data-input-type={'from'}
-                                        value={getInputValue('capitalization', 'from')}/>
+                                        value={getInputValue('capitalization', 'from')}
+                                        onChange={() => getInputValue('capitalization', 'from')}
+                                    />
                                 </td>
                                 <td>
                                     до
@@ -176,7 +182,9 @@ const getFiltersView = (props) => {
                                         type={'number'}
                                         data-filter-name={'capitalization'}
                                         data-input-type={'to'}
-                                        value={getInputValue('capitalization', 'to')}/>
+                                        value={getInputValue('capitalization', 'to')}
+                                        onChange={() => getInputValue('capitalization', 'to')}
+                                    />
                                 </td>
                             </tr>
                         </tbody>
