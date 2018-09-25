@@ -35,12 +35,12 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "client": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
+    "client:dev": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "client:prod": "webpack --mode production",
     "server:dev": "nodemon server/index.js",
     "server:prod": "node server/index.js",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
-    "prod": "npm run build && npm run server:prod",
+    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
+    "prod": "npm run client:prod && npm run server:prod",
     "deploy": "npm run build&&gh-pages -d build"
   }
 }
