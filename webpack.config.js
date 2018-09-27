@@ -9,7 +9,8 @@ module.exports = {
     entry: './client/src/index.js',
     output: {
         filename: 'build.js',
-        path: path.resolve(__dirname, outputDirectory)
+        path: path.resolve(__dirname, outputDirectory),
+        publicPath: '/'
     },
     devServer: {
         contentBase: path.join(__dirname, outputDirectory),
@@ -17,7 +18,8 @@ module.exports = {
         open: true,
         proxy: {
             '/api': 'http://localhost:8080'
-        }
+        },
+        historyApiFallback: true
     },
     module: {
         rules: [
