@@ -235,6 +235,7 @@ const getHeader = (props) => {
     );
 }
 
+// todo: handle fetchStocks error - props.stocksFetchingError
 const HomeView = props => {
     return (
         <div className={'home-container'}>
