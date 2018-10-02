@@ -1,0 +1,190 @@
+.full-table-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-wrapper {
+    width: 100%;
+    background-color: aliceblue;
+    margin-bottom: 1em;
+}
+
+.header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    text-align: center;
+    padding: 1em;
+}
+
+.table-stocks-container table, th, td {
+    border: 1px solid black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.table-stocks th {
+    background-color: #eee;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.table-stocks .head-active {
+    background-color: #ddd;
+}
+
+.table-stocks td {
+    text-align: center;
+    padding: 0.2em;
+    white-space: nowrap;
+    overflow:hidden;
+    color: #333;
+}
+
+.table-stocks-row {
+    cursor: pointer;
+}
+
+h3 {
+    text-align: center;
+}
+
+.table-stocks tr:nth-child(odd) {
+    background-color: aliceblue;
+}
+.table-stocks tr:nth-child(even) {
+    background-color: #fff;
+}
+.table-stocks tr:hover {
+    background-color: #ddd;
+}
+/*
+/////////////////////
+    loader
+/////////////////////
+*/
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 8px solid aliceblue;
+    border-radius: 50%;
+    border-top: 8px solid dodgerblue;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*
+/////////////////////
+    loader end
+/////////////////////
+*/
+
+/*color price cell*/
+.price-upper {
+    background-color: palegreen;
+    transition: all ease-out 1s;
+}
+.price-lower {
+    background-color: lightpink;
+    transition: all ease-out 1s;
+}
+/*color price cell end*/
+
+/*color change font*/
+.table-stocks .change-up-font {
+    color: limegreen;
+}
+.table-stocks .change-down-font {
+    color: indianred;
+}
+/*color change font end*/
+
+/*filters*/
+
+input[type="number"] {
+    width: 70px;
+    box-shadow: none;
+    outline: none;
+}
+
+.filters-container table {
+    border: none;
+    border-collapse: collapse;
+}
+
+.filters {
+    -moz-transition: height .5s;
+    -ms-transition: height .5s;
+    -o-transition: height .5s;
+    -webkit-transition: height .5s;
+    transition: height .5s;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.filters-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filters-table td {
+    border: none;
+}
+
+.filters-table tr:first-child {
+    text-align: right;
+}
+
+.filters-table-td-label {
+    padding-right: .5em;
+}
+
+.centered-content {
+    text-align: center;
+}
+
+.button-apply-filters,
+.button-reset-filters {
+    border: none;
+    outline: none;
+    color: dodgerblue;
+    font-size: 16px;
+    margin-top: 1em;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.button-show-hide-filters,
+.button-show-hide-search {
+    border: none;
+    outline: none;
+    color: dodgerblue;
+    font-size: 16px;
+    margin-bottom: 1em;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.button-apply-filters span {
+    font-size: 8px;
+}
+
+.button-show-hide-filters {
+    float: left;
+}
+.button-show-hide-search {
+    float: right;
+}
+/*filters end*/

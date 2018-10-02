@@ -39,12 +39,14 @@ export const convertStocksResponseToStocks = (data, sort) => {
     }
 
     result = result.filter(item => item.prevPrice !== null);
-    result.sort((a, b) => {
-        if (sort.orderByDesc) {
-            return a[sort.parameter] - b[sort.parameter];
-        }
-        return b[sort.parameter] - a[sort.parameter];
-    });
+    if (sort) {
+        result.sort((a, b) => {
+            if (sort.orderByDesc) {
+                return a[sort.parameter] - b[sort.parameter];
+            }
+            return b[sort.parameter] - a[sort.parameter];
+        });
+    }
 
     return result;
 }
@@ -67,6 +69,23 @@ export const setStocksData = (nextData, previousData, sort) => {
         nextData[i].previousPrice = previousData[i].last
     }
     return sortDataBy(nextData, sort)
+}
+
+const sortDataByParameter = (data, parameter) => {
+    return data.sort((a, b) => {
+        return b[parameter] - a[parameter]
+    })
+}
+
+// if stocks data exist in state => set 'previousPrice' property for each stock
+export const setStocksDataWithoutSort = (nextData, previousData) => {
+    if (!previousData.length) {
+        return sortDataByParameter(nextData, 'volumeToday');
+    }
+    for (let i = 0; i < nextData.length; i++) {
+        nextData[i].previousPrice = previousData[i].last;
+    }
+    return sortDataByParameter(nextData, 'volumeToday');
 }
 
 export const getClassNameForCellColor = (diff) => {
