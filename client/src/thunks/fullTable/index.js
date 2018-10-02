@@ -2,7 +2,7 @@ import * as actionsFullTable from '../../actions/fullTable';
 import * as util from '../../common/util';
 
 export const getStocks = () => (dispatch, getState) => {
-    const stocksExist = getState().home.stocks.data.length;
+    const stocksExist = getState().fullTable.stocks.data.length;
     const date = new Date();
     const day = date.getDay();
     const hours = date.getHours();
@@ -23,7 +23,7 @@ export const getStocks = () => (dispatch, getState) => {
                 return;
             }
 
-            const sort = getState().home.sort;
+            const sort = getState().fullTable.sort;
             const convertedData = util.convertStocksResponseToStocks(data, sort);
 
             dispatch(getStocksSuccess(convertedData));
@@ -39,16 +39,16 @@ const getStocksSuccess = (data) => (dispatch) => {
 
 export const sortRowsBy = (value) => (dispatch, getState) => {
     if (!value) return;
-    const stocks = getState().home.stocks;
+    const stocks = getState().fullTable.stocks;
     dispatch(actionsFullTable.setSortParameters(value));
     dispatch(getStocksSuccess(stocks.data));
-    // if (getState().home.isFiltersVisible) {
+    // if (getState().fullTable.isFiltersVisible) {
     //     dispatch(applyFilters());
     // }
 }
 
 export const showOrHideFilters = () => (dispatch, getState) => {
-    const isFiltersVisible = getState().home.isFiltersVisible;
+    const isFiltersVisible = getState().fullTable.isFiltersVisible;
     if (isFiltersVisible) {
         dispatch(resetFilters());
     }
@@ -68,13 +68,13 @@ export const showOrHideFilters = () => (dispatch, getState) => {
 // }
 
 export const applyFilters = (filters) => (dispatch, getState) => {
-    const stocks = getState().home.stocks;
+    const stocks = getState().fullTable.stocks;
     dispatch(actionsFullTable.applyFilters(filters));
     dispatch(getStocksSuccess(stocks.data));
 }
 
 export const getCurrencies = () => (dispatch, getState) => {
-    const currencies = getState().home.currencies;
+    const currencies = getState().fullTable.currencies;
     if (currencies.data.length) {
         return;
     }
