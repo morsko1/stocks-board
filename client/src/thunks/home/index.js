@@ -33,18 +33,16 @@ const getStocksSuccess = (data) => (dispatch) => {
     dispatch(actionsHome.getStocksSuccess(data));
 }
 
+// todo: set values for previous day too
 export const getCurrencies = () => (dispatch, getState) => {
     const currencies = getState().home.currencies;
     if (currencies.data.length) {
         return;
     }
     dispatch(actionsHome.getCurrenciesRequest());
-    fetch(util.urlCurrencies)
+    axios.get(util.urlCurrencies)
         .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            const convertedData = util.convertCurrenciesResponseToCurrencies(data);
+            const convertedData = util.convertCurrenciesResponseToCurrencies(response.data);
             dispatch(actionsHome.getCurrenciesSuccess(convertedData));
         })
         .catch((error) => {
