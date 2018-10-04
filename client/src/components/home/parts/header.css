@@ -1,0 +1,14 @@
+.header-wrapper {
+    width: 100%;
+    background-color: aliceblue;
+    margin-bottom: 1em;
+}
+
+.header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    text-align: center;
+    padding: 1em;
+}
