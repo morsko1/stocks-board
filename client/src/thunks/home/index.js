@@ -1,5 +1,6 @@
 import * as actionsHome from '../../actions/home';
 import * as util from '../../common/util';
+import * as urls from '../../common/urls';
 import axios from 'axios';
 
 export const getStocks = () => (dispatch, getState) => {
@@ -14,7 +15,7 @@ export const getStocks = () => (dispatch, getState) => {
 
     dispatch(actionsHome.getStocksRequest());
 
-    axios.get(util.urlStocks)
+    axios.get(urls.urlStocks)
         .then((response) => {
             if (!response.data.securities.data.length) {
                 dispatch(actionsHome.getStocksFailure({text: 'response empty'}));
@@ -40,7 +41,7 @@ export const getCurrencies = () => (dispatch, getState) => {
         return;
     }
     dispatch(actionsHome.getCurrenciesRequest());
-    axios.get(util.urlCurrencies)
+    axios.get(urls.urlCurrencies)
         .then((response) => {
             const convertedData = util.convertCurrenciesResponseToCurrencies(response.data);
             dispatch(actionsHome.getCurrenciesSuccess(convertedData));

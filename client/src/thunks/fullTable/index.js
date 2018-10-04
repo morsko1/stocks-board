@@ -1,5 +1,7 @@
 import * as actionsFullTable from '../../actions/fullTable';
 import * as util from '../../common/util';
+import * as urls from '../../common/urls';
+import axios from 'axios';
 
 export const getStocks = () => (dispatch, getState) => {
     const stocksExist = getState().fullTable.stocks.data.length;
@@ -13,18 +15,15 @@ export const getStocks = () => (dispatch, getState) => {
 
     dispatch(actionsFullTable.getStocksRequest());
 
-    fetch(util.urlStocks)
+    axios.get(urls.urlStocks)
         .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            if (!data.securities.data.length) {
+            if (!response.data.securities.data.length) {
                 dispatch(actionsFullTable.getStocksFailure({text: 'response empty'}));
                 return;
             }
 
             const sort = getState().fullTable.sort;
-            const convertedData = util.convertStocksResponseToStocks(data, sort);
+            const convertedData = util.convertStocksResponseToStocks(response.data, sort);
 
             dispatch(getStocksSuccess(convertedData));
         })
@@ -79,12 +78,9 @@ export const getCurrencies = () => (dispatch, getState) => {
         return;
     }
     dispatch(actionsFullTable.getCurrenciesRequest());
-    fetch(util.urlCurrencies)
+    axios.get(urls.urlCurrencies)
         .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            const convertedData = util.convertCurrenciesResponseToCurrencies(data);
+            const convertedData = util.convertCurrenciesResponseToCurrencies(response.data);
             dispatch(actionsFullTable.getCurrenciesSuccess(convertedData));
         })
         .catch();
