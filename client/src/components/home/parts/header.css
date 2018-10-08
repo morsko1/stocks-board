@@ -1,10 +1,9 @@
-.header-wrapper {
+.header {
     width: 100%;
     background-color: aliceblue;
-    margin-bottom: 1em;
 }
 
-.header {
+.header__inner {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;

@@ -212,8 +212,8 @@ const getFiltersView = (props) => {
 
 const getHeader = (props) => {
     return (
-        <div className={'header-wrapper'}>
-            <div className={'header'}>
+        <div className={'full-table_header-wrapper'}>
+            <div className={'full-table_header'}>
                 <button
                     className={'button-show-hide-filters'}
                     onClick={() => {
@@ -227,7 +227,7 @@ const getHeader = (props) => {
                         `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
                     }
                 </button>
-                <span className={'header-title'}>Московская Биржа</span>
+                <span className={'full-table_header-title'}>Московская Биржа</span>
                 <button className={'button-show-hide-search'}>{'поиск'}</button>
 
             </div>

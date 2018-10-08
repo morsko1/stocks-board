@@ -4,13 +4,13 @@
     margin-right: auto;
 }
 
-.header-wrapper {
+.full-table_header-wrapper {
     width: 100%;
     background-color: aliceblue;
     margin-bottom: 1em;
 }
 
-.header {
+.full-table_header {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;

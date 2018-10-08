@@ -3,9 +3,9 @@ import './header.css';
 
 const HeaderView = props => {
     return (
-        <div className={'header-wrapper'}>
-            <div className={'header'}>
-                <span className={'title'}>MOEX</span>
+        <div className={'header'}>
+            <div className={'header__inner'}>
+                <span className={'header__title'}>MOEX</span>
             </div>
         </div>
     );
