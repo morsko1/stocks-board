@@ -1,0 +1,12 @@
+.currencies__inner {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+.currencies__currency-item {
+    padding: 1em;
+}
