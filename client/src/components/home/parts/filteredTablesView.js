@@ -17,12 +17,26 @@ const FilteredTablesView = props => {
         return a.change - b.change;
     }).slice(0, 10);
 
+    const maxVolumeStocks = filteredByMinVolume.sort((a, b) => {
+        return b.volumeToday - a.volumeToday;
+    }).slice(0, 10);
+
+    const maxCapitalizationStocks = filteredByMinVolume.sort((a, b) => {
+        return b.capitalization - a.capitalization;
+    }).slice(0, 10);
+
     return (
         <div className={'filtered-tables-view'}>
-            <div className={'filtered-tables-view__inner'}>
-                <CommonTable stocks={gainersStocks} position={'left'} title={'Лидеры роста'} />
-                <CommonTable stocks={losersStocks} position={'right'} title={'Лидеры падения'} />
-            </div>
+        {
+            props.stocks && props.stocks.data && props.stocks.data.length ?
+                <div className={'filtered-tables-view__inner'}>
+                    <CommonTable stocks={gainersStocks} position={'left'} title={'Лидеры роста'} />
+                    <CommonTable stocks={losersStocks} position={'right'} title={'Лидеры падения'} />
+                    <CommonTable stocks={maxVolumeStocks} position={'left'} title={'Лидеры по объему'} />
+                    <CommonTable stocks={maxCapitalizationStocks} position={'right'} title={'Лидеры по капитализации'} />
+                </div> :
+                null
+        }
         </div>
     );
 }
