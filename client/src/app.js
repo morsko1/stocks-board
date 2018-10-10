@@ -2,10 +2,10 @@ import React from 'react';
 import {
     Route,
 } from 'react-router-dom';
-import Home from './containers/home';
-import Chart from './containers/chart';
-import FullTable from './containers/fullTable';
-import Register from './containers/register';
+import Home from './Home';
+import Chart from './Chart';
+import FullTable from './FullTable';
+import Register from './Register';
 
 const App = () => (
     <div className={'container'}>
