@@ -4,11 +4,13 @@ import home from './Home/reducers';
 import chart from './Chart/reducers';
 import fullTable from './FullTable/reducers';
 import register from './Register/reducers';
+import login from './Login/reducers';
 
 export default combineReducers({
     router: routerReducer,
     home,
     chart,
     fullTable,
-    register
+    register,
+    login
 });

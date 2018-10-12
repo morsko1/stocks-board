@@ -1,4 +1,4 @@
-.register-container__inner {
+.login-container__inner {
     max-width: 360px;
     margin-left: auto;
     margin-right: auto;
@@ -10,29 +10,27 @@
     margin-top: 2em;
 }
 
-.register-container__title {
+.login-container__title {
     border-bottom: 2px solid #eee;
     margin-bottom: 1em;
 }
 
-.register-container__username,
-.register-container__email,
-.register-container__password,
-.register-container__password-confirm {
+.login-container__username,
+.login-container__password {
     display: flex;
     flex-direction: column;
 }
-.register-container__form label {
+.login-container__form label {
     margin-bottom: 0.5em;
 }
 
-.register-container__form input {
+.login-container__form input {
     font-size: 100%;
     padding: 0.2em;
     margin-bottom: 0.5em;
 }
 
-.register-container__submit-button {
+.login-container__submit-button {
     width: 100%;
     text-align: center;
     font-size: 100%;
@@ -44,12 +42,12 @@
     border-radius: 0.2em;
 }
 
-.register-container__link-to-login-wrapper {
+.login-container__link-to-register-wrapper {
     text-align: center;
     padding-top: 1em;
 }
 
-.register-container__link-to-login {
+.login-container__link-to-register {
     color: blue;
     cursor: pointer;
     text-decoration: underline;
@@ -58,7 +56,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-    .register-container__inner {
+    .login-container__inner {
         max-width: none;
         width: auto;
         padding-top: 2em;

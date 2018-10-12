@@ -43,6 +43,15 @@ const RegisterView = props => {
                             register
                         </button>
                     </div>
+                    <div className={'register-container__link-to-login-wrapper'}>
+                        or
+                        <span
+                            className={'register-container__link-to-login'}
+                            onClick={()=>{}}
+                        >
+                            login
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
