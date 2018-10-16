@@ -6,19 +6,34 @@ const RegisterView = props => {
         <div className={'register-container'}>
             <div className={'register-container__inner'}>
                 <div className={'register-container__title'}>Register</div>
-                <form className={'register-container__form'} onSubmit={(e) => {e.preventDefault()}}>
+                <form
+                    id={'register-container__form'}
+                    className={'register-container__form'}
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        props.register();
+                    }}
+                >
                     <div className={'register-container__username'}>
                         <label htmlFor={'register-container__username-input'}>username</label>
                         <input
                             id={'register-container__username-input'}
                             type={'text'}
+                            data-field={'username'}
+                            value={props.input.username}
+                            onChange={(e) => {props.handleInput(e.target.dataset.field, e.target.value)}}
+                            required
                         />
                     </div>
                     <div className={'register-container__email'}>
                         <label htmlFor={'register-container__email-input'}>email</label>
                         <input
                             id={'register-container__email-input'}
-                            type={'text'}
+                            type={'email'}
+                            data-field={'email'}
+                            value={props.input.email}
+                            onChange={(e) => {props.handleInput(e.target.dataset.field, e.target.value)}}
+                            required
                         />
                     </div>
                     <div className={'register-container__password'}>
@@ -26,6 +41,10 @@ const RegisterView = props => {
                         <input
                             id={'register-container__password-input'}
                             type={'password'}
+                            data-field={'password'}
+                            value={props.input.password}
+                            onChange={(e) => {props.handleInput(e.target.dataset.field, e.target.value)}}
+                            required
                         />
                     </div>
                     <div className={'register-container__password-confirm'}>
@@ -33,6 +52,10 @@ const RegisterView = props => {
                         <input
                             id={'register-container__password-confirm-input'}
                             type={'password'}
+                            data-field={'confirm'}
+                            value={props.input.confirm}
+                            onChange={(e) => {props.handleInput(e.target.dataset.field, e.target.value)}}
+                            required
                         />
                     </div>
                     <div className={'register-container__submit-button-wrapper'}>
@@ -47,7 +70,7 @@ const RegisterView = props => {
                         or
                         <span
                             className={'register-container__link-to-login'}
-                            onClick={()=>{}}
+                            onClick={()=>{props.goToLoginPage()}}
                         >
                             login
                         </span>

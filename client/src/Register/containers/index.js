@@ -3,32 +3,36 @@ import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkRegister from '../thunks';
+import * as actionsRegister from '../actions';
 import RegisterView from '../components';
 
 class Register extends Component {
 
     componentDidMount() {
         console.log('Register did mount');
-        thunkRegister.test();
     }
 
     render() {
         return (
             <RegisterView
-                test={this.props.test}
-                testData={this.props.testData}
+                register={this.props.register}
+                input={this.props.input}
+                handleInput={this.props.handleInput}
+                goToLoginPage={this.props.goToLoginPage}
             />
         );
     }
 }
 
 const mapStateToProps = state => ({
-    testData: state.register.testData
+    input: state.register.input
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        test: () => thunkRegister.test(),
+        register: () => thunkRegister.register(),
+        handleInput: (field, text) => actionsRegister.handleInput(field, text),
+        goToLoginPage: () => push('/login')
     },
     dispatch
 );
