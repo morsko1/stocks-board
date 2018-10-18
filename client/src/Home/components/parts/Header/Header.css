@@ -4,10 +4,26 @@
 }
 
 .header__inner {
+    position: relative;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     color: #333;
     text-align: center;
     padding: 1em;
+}
+
+.header__link-container {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
+.header__link-to-register,
+.header__link-to-login {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+    padding-left: 0.5em;
+    user-select: none;
 }

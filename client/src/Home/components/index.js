@@ -7,7 +7,10 @@ import FilteredTablesView from './parts/FilteredTablesView/FilteredTablesView.js
 const HomeView = props => {
     return (
         <div className={'home-container'}>
-            <HeaderView />
+            <HeaderView
+                goToRegisterPage={props.goToRegisterPage}
+                goToLoginPage={props.goToLoginPage}
+            />
             <CurrenciesView currencies={props.currencies} />
             <FilteredTablesView stocks={props.stocks} />
         </div>

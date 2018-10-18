@@ -38,6 +38,8 @@ class Home extends Component {
                 stocksFetching={this.props.stocksFetching}
                 stocksFetchingError={this.props.stocksFetchingError}
                 currencies={this.props.currencies}
+                goToRegisterPage={this.props.goToRegisterPage}
+                goToLoginPage={this.props.goToLoginPage}
             />
         );
     }
@@ -55,6 +57,8 @@ const mapDispatchToProps = dispatch =>
         navigateToChart: (stock) => push(`/chart/${stock}`),
         getStocks: () => thunkHome.getStocks(),
         getCurrencies: () => thunkHome.getCurrencies(),
+        goToRegisterPage: () => push('/register'),
+        goToLoginPage: () => push('/login')
     },
     dispatch
 );
