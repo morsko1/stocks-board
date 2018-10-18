@@ -43,6 +43,24 @@ app.get('/api/register', (req, res) => {
     });
 });
 
+app.get('/api/login', (req, res) => {
+    MongoClient.connect(connectionUrl, (err, client) => {
+        client.db(dbName).collection(collectionName).findOne({
+            username: req.query.username,
+            password: req.query.password
+        }, (err, user) => {
+            if (user === null) {
+                res.send({success: false, error: 'incorrect username or password'});
+                client.close();
+                return;
+            } else {
+                res.send({success: true, user: user});
+                client.close();
+            }
+        });
+    });
+});
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '/../client/build/index.html'));
 });
