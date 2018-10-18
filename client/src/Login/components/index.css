@@ -42,12 +42,14 @@
     border-radius: 0.2em;
 }
 
-.login-container__link-to-register-wrapper {
+.login-container__link-to-register-wrapper,
+.login-container__link-to-home-wrapper {
     text-align: center;
     padding-top: 1em;
 }
 
-.login-container__link-to-register {
+.login-container__link-to-register,
+.login-container__link-to-home {
     color: blue;
     cursor: pointer;
     text-decoration: underline;
