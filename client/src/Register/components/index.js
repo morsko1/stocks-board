@@ -75,6 +75,14 @@ const RegisterView = props => {
                             login
                         </span>
                     </div>
+                    <div className={'register-container__link-to-home-wrapper'}>
+                        <span
+                            className={'register-container__link-to-home'}
+                            onClick={()=>{props.goToHomePage()}}
+                        >
+                            home
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>

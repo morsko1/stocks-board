@@ -19,6 +19,7 @@ class Register extends Component {
                 input={this.props.input}
                 handleInput={this.props.handleInput}
                 goToLoginPage={this.props.goToLoginPage}
+                goToHomePage={this.props.goToHomePage}
             />
         );
     }
@@ -32,7 +33,8 @@ const mapDispatchToProps = dispatch =>
     bindActionCreators({
         register: () => thunkRegister.register(),
         handleInput: (field, text) => actionsRegister.handleInput(field, text),
-        goToLoginPage: () => push('/login')
+        goToLoginPage: () => push('/login'),
+        goToHomePage: () => push('/')
     },
     dispatch
 );
