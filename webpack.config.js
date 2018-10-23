@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
-const outputDirectory = 'client/build';
+const outputDirectory = 'client/build/';
 
 module.exports = {
     entry: './client/src/index.js',
@@ -49,8 +50,10 @@ module.exports = {
         new CleanWebpackPlugin([outputDirectory]),
         new HtmlWebpackPlugin({
             title: 'stock-board',
-            template: path.join(__dirname, '/client/public/index.html')
+            template: path.join(__dirname, '/client/public/index.html'),
+            alwaysWriteToDisk: true
         }),
+        new HtmlWebpackHarddiskPlugin(),
         new CopyWebpackPlugin([{
             from: './client/public/moex_logo.jpg'
         }])
