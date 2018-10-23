@@ -12,10 +12,10 @@ app.use(bodyParser.json());
 
 app.use('/', express.static('client/build'));
 
-app.get('/api/register', (req, res) => {
+app.post('/api/register', (req, res) => {
     MongoClient.connect(connectionUrl, (err, client) => {
         client.db(dbName).collection(collectionName).findOne({
-            username: req.query.username
+            username: req.body.username
         }, (err, user) => {
             if (user !== null) {
                 res.send({success: false, error: 'username has already reserved'});
@@ -25,9 +25,9 @@ app.get('/api/register', (req, res) => {
 
             MongoClient.connect(connectionUrl, (err, client) => {
                 client.db(dbName).collection(collectionName).insertOne({
-                    username: req.query.username,
-                    email: req.query.email,
-                    password: req.query.password,
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: req.body.password,
                     isAdmin: false
                 }, (err, result) => {
                     if (err) {
@@ -43,11 +43,11 @@ app.get('/api/register', (req, res) => {
     });
 });
 
-app.get('/api/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     MongoClient.connect(connectionUrl, (err, client) => {
         client.db(dbName).collection(collectionName).findOne({
-            username: req.query.username,
-            password: req.query.password
+            username: req.body.username,
+            password: req.body.password
         }, (err, user) => {
             if (user === null) {
                 res.send({success: false, error: 'incorrect username or password'});
@@ -61,7 +61,7 @@ app.get('/api/login', (req, res) => {
     });
 });
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/../client/build/index.html'));
 });
 

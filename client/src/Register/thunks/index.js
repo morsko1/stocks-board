@@ -12,15 +12,13 @@ export const register = () => (dispatch, getState) => {
         dispatch(actionsRegister.resetPasswordError());
     }
     dispatch(actionsRegister.resetInput());
-    const options = {
-        params : {
-            username,
-            email,
-            password
-        }
+    const body = {
+        username,
+        email,
+        password
     };
     dispatch(actionsRegister.registerRequest());
-    axios.get('/api/register', options)
+    axios.post('/api/register', body)
         .then((response) => {
             if (!response.data.success) {
                 dispatch(actionsRegister.registerFailure({error: response.data.error}))

@@ -6,14 +6,12 @@ export const login = () => (dispatch, getState) => {
     const state = getState().login;
     const {username, password} = state.input;
     dispatch(actionsLogin.resetInput());
-    const options = {
-        params : {
-            username,
-            password
-        }
+    const body = {
+        username,
+        password
     };
     dispatch(actionsLogin.loginRequest());
-    axios.get('/api/login', options)
+    axios.post('/api/login', body)
         .then((response) => {
             if (!response.data.success) {
                 dispatch(actionsLogin.loginFailure({error: response.data.error}))
