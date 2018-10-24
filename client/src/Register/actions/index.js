@@ -30,11 +30,8 @@ export const registerRequest = () => ({
     type: REGISTER_REQUEST
 });
 
-export const registerSuccess = (data) => ({
-    type: REGISTER_SUCCESS,
-    payload: {
-        data
-    }
+export const registerSuccess = () => ({
+    type: REGISTER_SUCCESS
 });
 
 export const registerFailure = (error) => ({

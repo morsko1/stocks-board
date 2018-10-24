@@ -24,8 +24,8 @@ export const register = () => (dispatch, getState) => {
                 dispatch(actionsRegister.registerFailure({error: response.data.error}))
                 return;
             }
-            dispatch(actionsRegister.registerSuccess(response.data));
-            dispatch(push('/'));
+            dispatch(actionsRegister.registerSuccess());
+            dispatch(push('/login'));
         })
         .catch((error) => {
             dispatch(actionsRegister.registerFailure(error));
