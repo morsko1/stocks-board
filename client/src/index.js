@@ -5,9 +5,12 @@ import {ConnectedRouter} from 'react-router-redux';
 import store, {history} from './store';
 import App from './app';
 
+import {getUser} from './User/thunks';
+
 import './index.css';
 
 const target = document.querySelector('#root');
+store.dispatch(getUser());
 
 render(
     <Provider store={store}>
