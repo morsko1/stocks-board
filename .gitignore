@@ -16,3 +16,5 @@ npm-debug.log
 yarn.lock
 yarn-error.log
 .idea/
+
+server/config.js

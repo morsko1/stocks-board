@@ -6,10 +6,12 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const config = require('./config');
 
 const connectionUrl = 'mongodb://localhost:27017/';
 const dbName = 'stocks-board';
 const collectionName = 'users';
+const pathToHtml = '/../client/build/index.html';
 
 app.use(bodyParser.json());
 
@@ -59,7 +61,7 @@ app.post('/api/login', (req, res) => {
             }
             // compare password and hash
             if (bcrypt.compareSync(req.body.password, user.passwordHash)) {
-                const token = jwt.sign({_id: user._id}, 'secret');
+                const token = jwt.sign({_id: user._id}, config.secret);
                 const userToSend = {
                     username: user.username,
                     email: user.email,
@@ -76,12 +78,28 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+const tokenVerifier = (req, res, next) => {
+  const token = req.headers['authorization'] && req.headers['authorization'].replace('Bearer ', '');
+
+    if (!token) {
+        return res.sendFile(path.join(__dirname, pathToHtml));
+    }
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.sendFile(path.join(__dirname, pathToHtml));
+        }
+        next();
+    });
+}
+
+app.use(tokenVerifier);
+
 app.get('/api/verifytoken', (req, res) => {
     const token = req.headers['authorization'].replace('Bearer ', '');
-    jwt.verify(token, 'secret', (err, decoded) => {
+    jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
-            res.send({success: false, error: 'token error'});
-            return;
+            return res.send({success: false, error: 'token error'});
         }
 
         const userId = decoded._id;
@@ -109,7 +127,7 @@ app.get('/api/verifytoken', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/../client/build/index.html'));
+    res.sendFile(path.join(__dirname, pathToHtml));
 });
 
 const port = 8080;
