@@ -10,6 +10,8 @@ const HomeView = props => {
             <HeaderView
                 goToRegisterPage={props.goToRegisterPage}
                 goToLoginPage={props.goToLoginPage}
+                user={props.user}
+                logout={props.logout}
             />
             <CurrenciesView currencies={props.currencies} />
             <FilteredTablesView stocks={props.stocks} />

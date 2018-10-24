@@ -3,6 +3,7 @@ import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkHome from '../thunks';
+import * as thunkUser from '../../User/thunks';
 import HomeView from '../components';
 import * as util from '../../common/util';
 
@@ -40,6 +41,8 @@ class Home extends Component {
                 currencies={this.props.currencies}
                 goToRegisterPage={this.props.goToRegisterPage}
                 goToLoginPage={this.props.goToLoginPage}
+                user={this.props.user}
+                logout={this.props.logout}
             />
         );
     }
@@ -50,6 +53,7 @@ const mapStateToProps = state => ({
     stocksFetching: state.home.stocksFetching,
     stocksFetchingError: state.home.stocksFetchingError,
     currencies: state.home.currencies,
+    user: state.user.user,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -58,7 +62,8 @@ const mapDispatchToProps = dispatch =>
         getStocks: () => thunkHome.getStocks(),
         getCurrencies: () => thunkHome.getCurrencies(),
         goToRegisterPage: () => push('/register'),
-        goToLoginPage: () => push('/login')
+        goToLoginPage: () => push('/login'),
+        logout: () => thunkUser.logout()
     },
     dispatch
 );

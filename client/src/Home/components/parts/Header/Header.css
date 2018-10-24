@@ -13,12 +13,18 @@
     padding: 1em;
 }
 
-.header__link-container {
+.header__user {
     position: absolute;
     right: 1em;
     top: 1em;
 }
 
+.header__link-container {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+.header__logout-link,
 .header__link-to-register,
 .header__link-to-login {
     color: blue;
