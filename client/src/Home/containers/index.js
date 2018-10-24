@@ -8,26 +8,9 @@ import HomeView from '../components';
 import * as util from '../../common/util';
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-        this.setIntervalId = this.setIntervalId.bind(this);
-    }
-
-    setIntervalId(id) {
-        this.setState({
-            intervalId: id
-        });
-    }
-
     componentDidMount() {
         this.props.getCurrencies();
         this.props.getStocks();
-        const interval = setInterval(this.props.getStocks, 5000);
-        this.setIntervalId(interval);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.state.intervalId);
     }
 
     render() {
@@ -53,7 +36,7 @@ const mapStateToProps = state => ({
     stocksFetching: state.home.stocksFetching,
     stocksFetchingError: state.home.stocksFetchingError,
     currencies: state.home.currencies,
-    user: state.user.user,
+    user: state.user
 });
 
 const mapDispatchToProps = dispatch =>

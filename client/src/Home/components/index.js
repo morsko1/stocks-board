@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import HeaderView from './parts/Header/Header.js';
+import HeaderView from '../../components/Header/Header.js';
 import CurrenciesView from './parts/Currencies/Currencies.js';
 import FilteredTablesView from './parts/FilteredTablesView/FilteredTablesView.js';
 
