@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+import MediaQuery from 'react-responsive';
 
 const getUserView = (props) => {
     const username = props.user.user.username;
@@ -35,7 +36,17 @@ const getAuthView = (props) => {
     );
 }
 
-const HeaderView = props => {
+const getMobileHeader = (props) => {
+    return (
+        <div className={'header-mobile'}>
+            <div className={'header-mobile__inner'}>
+                <span className={'header-mobile__title'}>MOEX</span>
+            </div>
+        </div>
+    );
+}
+
+const getDesktopHeader = props => {
     return (
         <div className={'header'}>
             <div className={'header__inner'}>
@@ -50,6 +61,19 @@ const HeaderView = props => {
                         )
                 }
             </div>
+        </div>
+    );
+}
+
+const HeaderView = props => {
+    return (
+        <div>
+            <MediaQuery maxWidth={767}>
+                {getMobileHeader(props)}
+            </MediaQuery>
+            <MediaQuery minWidth={768}>
+                {getDesktopHeader(props)}
+            </MediaQuery>
         </div>
     );
 }

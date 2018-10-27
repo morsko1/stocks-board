@@ -1,0 +1,20 @@
+.mobile-control {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 1em;
+    border-top: 1px solid #ddd;
+}
+
+.mobile-control__right {
+    float: right;
+    font-size: 1.3em;
+}
+
+.mobile-control__register {
+    padding-right: 1em;
+}
+
+

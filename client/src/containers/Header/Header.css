@@ -1,8 +1,10 @@
+.header-mobile,
 .header {
     width: 100%;
     background-color: aliceblue;
 }
 
+.header-mobile__inner,
 .header__inner {
     position: relative;
     max-width: 800px;
