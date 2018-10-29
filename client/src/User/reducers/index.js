@@ -3,7 +3,10 @@ import * as actionsUser from '../actions';
 const initialState = {
     user: null,
     isFetching: false,
-    userError: null
+    userError: null,
+    menu: {
+        isVisible: false
+    }
 };
 
 export default (state = initialState, action) => {
@@ -38,6 +41,27 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 user: null
+            };
+        case actionsUser.SHOW_MENU:
+            return {
+                ...state,
+                menu: {
+                    isVisible: true
+                }
+            };
+        case actionsUser.HIDE_MENU:
+            return {
+                ...state,
+                menu: {
+                    isVisible: false
+                }
+            };
+        case actionsUser.TOGGLE_MENU:
+            return {
+                ...state,
+                menu: {
+                    isVisible: !state.menu.isVisible
+                }
             };
 
         default:

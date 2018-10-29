@@ -3,6 +3,9 @@ export const GET_USER_SUCCESS = 'user/GET_USER_SUCCESS';
 export const GET_USER_FAILURE = 'user/GET_USER_FAILURE';
 export const SET_USER = 'user/SET_USER';
 export const RESET_USER = 'user/RESET_USER';
+export const SHOW_MENU = 'user/SHOW_MENU';
+export const HIDE_MENU = 'user/HIDE_MENU';
+export const TOGGLE_MENU = 'user/TOGGLE_MENU';
 
 export const getUserRequest = () => ({
     type: GET_USER_REQUEST
@@ -28,4 +31,17 @@ export const setUser = (user) => ({
 
 export const resetUser = () => ({
     type: RESET_USER
+});
+
+
+export const showMenu = () => ({
+    type: SHOW_MENU
+});
+
+export const hideMenu = () => ({
+    type: HIDE_MENU
+});
+
+export const toggleMenu = () => ({
+    type: TOGGLE_MENU
 });

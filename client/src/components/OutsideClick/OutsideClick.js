@@ -22,7 +22,7 @@ export default class OutsideClick extends Component {
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.props.toggleMenu();
+            this.props.hideMenu();
         }
     }
 
