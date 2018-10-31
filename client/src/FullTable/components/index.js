@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.scss';
 import * as util from '~/common/util';
+import Layout from '~/common/components/Layout/Layout.js';
 
 const getTableHead = (props) => {
     const getSortArrow = (parameter) => {
@@ -14,7 +15,7 @@ const getTableHead = (props) => {
             <th key={'head_name'}>{'Наименование'}</th>
             <th
                 key={'head_prev'}
-                className={getSortArrow('prevPrice') ? 'head-active' : ''}
+                className={getSortArrow('prevPrice') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'prevPrice'}>
                 {'Цена,'}
                 <br/>
@@ -26,7 +27,7 @@ const getTableHead = (props) => {
             </th>
             <th
                 key={'head_open'}
-                className={getSortArrow('open') ? 'head-active' : ''}
+                className={getSortArrow('open') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'open'}>
                 {'Цена,'}
                 <br/>
@@ -38,7 +39,7 @@ const getTableHead = (props) => {
             </th>
             <th
                 key={'head_last'}
-                className={getSortArrow('last') ? 'head-active' : ''}
+                className={getSortArrow('last') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'last'}>
                 {'Цена,'}
                 <br/>
@@ -50,7 +51,7 @@ const getTableHead = (props) => {
             </th>
             <th
                 key={'head_change'}
-                className={getSortArrow('change') ? 'head-active' : ''}
+                className={getSortArrow('change') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'change'}>
                 {'% изм'}
                 <br/>
@@ -60,7 +61,7 @@ const getTableHead = (props) => {
             </th>
             <th
                 key={'head_volume'}
-                className={getSortArrow('volumeToday') ? 'head-active' : ''}
+                className={getSortArrow('volumeToday') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'volumeToday'}>
                 {'Объем,'}
                 <br/>
@@ -72,7 +73,7 @@ const getTableHead = (props) => {
             </th>
             <th
                 key={'head_cap'}
-                className={getSortArrow('capitalization') ? 'head-active' : ''}
+                className={getSortArrow('capitalization') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'capitalization'}>
                 {'Капитализация,'}
                 <br/>
@@ -94,7 +95,7 @@ const getTableRow = (item, props) => {
     return (
         <tr
             key={`row_${item.ticker}`}
-            className={'table-stocks-row'}
+            className={'all-stocks__table-stocks-row'}
             onClick={() => {
                 props.changePage(item.ticker);
             }}>
@@ -125,10 +126,10 @@ const getFiltersView = (props) => {
     }
 
     return (
-        <div className={'filters-container centered-content'}>
-            <div className={'filters'}>
+        <div className={'all-stocks__filters-container centered-content'}>
+            <div className={'all-stocks__filters'}>
                 <form
-                    className={'filters-form'}
+                    className={'all-stocks__filters-form'}
                     onChange={(event) => props.handleFiltersInput(
                         event.target.dataset.filterName,
                         event.target.dataset.inputType,
@@ -138,10 +139,10 @@ const getFiltersView = (props) => {
                         event.preventDefault();
                         props.applyFilters(filtersInput);
                     }}>
-                    <table className={'filters-table'}>
+                    <table className={'all-stocks__filters-table'}>
                         <tbody>
                             <tr>
-                                <td className={'filters-table-td-label'}>Объем, млн р:</td>
+                                <td className={'all-stocks__filters-table-td-label'}>Объем, млн р:</td>
                                 <td>
                                     от
                                     <input
@@ -189,14 +190,14 @@ const getFiltersView = (props) => {
                             </tr>
                         </tbody>
                     </table>
-                    <div className={'centered-content'}>
+                    <div className={'all-stocks__centered-content'}>
                         <button
                             type={'submit'}
-                            className={'button-apply-filters'}>
+                            className={'all-stocks__button-apply-filters'}>
                             {'применить'}
                         </button>
                         <button
-                            className={'button-reset-filters'}
+                            className={'all-stocks__button-reset-filters'}
                             onClick={() => {
                                 props.resetFiltersInput();
                                 props.resetFilters();
@@ -210,27 +211,22 @@ const getFiltersView = (props) => {
     )
 }
 
-const getHeader = (props) => {
+const getFiltersButton = (props) => {
     return (
-        <div className={'full-table_header-wrapper'}>
-            <div className={'full-table_header'}>
-                <button
-                    className={'button-show-hide-filters'}
-                    onClick={() => {
-                        if (props.isFiltersVisible) {
-                            // reset react state
-                            props.resetFiltersInput();
-                        }
-                        props.showOrHideFilters();
-                    }}>
-                    {
-                        `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
+        <div className={'all-stocks__filters-button-container'}>
+            <button
+                className={'all-stocks__filters-button'}
+                onClick={() => {
+                    if (props.isFiltersVisible) {
+                        // reset react state
+                        props.resetFiltersInput();
                     }
-                </button>
-                <span className={'full-table_header-title'}>Московская Биржа</span>
-                <button className={'button-show-hide-search'}>{'поиск'}</button>
-
-            </div>
+                    props.showOrHideFilters();
+                }}>
+                {
+                    `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
+                }
+            </button>
         </div>
     );
 }
@@ -238,19 +234,20 @@ const getHeader = (props) => {
 // todo: handle fetchStocks error - props.stocksFetchingError
 const FullTableView = props => {
     return (
-        <div className={'full-table-container'}>
-            {
-                getHeader(props)
-            }
-            <div className={'full-table-content'}>
+        <Layout>
+            <div className={'all-stocks__container'}>
+                {
+                    getFiltersButton(props)
+                }
+                <div className={'all-stocks__inner'}>
                 {
                     getFiltersView(props)
                 }
                 {
                     props.stocksFetching && !props.stocks.data.length ?
-                        <div className={'loader'} /> :
-                        <div className={'table-stocks-container'}>
-                            <table className={'table-stocks'}>
+                        <div className={'all-stocks__loader'} /> :
+                        <div className={'all-stocks__table-stocks-container'}>
+                            <table className={'all-stocks__table-stocks'}>
                                 <tbody>
                                 {
                                     getTableHead(props)
@@ -270,8 +267,9 @@ const FullTableView = props => {
                             </table>
                         </div>
                 }
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 }
 

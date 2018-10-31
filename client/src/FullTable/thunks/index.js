@@ -55,8 +55,8 @@ export const showOrHideFilters = () => (dispatch, getState) => {
     dispatch(actionsFullTable.showOrHideFilters());
 
     // animation for filters dropdown
-    const filtersDiv = document.querySelector('.filters');
-    const filtersForm = document.querySelector('.filters-form');
+    const filtersDiv = document.querySelector('.all-stocks__filters');
+    const filtersForm = document.querySelector('.all-stocks__filters-form');
     filtersDiv.clientHeight ?
         filtersDiv.style.height = 0 :
         filtersDiv.style.height = filtersForm.clientHeight + 'px';
