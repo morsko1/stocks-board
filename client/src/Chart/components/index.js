@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 import D3chart from './d3/d3chart';
 
 const ChartView = props => {

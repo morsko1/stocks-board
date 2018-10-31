@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as thunkUser from '../../User/thunks';
+import * as thunkUser from '~/User/thunks';
 import HeaderView from './Header.js';
 
 class Header extends Component {

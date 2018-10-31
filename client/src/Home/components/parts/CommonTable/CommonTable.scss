@@ -1,3 +1,5 @@
+@import 'common/styles/common';
+
 .common-table {
     border-collapse: collapse;
     border: none;
@@ -20,11 +22,11 @@
 }
 
 .common-table tr:nth-child(odd) {
-    background-color: aliceblue;
+    background-color: $color-main;
 }
 
 .common-table tr:nth-child(even) {
-    background-color: #fff;
+    background-color: $color-white;
 }
 
 .common-table-wrapper__table-title {

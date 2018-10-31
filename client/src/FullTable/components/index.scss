@@ -1,3 +1,5 @@
+@import 'common/styles/common';
+
 .full-table-content {
     max-width: 800px;
     margin-left: auto;
@@ -6,7 +8,7 @@
 
 .full-table_header-wrapper {
     width: 100%;
-    background-color: aliceblue;
+    background-color: $color-main;
     margin-bottom: 1em;
 }
 
@@ -32,7 +34,7 @@
 }
 
 .table-stocks .head-active {
-    background-color: #ddd;
+    background-color: $color-grey;
 }
 
 .table-stocks td {
@@ -52,13 +54,13 @@ h3 {
 }
 
 .table-stocks tr:nth-child(odd) {
-    background-color: aliceblue;
+    background-color: $color-main;
 }
 .table-stocks tr:nth-child(even) {
-    background-color: #fff;
+    background-color: $color-white;
 }
 .table-stocks tr:hover {
-    background-color: #ddd;
+    background-color: $color-grey;
 }
 /*
 /////////////////////
@@ -73,9 +75,9 @@ h3 {
     width: 150px;
     height: 150px;
     margin: -75px 0 0 -75px;
-    border: 8px solid aliceblue;
+    border: 8px solid $color-main;
     border-radius: 50%;
-    border-top: 8px solid dodgerblue;
+    border-top: 8px solid $color-link;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
 }
@@ -92,21 +94,21 @@ h3 {
 
 /*color price cell*/
 .price-upper {
-    background-color: palegreen;
+    background-color: $color-background-up;
     transition: all ease-out 1s;
 }
 .price-lower {
-    background-color: lightpink;
+    background-color: $color-background-down;
     transition: all ease-out 1s;
 }
 /*color price cell end*/
 
 /*color change font*/
 .table-stocks .change-up-font {
-    color: limegreen;
+    color: $color-font-up;
 }
 .table-stocks .change-down-font {
-    color: indianred;
+    color: $color-font-down;
 }
 /*color change font end*/
 
@@ -159,7 +161,7 @@ input[type="number"] {
 .button-reset-filters {
     border: none;
     outline: none;
-    color: dodgerblue;
+    color: $color-link;
     font-size: 16px;
     margin-top: 1em;
     cursor: pointer;
@@ -170,7 +172,7 @@ input[type="number"] {
 .button-show-hide-search {
     border: none;
     outline: none;
-    color: dodgerblue;
+    color: $color-link;
     font-size: 16px;
     margin-bottom: 1em;
     cursor: pointer;

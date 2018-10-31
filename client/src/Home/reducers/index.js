@@ -1,5 +1,5 @@
 import * as actionsHome from '../actions';
-import * as util from '../../common/util';
+import * as util from '~/common/util';
 
 const initialState = {
     stocks: {data: []},

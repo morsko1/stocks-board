@@ -1,6 +1,6 @@
 import React from 'react';
-import './MobileControl.css';
-import OutsideClick from '../../components/OutsideClick/OutsideClick.js';
+import './MobileControl.scss';
+import OutsideClick from '~/common/components/OutsideClick/OutsideClick.js';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
     faHome,

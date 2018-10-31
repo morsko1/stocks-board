@@ -1,3 +1,5 @@
+@import 'common/styles/common';
+
 html {
     box-sizing: border-box;
 }
@@ -8,6 +10,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: $color-font;
 }
 
 .container {

@@ -1,7 +1,9 @@
+@import 'common/styles/common';
+
 .header-mobile,
 .header {
     width: 100%;
-    background-color: aliceblue;
+    background-color: $color-main;
 }
 
 .header-mobile__inner,
@@ -10,7 +12,6 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    color: #333;
     text-align: center;
     padding: 1em;
 }
@@ -29,7 +30,7 @@
 .header__logout-link,
 .header__link-to-register,
 .header__link-to-login {
-    color: blue;
+    color: $color-link;
     cursor: pointer;
     text-decoration: underline;
     padding-left: 0.5em;

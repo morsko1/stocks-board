@@ -1,5 +1,5 @@
 import React from 'react';
-import './FilteredTablesView.css';
+import './FilteredTablesView.scss';
 import CommonTable from '../CommonTable/CommonTable.js';
 
 const filterByMinVolume = (stocks, minValue) => {

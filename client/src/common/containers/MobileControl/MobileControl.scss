@@ -1,9 +1,11 @@
+@import 'common/styles/common';
+
 .mobile-control {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: aliceblue;
+    background-color: $color-main;
     border-top: 1px solid #ddd;
     height: 44px;
     display: flex;
@@ -52,8 +54,8 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: $color-white;
+    border: 1px solid $color-grey;
     box-shadow: 0 0 0 2000px rgba(0,0,0,0.3);
 }
 
@@ -64,5 +66,5 @@
 .mobile-control__user-menu-item {
     padding: 1em;
     user-select: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $color-grey;
 }

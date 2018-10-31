@@ -1,6 +1,6 @@
 import * as actionsHome from '../actions';
-import * as util from '../../common/util';
-import * as urls from '../../common/urls';
+import * as util from '~/common/util';
+import * as urls from '~/common/urls';
 import axios from 'axios';
 
 export const getStocks = () => (dispatch, getState) => {

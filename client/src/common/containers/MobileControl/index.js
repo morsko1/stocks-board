@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as actionsUser from '../../User/actions';
-import * as thunkUser from '../../User/thunks';
+import * as actionsUser from '~/User/actions';
+import * as thunkUser from '~/User/thunks';
 import MobileControlView from './MobileControl.js';
 
 class MobileControl extends Component {

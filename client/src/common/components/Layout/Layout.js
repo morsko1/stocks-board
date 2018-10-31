@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MediaQuery from 'react-responsive';
-import './Layout.css';
+import './Layout.scss';
 import Header from '../../containers/Header';
 import MobileControl from '../../containers/MobileControl';
 

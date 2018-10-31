@@ -3,9 +3,9 @@ import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkHome from '../thunks';
-import * as thunkUser from '../../User/thunks';
+import * as thunkUser from '~/User/thunks';
 import HomeView from '../components';
-import * as util from '../../common/util';
+import * as util from '~/common/util';
 
 class Home extends Component {
     componentDidMount() {

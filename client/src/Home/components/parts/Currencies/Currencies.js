@@ -1,5 +1,5 @@
 import React from 'react';
-import './Currencies.css';
+import './Currencies.scss';
 
 const currenciesToShow = ['USD/RUB', 'EUR/RUB'];
 

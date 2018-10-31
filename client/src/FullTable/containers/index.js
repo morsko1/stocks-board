@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkFullTable from '../thunks';
 import FullTableView from '../components';
-import * as util from '../../common/util';
+import * as util from '~/common/util';
 
 class FullTable extends Component {
     constructor(props){

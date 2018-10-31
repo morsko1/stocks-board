@@ -7,7 +7,7 @@ import App from './app';
 
 import {getUser} from './User/thunks';
 
-import './index.css';
+import './index.scss';
 
 const target = document.querySelector('#root');
 store.dispatch(getUser());

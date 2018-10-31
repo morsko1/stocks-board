@@ -1,3 +1,5 @@
+@import 'common/styles/common';
+
 .login-container__inner {
     max-width: 360px;
     margin-left: auto;
@@ -6,12 +8,12 @@
     font-size: 1.25em;
     padding: 1em;
     border-radius: 0.2em;
-    border: 2px solid #eee;
+    border: 2px solid $color-light-grey;
     margin-top: 2em;
 }
 
 .login-container__title {
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid $color-light-grey;
     margin-bottom: 1em;
 }
 
@@ -37,8 +39,8 @@
     padding: 0.5em;
     margin-top: 0.5em;
     cursor: pointer;
-    background-color: aliceblue;
-    border: 1px solid #aaa;
+    background-color: $color-main;
+    border: 1px solid $color-grey;
     border-radius: 0.2em;
 }
 
@@ -50,7 +52,7 @@
 
 .login-container__link-to-register,
 .login-container__link-to-home {
-    color: blue;
+    color: $color-link;
     cursor: pointer;
     text-decoration: underline;
     padding-left: 0.5em;

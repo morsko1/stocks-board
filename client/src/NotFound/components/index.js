@@ -1,6 +1,6 @@
 import React from 'react';
-import './index.css';
-import Layout from '../../components/Layout/Layout.js';
+import './index.scss';
+import Layout from '~/common/components/Layout/Layout.js';
 
 const NotFoundView = props => {
     return (

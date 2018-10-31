@@ -2,7 +2,7 @@ import * as actionsLogin from '../actions';
 import {push} from 'react-router-redux';
 import axios from 'axios';
 
-import {setUser} from '../../User/actions';
+import {setUser} from '~/User/actions';
 
 export const login = () => (dispatch, getState) => {
     const state = getState().login;

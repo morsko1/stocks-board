@@ -1,5 +1,5 @@
 import React from 'react';
-import './CommonTable.css';
+import './CommonTable.scss';
 
 const getTableRow = stock => {
     return (

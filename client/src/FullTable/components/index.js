@@ -1,6 +1,6 @@
 import React from 'react';
-import './index.css';
-import * as util from '../../common/util';
+import './index.scss';
+import * as util from '~/common/util';
 
 const getTableHead = (props) => {
     const getSortArrow = (parameter) => {
