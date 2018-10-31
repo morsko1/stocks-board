@@ -9,8 +9,10 @@ class Header extends Component {
     render() {
         return (
             <HeaderView
+                goToHomePage={this.props.goToHomePage}
                 goToRegisterPage={this.props.goToRegisterPage}
                 goToLoginPage={this.props.goToLoginPage}
+                goToAllStocksPage={this.props.goToAllStocksPage}
                 user={this.props.user}
                 logout={this.props.logout}
             />
@@ -24,8 +26,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
+        goToHomePage: () => push('/'),
         goToRegisterPage: () => push('/register'),
         goToLoginPage: () => push('/login'),
+        goToAllStocksPage: () => push('/allstocks'),
         logout: () => thunkUser.logout()
     },
     dispatch

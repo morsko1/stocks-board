@@ -55,7 +55,13 @@ const getUserMenu = props => {
                         className={'mobile-control__user-menu-item'}
                         onClick={()=>{props.goToHomePage()}}
                     >
-                        home
+                        На главную
+                    </div>
+                    <div
+                        className={'mobile-control__user-menu-item'}
+                        onClick={()=>{props.goToAllStocksPage()}}
+                    >
+                        Все акции
                     </div>
                     {
                         props.user.user && props.user.user.username ?
@@ -63,7 +69,7 @@ const getUserMenu = props => {
                                 className={'mobile-control__user-menu-item'}
                                 onClick={()=>{props.logout()}}
                             >
-                                logout
+                                Выход
                             </div> :
                             null
                     }

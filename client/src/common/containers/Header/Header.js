@@ -11,7 +11,7 @@ const getUserView = (props) => {
                 className={'header__logout-link'}
                 onClick={()=>{props.logout()}}
             >
-                logout
+                Выход
             </span>
         </div>
     );
@@ -24,13 +24,13 @@ const getAuthView = (props) => {
                 className={'header__link-to-register'}
                 onClick={()=>{props.goToRegisterPage()}}
             >
-                register
+                Регистрация
             </span>
             <span
                 className={'header__link-to-login'}
                 onClick={()=>{props.goToLoginPage()}}
             >
-                login
+                Вход
             </span>
         </div>
     );
@@ -50,7 +50,22 @@ const getDesktopHeader = props => {
     return (
         <div className={'header'}>
             <div className={'header__inner'}>
+                <div className={'header__left'}>
+                    <span
+                        className={'header__link-to-home'}
+                        onClick={() => {props.goToHomePage()}}
+                    >
+                        На главную
+                    </span>
+                    <span
+                        className={'header__link-to-allstocks'}
+                        onClick={() => {props.goToAllStocksPage()}}
+                    >
+                        Все акции
+                    </span>
+                </div>
                 <span className={'header__title'}>MOEX</span>
+                <div className={'header__right'}>
                 {
                     props.user.isFetching ?
                         null :
@@ -60,6 +75,7 @@ const getDesktopHeader = props => {
                                 getAuthView(props)
                         )
                 }
+                </div>
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ class MobileControl extends Component {
                 goToHomePage={this.props.goToHomePage}
                 goToRegisterPage={this.props.goToRegisterPage}
                 goToLoginPage={this.props.goToLoginPage}
+                goToAllStocksPage={this.props.goToAllStocksPage}
                 user={this.props.user}
                 logout={this.props.logout}
                 toggleMenu={this.props.toggleMenu}
@@ -32,6 +33,7 @@ const mapDispatchToProps = dispatch =>
         goToHomePage: () => push('/'),
         goToRegisterPage: () => push('/register'),
         goToLoginPage: () => push('/login'),
+        goToAllStocksPage: () => push('/allstocks'),
         logout: () => thunkUser.logout(),
         toggleMenu: () => actionsUser.toggleMenu(),
         showMenu: () => actionsUser.showMenu(),

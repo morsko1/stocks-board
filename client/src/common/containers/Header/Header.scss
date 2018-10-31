@@ -16,23 +16,32 @@
     padding: 1em;
 }
 
-.header__user {
+.header__left {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+}
+
+.header__right {
     position: absolute;
     right: 1em;
     top: 1em;
 }
 
-.header__link-container {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-}
+.header__link-to-home,
+.header__link-to-allstocks,
 .header__logout-link,
 .header__link-to-register,
-.header__link-to-login {
+.header__link-to-login, {
     color: $color-link;
     cursor: pointer;
     text-decoration: underline;
-    padding-left: 0.5em;
     user-select: none;
+}
+
+.header__logout-link,
+.header__link-to-login,
+.header__link-to-home,
+.header__link-to-allstocks {
+    padding-left: 0.5em;
 }
