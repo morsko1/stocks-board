@@ -97,7 +97,8 @@ export default (state = initialState, action) => {
         case actionsHome.RESET_FILTERS:
             return {
                 ...state,
-                filters: util.resetFilters(state.filters)
+                filters: util.resetFilters(state.filters),
+                filteredStocks: state.stocks
             };
 
         case actionsHome.GET_CURRENCIES_REQUEST:

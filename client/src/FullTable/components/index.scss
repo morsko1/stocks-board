@@ -109,7 +109,7 @@ h3 {
 /*color change font end*/
 
 /*filters*/
-input[type="number"] {
+.all-stocks__filters-form input[type="number"] {
     width: 70px;
     box-shadow: none;
     outline: none;
@@ -180,3 +180,31 @@ input[type="number"] {
     font-size: 8px;
 }
 /*filters end*/
+
+@media only screen and (max-width: 767px) {
+    .all-stocks__filters-form {
+        font-size: 1.2em;
+    }
+    .all-stocks__inner {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: scroll;
+        overflow-y: visible;
+        padding-left: 4em;
+    }
+    .all-stocks__col_fixed {
+        position: absolute;
+        width: 4.1em;
+        left: 0;
+        top: auto;
+        background-color: $color-white;
+    }
+    th.all-stocks__col_fixed {
+        border-bottom: none;
+        height: 5em;
+        margin-top: -1px;
+        padding-top: 1.5em;
+    }
+}

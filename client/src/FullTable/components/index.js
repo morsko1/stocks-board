@@ -11,7 +11,7 @@ const getTableHead = (props) => {
     }
     return (
         <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
-            <th key={'head_ticker'}>{'Тикер'}</th>
+            <th key={'head_ticker'} className={'all-stocks__col_fixed'}>{'Тикер'}</th>
             <th key={'head_name'}>{'Наименование'}</th>
             <th
                 key={'head_prev'}
@@ -99,7 +99,7 @@ const getTableRow = (item, props) => {
             onClick={() => {
                 props.changePage(item.ticker);
             }}>
-            <td key={`col_ticker${item.ticker}`}>{item.ticker}</td>
+            <td key={`col_ticker${item.ticker}`} className={'all-stocks__col_fixed'}>{item.ticker}</td>
             <td key={`col_name${item.ticker}`}>{item.shortName}</td>
             <td key={`col_prev${item.ticker}`}>{item.prevPrice}</td>
             <td key={`col_open${item.ticker}`}>{item.open}</td>
@@ -166,7 +166,7 @@ const getFiltersView = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className={'filters-table-td-label'}>Капитализация, млрд р:</td>
+                                <td className={'filters-table-td-label'}>Кап-ция, млрд р:</td>
                                 <td>
                                     от
                                     <input
@@ -220,6 +220,7 @@ const getFiltersButton = (props) => {
                     if (props.isFiltersVisible) {
                         // reset react state
                         props.resetFiltersInput();
+                        props.resetFilters();
                     }
                     props.showOrHideFilters();
                 }}>
@@ -239,10 +240,10 @@ const FullTableView = props => {
                 {
                     getFiltersButton(props)
                 }
-                <div className={'all-stocks__inner'}>
                 {
                     getFiltersView(props)
                 }
+                <div className={'all-stocks__inner'}>
                 {
                     props.stocksFetching && !props.stocks.data.length ?
                         <div className={'all-stocks__loader'} /> :
