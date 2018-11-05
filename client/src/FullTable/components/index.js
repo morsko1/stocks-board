@@ -75,7 +75,7 @@ const getTableHead = (props) => {
                 key={'head_cap'}
                 className={getSortArrow('capitalization') ? 'all-stocks__table-stocks-head_active' : ''}
                 data-sort-parameter={'capitalization'}>
-                {'Капитализация,'}
+                {'Кап-ция,'}
                 <br/>
                 {'млрд р'}
                 <br/>
@@ -84,7 +84,7 @@ const getTableHead = (props) => {
                 }
             </th>
         </tr>
-    )
+    );
 }
 
 const getTableRow = (item, props) => {
@@ -126,7 +126,7 @@ const getFiltersView = (props) => {
     }
 
     return (
-        <div className={'all-stocks__filters-container centered-content'}>
+        <div className={'all-stocks__filters-container .all-stocks__centered-content'}>
             <div className={'all-stocks__filters'}>
                 <form
                     className={'all-stocks__filters-form'}
@@ -208,7 +208,7 @@ const getFiltersView = (props) => {
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
 const getFiltersButton = (props) => {
@@ -232,42 +232,63 @@ const getFiltersButton = (props) => {
     );
 }
 
+const getTable = (props) => {
+    return (
+        props.stocks.data.length ?
+            <table className={'all-stocks__table-stocks'}>
+                <tbody>
+                {
+                    getTableHead(props)
+                }
+                {
+                    props.stocks.data.map(item => getTableRow(item, props))
+                }
+                </tbody>
+            </table> :
+            <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+    );
+}
+
+const getTableFiltered = (props) => {
+    return (
+        props.filteredStocks.data.length ?
+            <table className={'all-stocks__table-stocks'}>
+                <tbody>
+                {
+                    getTableHead(props)
+                }
+                {
+                    props.filteredStocks.data.map(item => getTableRow(item, props))
+                }
+                </tbody>
+            </table> :
+            <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+    );
+}
+
 // todo: handle fetchStocks error - props.stocksFetchingError
 const FullTableView = props => {
     return (
         <Layout>
             <div className={'all-stocks__container'}>
-                {
-                    getFiltersButton(props)
-                }
-                {
-                    getFiltersView(props)
-                }
+            {
+                getFiltersButton(props)
+            }
+            {
+                getFiltersView(props)
+            }
                 <div className={'all-stocks__inner'}>
-                {
-                    props.stocksFetching && !props.stocks.data.length ?
-                        <div className={'all-stocks__loader'} /> :
-                        <div className={'all-stocks__table-stocks-container'}>
-                            <table className={'all-stocks__table-stocks'}>
-                                <tbody>
-                                {
-                                    getTableHead(props)
-                                }
-                                {
-                                    props.isFiltersVisible ?
-                                        (
-                                            props.filteredStocks.data.length ?
-                                                props.filteredStocks.data.map(item => getTableRow(item, props)) :
-                                                <tr>
-                                                    <td colSpan={'8'}>{'Нет данных'}</td>
-                                                </tr>
-                                        ) :
-                                        props.stocks.data.map(item => getTableRow(item, props))
-                                }
-                                </tbody>
-                            </table>
-                        </div>
-                }
+            {
+                props.stocksFetching && !props.stocks.data.length ?
+                    <div className={'all-stocks__loader'} /> :
+                    <div className={'all-stocks__table-stocks-container'}>
+                    {
+                        props.isFiltersVisible ?
+                            getTableFiltered(props) :
+                            getTable(props)
+                    }
+                    </div>
+            }
                 </div>
             </div>
         </Layout>
