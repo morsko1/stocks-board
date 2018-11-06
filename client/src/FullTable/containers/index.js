@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as actionsFullTable from '../actions';
 import * as thunkFullTable from '../thunks';
 import FullTableView from '../components';
 import * as util from '~/common/util';
@@ -85,6 +86,9 @@ class FullTable extends Component {
                 filtersInput={this.state.filtersInput}
                 handleFiltersInput={this.handleFiltersInput}
                 resetFiltersInput={this.resetFiltersInput}
+                numberRowsToShow={this.props.numberRowsToShow}
+                expandTable={this.props.expandTable}
+                collapseTable={this.props.collapseTable}
             />
         );
     }
@@ -99,6 +103,7 @@ const mapStateToProps = state => ({
     isFiltersVisible: state.fullTable.isFiltersVisible,
     filters: state.fullTable.filters,
     currencies: state.fullTable.currencies,
+    numberRowsToShow: state.fullTable.numberRowsToShow,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -111,6 +116,8 @@ const mapDispatchToProps = dispatch =>
         applyFilters: (filters) => thunkFullTable.applyFilters(filters),
         getCurrencies: () => thunkFullTable.getCurrencies(),
         resetFilters: () => thunkFullTable.resetFilters(),
+        expandTable: () => actionsFullTable.expandTable(),
+        collapseTable: () => actionsFullTable.collapseTable(),
     },
     dispatch
 );

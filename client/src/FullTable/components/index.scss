@@ -176,10 +176,22 @@ h3 {
     background-color: transparent;
 }
 
-.button-apply-filters span {
-    font-size: 8px;
-}
 /*filters end*/
+
+.all-stocks__table-controls {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.all-stocks__table-controls-button {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.2em;
+    min-width: 44px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 480px) {
     .all-stocks__filters-form {

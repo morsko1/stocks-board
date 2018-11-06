@@ -2,6 +2,11 @@ import React from 'react';
 import './index.scss';
 import * as util from '~/common/util';
 import Layout from '~/common/components/Layout/Layout.js';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {
+    faAngleDoubleUp,
+    faAngleDoubleDown
+} from '@fortawesome/free-solid-svg-icons';
 
 const getTableHead = (props) => {
     const getSortArrow = (parameter) => {
@@ -241,7 +246,7 @@ const getTable = (props) => {
                     getTableHead(props)
                 }
                 {
-                    props.stocks.data.map(item => getTableRow(item, props))
+                    props.stocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
                 }
                 </tbody>
             </table> :
@@ -258,7 +263,7 @@ const getTableFiltered = (props) => {
                     getTableHead(props)
                 }
                 {
-                    props.filteredStocks.data.map(item => getTableRow(item, props))
+                    props.filteredStocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
                 }
                 </tbody>
             </table> :
@@ -266,11 +271,33 @@ const getTableFiltered = (props) => {
     );
 }
 
+const getTableControls = (props) => {
+    return (
+        <div className={'all-stocks__table-controls'}>
+            <div
+                className={'all-stocks__table-controls-button'}
+                onClick={() => {props.collapseTable()}}
+            >
+                <FontAwesomeIcon icon={faAngleDoubleUp} />
+            </div>
+            <div
+                className={'all-stocks__table-controls-button'}
+                onClick={() => {props.expandTable()}}
+            >
+                <FontAwesomeIcon icon={faAngleDoubleDown} />
+            </div>
+        </div>
+    );
+}
+
 // todo: handle fetchStocks error - props.stocksFetchingError
-const FullTableView = props => {
+const FullTableView = (props) => {
     return (
         <Layout>
-            <div className={'all-stocks__container'}>
+        {
+            props.stocksFetching && !props.stocks.data.length ?
+                <div className={'all-stocks__loader'} /> :
+                <div className={'all-stocks'}>
             {
                 getFiltersButton(props)
             }
@@ -278,9 +305,6 @@ const FullTableView = props => {
                 getFiltersView(props)
             }
                 <div className={'all-stocks__inner'}>
-            {
-                props.stocksFetching && !props.stocks.data.length ?
-                    <div className={'all-stocks__loader'} /> :
                     <div className={'all-stocks__table-stocks-container'}>
                     {
                         props.isFiltersVisible ?
@@ -288,9 +312,12 @@ const FullTableView = props => {
                             getTable(props)
                     }
                     </div>
+                </div>
+            {
+                getTableControls(props)
             }
                 </div>
-            </div>
+        }
         </Layout>
     );
 }

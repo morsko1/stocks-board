@@ -1,6 +1,8 @@
 import * as actionsHome from '../actions';
 import * as util from '~/common/util';
 
+const numberRowsToShow = 30;
+
 const initialState = {
     stocks: {data: []},
     stocksFetching: false,
@@ -23,7 +25,8 @@ const initialState = {
             to: ''
         }
     ],
-    currencies: {data: []}
+    currencies: {data: []},
+    numberRowsToShow: numberRowsToShow,
 };
 
 export default (state = initialState, action) => {
@@ -112,6 +115,18 @@ export default (state = initialState, action) => {
                 currencies: {
                     data: action.payload.data
                 }
+            };
+
+        case actionsHome.EXPAND_TABLE:
+            return {
+                ...state,
+                numberRowsToShow: state.numberRowsToShow + numberRowsToShow
+            };
+
+        case actionsHome.COLLAPSE_TABLE:
+            return {
+                ...state,
+                numberRowsToShow: Math.max(state.numberRowsToShow - numberRowsToShow, numberRowsToShow)
             };
 
         default:

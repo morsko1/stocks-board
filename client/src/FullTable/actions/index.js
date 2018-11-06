@@ -15,6 +15,9 @@ export const GET_CURRENCIES_REQUEST = 'fullTable/GET_CURRENCIES_REQUEST';
 export const GET_CURRENCIES_SUCCESS = 'fullTable/GET_CURRENCIES_SUCCESS';
 export const GET_CURRENCIES_FAILURE = 'fullTable/GET_CURRENCIES_FAILURE';
 
+export const EXPAND_TABLE = 'fullTable/EXPAND_TABLE';
+export const COLLAPSE_TABLE = 'fullTable/COLLAPSE_TABLE';
+
 export const getStocksRequest = () => ({
     type: GET_STOCKS_REQUEST
 });
@@ -73,4 +76,12 @@ export const getCurrenciesSuccess = (data) => ({
     payload: {
         data
     }
+});
+
+export const expandTable = () => ({
+    type: EXPAND_TABLE
+});
+
+export const collapseTable = () => ({
+    type: COLLAPSE_TABLE
 });
