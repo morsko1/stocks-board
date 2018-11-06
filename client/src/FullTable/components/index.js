@@ -17,7 +17,7 @@ const getTableHead = (props) => {
     return (
         <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
             <th key={'head_ticker'} className={'all-stocks__col_fixed'}>{'Тикер'}</th>
-            <th key={'head_name'}>{'Наименование'}</th>
+            <th key={'head_name'}>{'Наим.'}</th>
             <th
                 key={'head_prev'}
                 className={getSortArrow('prevPrice') ? 'all-stocks__table-stocks-head_active' : ''}
@@ -143,7 +143,8 @@ const getFiltersView = (props) => {
                     onSubmit={(event) => {
                         event.preventDefault();
                         props.applyFilters(filtersInput);
-                    }}>
+                    }}
+                >
                     <table className={'all-stocks__filters-table'}>
                         <tbody>
                             <tr>
@@ -198,7 +199,8 @@ const getFiltersView = (props) => {
                     <div className={'all-stocks__centered-content'}>
                         <button
                             type={'submit'}
-                            className={'all-stocks__button-apply-filters'}>
+                            className={'all-stocks__button-apply-filters'}
+                        >
                             {'применить'}
                         </button>
                         <button
@@ -206,7 +208,8 @@ const getFiltersView = (props) => {
                             onClick={() => {
                                 props.resetFiltersInput();
                                 props.resetFilters();
-                            }}>
+                            }}
+                        >
                             {'сбросить'}
                         </button>
                     </div>
@@ -228,10 +231,11 @@ const getFiltersButton = (props) => {
                         props.resetFilters();
                     }
                     props.showOrHideFilters();
-                }}>
-                {
-                    `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
-                }
+                }}
+            >
+            {
+                `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
+            }
             </button>
         </div>
     );

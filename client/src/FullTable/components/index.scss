@@ -18,7 +18,7 @@
 }
 
 .all-stocks__table-stocks-container table, th, td {
-    border: 1px solid black;
+    border: 1px solid $color-light-black;
     margin: 0 auto;
     border-collapse: collapse;
 }
@@ -48,10 +48,10 @@ h3 {
     text-align: center;
 }
 
-.all-stocks__table-stocks tr:nth-child(odd) {
+.all-stocks__table-stocks tr:nth-child(odd) td {
     background-color: $color-main;
 }
-.all-stocks__table-stocks tr:nth-child(even) {
+.all-stocks__table-stocks tr:nth-child(even) td {
     background-color: $color-white;
 }
 .all-stocks__table-stocks tr:hover {
@@ -204,19 +204,10 @@ h3 {
         margin-right: 0;
         overflow-x: scroll;
         overflow-y: visible;
-        padding-left: 4em;
     }
     .all-stocks__col_fixed {
-        position: absolute;
-        width: 4.1em;
+        position: sticky;
         left: 0;
-        top: auto;
-        background-color: $color-white;
-    }
-    th.all-stocks__col_fixed {
-        border-bottom: none;
-        height: 5em;
-        margin-top: -1px;
-        padding-top: 1.5em;
+        box-shadow: 1px 0 $color-light-black;
     }
 }
