@@ -3,6 +3,7 @@ import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import NotFoundView from '../components';
+import * as navigation from '~/common/navigation.js';
 
 class NotFound extends Component {
 
@@ -22,7 +23,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        goToHomePage: () => push('/')
+        goToHomePage: navigation.goToHomePage
     },
     dispatch
 );

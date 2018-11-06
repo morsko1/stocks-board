@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as thunkUser from '~/User/thunks';
 import HeaderView from './Header.js';
+import * as navigation from '~/common/navigation.js';
 
 class Header extends Component {
     render() {
@@ -26,10 +27,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        goToHomePage: () => push('/'),
-        goToRegisterPage: () => push('/register'),
-        goToLoginPage: () => push('/login'),
-        goToAllStocksPage: () => push('/allstocks'),
+        goToHomePage: navigation.goToHomePage,
+        goToRegisterPage: navigation.goToRegisterPage,
+        goToLoginPage: navigation.goToLoginPage,
+        goToAllStocksPage: navigation.goToAllStocksPage,
         logout: () => thunkUser.logout()
     },
     dispatch

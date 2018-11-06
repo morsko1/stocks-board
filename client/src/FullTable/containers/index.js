@@ -6,6 +6,7 @@ import * as actionsFullTable from '../actions';
 import * as thunkFullTable from '../thunks';
 import FullTableView from '../components';
 import * as util from '~/common/util';
+import * as navigation from '~/common/navigation.js';
 
 class FullTable extends Component {
     constructor(props){
@@ -68,7 +69,7 @@ class FullTable extends Component {
     render() {
         return (
             <FullTableView
-                changePage={this.props.changePage}
+                goToStockPage={this.props.goToStockPage}
                 stocks={this.props.stocks}
                 getStocks={this.props.getStocks}
                 stocksFetching={this.props.stocksFetching}
@@ -108,7 +109,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        changePage: (stock) => push(`/chart/${stock}`),
+        goToStockPage: navigation.goToStockPage,
         getStocks: () => thunkFullTable.getStocks(),
         sortRowsBy: (e) => thunkFullTable.sortRowsBy(e),
         showOrHideFilters: () => thunkFullTable.showOrHideFilters(),

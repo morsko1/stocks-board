@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as thunkLogin from '../thunks';
 import * as actionsLogin from '../actions';
 import LoginView from '../components';
+import * as navigation from '~/common/navigation.js';
 
 class Login extends Component {
 
@@ -33,8 +34,8 @@ const mapDispatchToProps = dispatch =>
     bindActionCreators({
         login: () => thunkLogin.login(),
         handleInput: (field, text) => actionsLogin.handleInput(field, text),
-        goToRegisterPage: () => push('/register'),
-        goToHomePage: () => push('/')
+        goToRegisterPage: navigation.goToRegisterPage,
+        goToHomePage: navigation.goToHomePage
     },
     dispatch
 );

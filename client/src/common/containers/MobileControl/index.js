@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as actionsUser from '~/User/actions';
 import * as thunkUser from '~/User/thunks';
 import MobileControlView from './MobileControl.js';
+import * as navigation from '~/common/navigation.js';
 
 class MobileControl extends Component {
     render() {
@@ -30,10 +31,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        goToHomePage: () => push('/'),
-        goToRegisterPage: () => push('/register'),
-        goToLoginPage: () => push('/login'),
-        goToAllStocksPage: () => push('/allstocks'),
+        goToHomePage: navigation.goToHomePage,
+        goToRegisterPage: navigation.goToRegisterPage,
+        goToLoginPage: navigation.goToLoginPage,
+        goToAllStocksPage: navigation.goToAllStocksPage,
         logout: () => thunkUser.logout(),
         toggleMenu: () => actionsUser.toggleMenu(),
         showMenu: () => actionsUser.showMenu(),

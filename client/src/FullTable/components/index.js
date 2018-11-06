@@ -102,7 +102,7 @@ const getTableRow = (item, props) => {
             key={`row_${item.ticker}`}
             className={'all-stocks__table-stocks-row'}
             onClick={() => {
-                props.changePage(item.ticker);
+                props.goToStockPage(item.ticker);
             }}>
             <td key={`col_ticker${item.ticker}`} className={'all-stocks__col_fixed'}>{item.ticker}</td>
             <td key={`col_name${item.ticker}`}>{item.shortName}</td>

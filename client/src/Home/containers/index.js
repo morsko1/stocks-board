@@ -6,6 +6,7 @@ import * as thunkHome from '../thunks';
 import * as thunkUser from '~/User/thunks';
 import HomeView from '../components';
 import * as util from '~/common/util';
+import * as navigation from '~/common/navigation.js';
 
 class Home extends Component {
     componentDidMount() {
@@ -16,7 +17,7 @@ class Home extends Component {
     render() {
         return (
             <HomeView
-                navigateToChart={this.props.navigateToChart}
+                goToStockPage={this.props.goToStockPage}
                 stocks={this.props.stocks}
                 getStocks={this.props.getStocks}
                 stocksFetching={this.props.stocksFetching}
@@ -41,11 +42,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        navigateToChart: (stock) => push(`/chart/${stock}`),
+        goToStockPage: navigation.goToStockPage,
         getStocks: () => thunkHome.getStocks(),
         getCurrencies: () => thunkHome.getCurrencies(),
-        goToRegisterPage: () => push('/register'),
-        goToLoginPage: () => push('/login'),
+        goToRegisterPage: navigation.goToRegisterPage,
+        goToLoginPage: navigation.goToLoginPage,
         logout: () => thunkUser.logout()
     },
     dispatch

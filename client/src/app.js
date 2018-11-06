@@ -18,7 +18,7 @@ const App = () => (
                 <Route exact path='/chart/:ticker' component={Chart} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
-                <Route exact path='/allstocks' component={FullTable} />
+                <Route exact path='/stocks' component={FullTable} />
                 <Route component={NotFound} />
             </Switch>
         </main>
