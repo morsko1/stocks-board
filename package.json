@@ -54,6 +54,6 @@
     "server:prod": "node server/index.js",
     "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
     "prod": "npm run client:prod && npm run server:prod",
-    "deploy": "npm client:prod && gh-pages -d build"
+    "deploy": "npm run client:prod && gh-pages -d build"
   }
 }
