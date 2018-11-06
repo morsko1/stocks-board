@@ -15,7 +15,7 @@
     "css-hot-loader": "^1.4.2",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
-    "gh-pages": "^1.1.0",
+    "gh-pages": "^1.2.0",
     "html-webpack-harddisk-plugin": "^1.0.1",
     "html-webpack-plugin": "^4.0.0-alpha.2",
     "node-sass": "^4.9.4",
@@ -54,6 +54,6 @@
     "server:prod": "node server/index.js",
     "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
     "prod": "npm run client:prod && npm run server:prod",
-    "deploy": "npm run build&&gh-pages -d build"
+    "deploy": "npm client:prod && gh-pages -d build"
   }
 }
