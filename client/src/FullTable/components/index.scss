@@ -35,7 +35,7 @@
 
 .all-stocks__table-stocks td {
     text-align: center;
-    padding: 0.2em;
+    padding: 0.3em;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -58,35 +58,9 @@ h3 {
     background-color: $color-grey;
 }
 
-/*
-/////////////////////
-    loader
-/////////////////////
-*/
 .all-stocks__loader {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 8px solid $color-main;
-    border-radius: 50%;
-    border-top: 8px solid $color-link;
-    -webkit-animation: spin 1s linear infinite;
-    animation: spin 1s linear infinite;
+    @include loader();
 }
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-/*
-/////////////////////
-    loader end
-/////////////////////
-*/
 
 /*color price cell*/
 .price-upper {
@@ -161,7 +135,7 @@ h3 {
     border: none;
     outline: none;
     color: $color-link;
-    font-size: 16px;
+    font-size: 1em;
     margin-top: 1em;
     cursor: pointer;
     background-color: transparent;
@@ -171,7 +145,7 @@ h3 {
     border: none;
     outline: none;
     color: $color-link;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
     background-color: transparent;
 }
@@ -184,13 +158,7 @@ h3 {
 }
 
 .all-stocks__table-controls-button {
-    display: inline-block;
-    text-align: center;
-    font-size: 1.2em;
-    min-width: 44px;
-    height: 44px;
-    line-height: 44px;
-    cursor: pointer;
+    @include icon-button();
 }
 
 @media only screen and (max-width: 480px) {

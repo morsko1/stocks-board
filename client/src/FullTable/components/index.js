@@ -5,90 +5,94 @@ import Layout from '~/common/components/Layout/Layout.js';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
     faAngleDoubleUp,
-    faAngleDoubleDown
+    faAngleDoubleDown,
+    faArrowUp,
+    faArrowDown
 } from '@fortawesome/free-solid-svg-icons';
 
 const getTableHead = (props) => {
     const getSortArrow = (parameter) => {
         return props.sort.parameter === parameter ?
-            (props.sort.orderByDesc ? '\u2191' : '\u2193') :
+            <FontAwesomeIcon icon={props.sort.orderByDesc ? faArrowUp : faArrowDown} /> :
             null;
     }
     return (
-        <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
-            <th key={'head_ticker'} className={'all-stocks__col_fixed'}>{'Тикер'}</th>
-            <th key={'head_name'}>{'Наим.'}</th>
-            <th
-                key={'head_prev'}
-                className={getSortArrow('prevPrice') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'prevPrice'}>
-                {'Цена,'}
-                <br/>
-                {'закр'}
-                <br/>
-                {
-                    getSortArrow('prevPrice')
-                }
-            </th>
-            <th
-                key={'head_open'}
-                className={getSortArrow('open') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'open'}>
-                {'Цена,'}
-                <br/>
-                {'откр'}
-                <br/>
-                {
-                    getSortArrow('open')
-                }
-            </th>
-            <th
-                key={'head_last'}
-                className={getSortArrow('last') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'last'}>
-                {'Цена,'}
-                <br/>
-                {'посл'}
-                <br/>
-                {
-                    getSortArrow('last')
-                }
-            </th>
-            <th
-                key={'head_change'}
-                className={getSortArrow('change') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'change'}>
-                {'% изм'}
-                <br/>
-                {
-                    getSortArrow('change')
-                }
-            </th>
-            <th
-                key={'head_volume'}
-                className={getSortArrow('volumeToday') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'volumeToday'}>
-                {'Объем,'}
-                <br/>
-                {'млн р'}
-                <br/>
-                {
-                    getSortArrow('volumeToday')
-                }
-            </th>
-            <th
-                key={'head_cap'}
-                className={getSortArrow('capitalization') ? 'all-stocks__table-stocks-head_active' : ''}
-                data-sort-parameter={'capitalization'}>
-                {'Кап-ция,'}
-                <br/>
-                {'млрд р'}
-                <br/>
-                {
-                    getSortArrow('capitalization')
-                }
-            </th>
-        </tr>
+        <thead>
+            <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
+                <th key={'head_ticker'} className={'all-stocks__col_fixed'}>{'Тикер'}</th>
+                <th key={'head_name'}>{'Наим.'}</th>
+                <th
+                    key={'head_prev'}
+                    className={getSortArrow('prevPrice') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'prevPrice'}>
+                    {'Цена,'}
+                    <br/>
+                    {'закр'}
+                    <br/>
+                    {
+                        getSortArrow('prevPrice')
+                    }
+                </th>
+                <th
+                    key={'head_open'}
+                    className={getSortArrow('open') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'open'}>
+                    {'Цена,'}
+                    <br/>
+                    {'откр'}
+                    <br/>
+                    {
+                        getSortArrow('open')
+                    }
+                </th>
+                <th
+                    key={'head_last'}
+                    className={getSortArrow('last') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'last'}>
+                    {'Цена,'}
+                    <br/>
+                    {'посл'}
+                    <br/>
+                    {
+                        getSortArrow('last')
+                    }
+                </th>
+                <th
+                    key={'head_change'}
+                    className={getSortArrow('change') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'change'}>
+                    {'% изм'}
+                    <br/>
+                    {
+                        getSortArrow('change')
+                    }
+                </th>
+                <th
+                    key={'head_volume'}
+                    className={getSortArrow('volumeToday') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'volumeToday'}>
+                    {'Объем,'}
+                    <br/>
+                    {'млн р'}
+                    <br/>
+                    {
+                        getSortArrow('volumeToday')
+                    }
+                </th>
+                <th
+                    key={'head_cap'}
+                    className={getSortArrow('capitalization') ? 'all-stocks__table-stocks-head_active' : ''}
+                    data-sort-parameter={'capitalization'}>
+                    {'Кап-ция,'}
+                    <br/>
+                    {'млрд р'}
+                    <br/>
+                    {
+                        getSortArrow('capitalization')
+                    }
+                </th>
+            </tr>
+        </thead>
     );
 }
 
@@ -172,7 +176,7 @@ const getFiltersView = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                                <td className={'filters-table-td-label'}>Кап-ция, млрд р:</td>
+                                <td className={'all-stocks__filters-table-td-label'}>Кап-ция, млрд р:</td>
                                 <td>
                                     от
                                     <input
@@ -198,12 +202,6 @@ const getFiltersView = (props) => {
                     </table>
                     <div className={'all-stocks__centered-content'}>
                         <button
-                            type={'submit'}
-                            className={'all-stocks__button-apply-filters'}
-                        >
-                            {'применить'}
-                        </button>
-                        <button
                             className={'all-stocks__button-reset-filters'}
                             onClick={() => {
                                 props.resetFiltersInput();
@@ -211,6 +209,12 @@ const getFiltersView = (props) => {
                             }}
                         >
                             {'сбросить'}
+                        </button>
+                        <button
+                            type={'submit'}
+                            className={'all-stocks__button-apply-filters'}
+                        >
+                            {'применить'}
                         </button>
                     </div>
                 </form>
@@ -233,9 +237,7 @@ const getFiltersButton = (props) => {
                     props.showOrHideFilters();
                 }}
             >
-            {
-                `фильтры ${props.isFiltersVisible ? '\u2191': '\u2193'}`
-            }
+                фильтры <FontAwesomeIcon icon={props.isFiltersVisible ? faArrowUp : faArrowDown} />
             </button>
         </div>
     );
@@ -245,10 +247,10 @@ const getTable = (props) => {
     return (
         props.stocks.data.length ?
             <table className={'all-stocks__table-stocks'}>
-                <tbody>
                 {
                     getTableHead(props)
                 }
+                <tbody>
                 {
                     props.stocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
                 }
@@ -262,10 +264,10 @@ const getTableFiltered = (props) => {
     return (
         props.filteredStocks.data.length ?
             <table className={'all-stocks__table-stocks'}>
-                <tbody>
                 {
                     getTableHead(props)
                 }
+                <tbody>
                 {
                     props.filteredStocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
                 }
@@ -318,7 +320,9 @@ const FullTableView = (props) => {
                     </div>
                 </div>
             {
-                getTableControls(props)
+                !props.stocksFetching && props.filteredStocks.data.length ?
+                    getTableControls(props) :
+                    null
             }
                 </div>
         }

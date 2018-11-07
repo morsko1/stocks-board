@@ -1,12 +1,13 @@
 import React from 'react';
 import './CommonTable.scss';
+import * as util from '~/common/util';
 
 const getTableRow = stock => {
     return (
         <tr key={stock.ticker}>
             <td>{stock.shortName}</td>
             <td>{stock.last}</td>
-            <td>{stock.change}</td>
+            <td className={util.getClassNameForChangeFont(stock.change)}>{stock.change}</td>
             <td>{Math.round((stock.volumeToday / 1000000) * 100) / 100 }</td>
         </tr>
     );

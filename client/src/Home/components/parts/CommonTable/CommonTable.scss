@@ -18,7 +18,7 @@
 
 .common-table th,
 .common-table td {
-    padding: 0.2em;
+    padding: 0.3em;
 }
 
 .common-table tr:nth-child(odd) {
@@ -39,6 +39,15 @@
 .common-table-wrapper_position_right td:first-child {
     padding-left: 2em;
 }
+
+/*color change font*/
+.common-table-wrapper .change-up-font {
+    color: $color-font-up;
+}
+.common-table-wrapper .change-down-font {
+    color: $color-font-down;
+}
+/*color change font end*/
 
 @media only screen and (max-width: 480px) {
     .common-table {

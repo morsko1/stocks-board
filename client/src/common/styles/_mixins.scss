@@ -1,0 +1,29 @@
+@mixin icon-button() {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.2em;
+    min-width: 44px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+}
+
+@mixin loader() {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 8px solid $color-main;
+    border-radius: 50%;
+    border-top: 8px solid $color-link;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+// animation for loader
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

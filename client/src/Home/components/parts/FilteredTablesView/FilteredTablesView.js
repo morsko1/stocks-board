@@ -35,7 +35,7 @@ const FilteredTablesView = props => {
                     <CommonTable stocks={maxVolumeStocks} position={'left'} title={'Лидеры по объему'} />
                     <CommonTable stocks={maxCapitalizationStocks} position={'right'} title={'Лидеры по капитализации'} />
                 </div> :
-                null
+                <div className="filtered-tables-view__loader"></div>
         }
         </div>
     );
