@@ -162,7 +162,8 @@ h3 {
 }
 
 @media only screen and (max-width: 480px) {
-    .all-stocks__filters-form {
+    .all-stocks__filters-form,
+    .all-stocks__filters-button {
         font-size: 1.2em;
     }
     .all-stocks__inner {
