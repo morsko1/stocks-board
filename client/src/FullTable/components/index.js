@@ -61,7 +61,9 @@ const getTableHead = (props) => {
                     key={'head_change'}
                     className={getSortArrow('change') ? 'all-stocks__table-stocks-head_active' : ''}
                     data-sort-parameter={'change'}>
-                    {'% изм'}
+                    {'изм,'}
+                    <br/>
+                    {'%'}
                     <br/>
                     {
                         getSortArrow('change')
@@ -200,21 +202,21 @@ const getFiltersView = (props) => {
                             </tr>
                         </tbody>
                     </table>
-                    <div className={'all-stocks__centered-content'}>
-                        <button
-                            className={'all-stocks__button-reset-filters'}
-                            onClick={() => {
-                                props.resetFiltersInput();
-                                props.resetFilters();
-                            }}
-                        >
-                            {'сбросить'}
-                        </button>
+                    <div className={'all-stocks__filters-buttons'}>
                         <button
                             type={'submit'}
                             className={'all-stocks__button-apply-filters'}
                         >
                             {'применить'}
+                        </button>
+                        <button
+                            className={'all-stocks__button-reset-filters'}
+                            onClick={(event) => {
+                                props.resetFiltersInput();
+                                props.resetFilters();
+                            }}
+                        >
+                            {'сбросить'}
                         </button>
                     </div>
                 </form>
@@ -320,7 +322,7 @@ const FullTableView = (props) => {
                     </div>
                 </div>
             {
-                !props.stocksFetching && props.filteredStocks.data.length ?
+                props.filteredStocks.data.length > 30 ?
                     getTableControls(props) :
                     null
             }

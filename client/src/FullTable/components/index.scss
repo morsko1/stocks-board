@@ -63,12 +63,12 @@ h3 {
 }
 
 /*color price cell*/
-.price-upper {
-    background-color: $color-background-up;
+.all-stocks__table-stocks .price-upper {
+    background-color: $color-background-up !important;;
     transition: all ease-out 1s;
 }
-.price-lower {
-    background-color: $color-background-down;
+.all-stocks__table-stocks .price-lower {
+    background-color: $color-background-down !important;
     transition: all ease-out 1s;
 }
 /*color price cell end*/
@@ -128,6 +128,19 @@ h3 {
 
 .all-stocks__centered-content {
     text-align: center;
+}
+
+.all-stocks__filters-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.all-stocks__button-apply-filters {
+    order: 1;
+}
+
+.all-stocks__button-apply-filters {
+    order: 2;
 }
 
 .all-stocks__button-apply-filters,
