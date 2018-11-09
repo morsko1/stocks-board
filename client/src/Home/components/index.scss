@@ -1,0 +1,5 @@
+@import 'common/styles/common';
+
+.home-container__loader {
+    @include loader();
+}

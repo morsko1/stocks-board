@@ -28,14 +28,14 @@ const FilteredTablesView = props => {
     return (
         <div className={'filtered-tables-view'}>
         {
-            props.stocks && props.stocks.data && props.stocks.data.length ?
+            props.stocks.data.length ?
                 <div className={'filtered-tables-view__inner'}>
                     <CommonTable stocks={gainersStocks} position={'left'} title={'Лидеры роста'} />
                     <CommonTable stocks={losersStocks} position={'right'} title={'Лидеры падения'} />
                     <CommonTable stocks={maxVolumeStocks} position={'left'} title={'Лидеры по объему'} />
                     <CommonTable stocks={maxCapitalizationStocks} position={'right'} title={'Лидеры по капитализации'} />
                 </div> :
-                <div className="filtered-tables-view__loader"></div>
+                <div className="filtered-tables-view__no-data">Нет данных</div>
         }
         </div>
     );

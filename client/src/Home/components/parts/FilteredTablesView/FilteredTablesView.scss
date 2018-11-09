@@ -11,8 +11,8 @@
     padding-bottom: 2em;
 }
 
-.filtered-tables-view__loader {
-    @include loader();
+.filtered-tables-view__no-data {
+    text-align: center;
 }
 
 @media only screen and (max-width: 480px) {

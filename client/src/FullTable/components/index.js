@@ -258,7 +258,7 @@ const getTable = (props) => {
                 }
                 </tbody>
             </table> :
-            <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+            null
     );
 }
 
@@ -275,7 +275,7 @@ const getTableFiltered = (props) => {
                 }
                 </tbody>
             </table> :
-            <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+            null
     );
 }
 
@@ -298,6 +298,33 @@ const getTableControls = (props) => {
     );
 }
 
+const getStocksView = (props) => {
+    return (
+        <div className={'all-stocks'}>
+        {
+            getFiltersButton(props)
+        }
+        {
+            getFiltersView(props)
+        }
+            <div className={'all-stocks__inner'}>
+                <div className={'all-stocks__table-stocks-container'}>
+                {
+                    props.isFiltersVisible ?
+                        getTableFiltered(props) :
+                        getTable(props)
+                }
+                </div>
+            </div>
+        {
+            props.filteredStocks.data.length > 30 ?
+                getTableControls(props) :
+                null
+        }
+        </div>
+    );
+}
+
 // todo: handle fetchStocks error - props.stocksFetchingError
 const FullTableView = (props) => {
     return (
@@ -305,28 +332,11 @@ const FullTableView = (props) => {
         {
             props.stocksFetching && !props.stocks.data.length ?
                 <div className={'all-stocks__loader'} /> :
-                <div className={'all-stocks'}>
-            {
-                getFiltersButton(props)
-            }
-            {
-                getFiltersView(props)
-            }
-                <div className={'all-stocks__inner'}>
-                    <div className={'all-stocks__table-stocks-container'}>
-                    {
-                        props.isFiltersVisible ?
-                            getTableFiltered(props) :
-                            getTable(props)
-                    }
-                    </div>
-                </div>
-            {
-                props.filteredStocks.data.length > 30 ?
-                    getTableControls(props) :
-                    null
-            }
-                </div>
+            (
+                !props.stocksFetchingError ?
+                     getStocksView(props) :
+                    <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+            )
         }
         </Layout>
     );
