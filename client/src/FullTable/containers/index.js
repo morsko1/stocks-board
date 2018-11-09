@@ -58,7 +58,7 @@ class FullTable extends Component {
     componentDidMount() {
         this.props.getCurrencies();
         this.props.getStocks();
-        const interval = setInterval(this.props.getStocks, 5000);
+        const interval = setInterval(this.props.getStocks, 10000);
         this.setIntervalId(interval);
     }
 

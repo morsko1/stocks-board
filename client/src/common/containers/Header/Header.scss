@@ -33,10 +33,7 @@
 .header__logout-link,
 .header__link-to-register,
 .header__link-to-login, {
-    color: $color-link;
-    cursor: pointer;
-    text-decoration: underline;
-    user-select: none;
+    @include link-main();
 }
 
 .header__logout-link,

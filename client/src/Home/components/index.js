@@ -12,7 +12,10 @@ const HomeView = props => {
                 <div className="home-container__loader" /> :
                 <div className="home-container">
                     <CurrenciesView currencies={props.currencies} />
-                    <FilteredTablesView stocks={props.stocks} />
+                    <FilteredTablesView
+                        stocks={props.stocks}
+                        goToStockPage={props.goToStockPage}
+                    />
                 </div>
         }
         </Layout>

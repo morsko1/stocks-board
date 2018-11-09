@@ -104,14 +104,21 @@ const getTableRow = (item, props) => {
     // const capToDollars = parseFloat(item.capitalization / (1000000000 * usdRub)).toFixed(3);
 
     return (
-        <tr
-            key={`row_${item.ticker}`}
-            className={'all-stocks__table-stocks-row'}
-            onClick={() => {
-                props.goToStockPage(item.ticker);
-            }}>
-            <td key={`col_ticker${item.ticker}`} className={'all-stocks__col_fixed'}>{item.ticker}</td>
-            <td key={`col_name${item.ticker}`}>{item.shortName}</td>
+        <tr key={`row_${item.ticker}`}>
+            <td
+                key={`col_ticker${item.ticker}`}
+                className={'all-stocks__col_fixed all-stocks__link-to-stock'}
+                onClick={() => {props.goToStockPage(item.ticker)}}
+            >
+                {item.ticker}
+            </td>
+            <td
+                key={`col_name${item.ticker}`}
+                className={'all-stocks__link-to-stock'}
+                onClick={() => {props.goToStockPage(item.ticker)}}
+            >
+                {item.shortName}
+            </td>
             <td key={`col_prev${item.ticker}`}>{item.prevPrice}</td>
             <td key={`col_open${item.ticker}`}>{item.open}</td>
             <td
@@ -335,7 +342,7 @@ const FullTableView = (props) => {
             (
                 !props.stocksFetchingError ?
                      getStocksView(props) :
-                    <div className={'all-stocks__centered-content'}>{'Нет данных'}</div>
+                    <div className={'all-stocks__no-data'}>{'Нет данных'}</div>
             )
         }
         </Layout>
