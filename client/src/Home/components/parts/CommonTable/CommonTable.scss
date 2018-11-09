@@ -49,6 +49,11 @@
 }
 /*color change font end*/
 
+.common-table__link-to-stock {
+    @include link-main();
+    color: $color-font;
+}
+
 @media only screen and (max-width: 480px) {
     .common-table {
         width: 100%;

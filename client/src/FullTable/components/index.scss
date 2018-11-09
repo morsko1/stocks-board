@@ -40,10 +40,6 @@
     overflow: hidden;
 }
 
-.all-stocks__table-stocks-row {
-    cursor: pointer;
-}
-
 h3 {
     text-align: center;
 }
@@ -56,6 +52,11 @@ h3 {
 }
 .all-stocks__table-stocks tr:hover {
     background-color: $color-grey;
+}
+
+.all-stocks__link-to-stock {
+    @include link-main();
+    color: $color-font;
 }
 
 .all-stocks__loader {
@@ -172,6 +173,11 @@ h3 {
 
 .all-stocks__table-controls-button {
     @include icon-button();
+}
+
+.all-stocks__no-data {
+    text-align: center;
+    padding: 1em;
 }
 
 @media only screen and (max-width: 480px) {

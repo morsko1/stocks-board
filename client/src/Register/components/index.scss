@@ -54,11 +54,8 @@
 
 .register-container__link-to-login,
 .register-container__link-to-home {
-    color: $color-link;
-    cursor: pointer;
-    text-decoration: underline;
+    @include link-main();
     padding-left: 0.5em;
-    user-select: none;
 }
 
 .register-container__loader {

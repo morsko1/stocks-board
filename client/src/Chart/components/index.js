@@ -12,7 +12,14 @@ const ChartView = props => {
             (
                 !props.stockHistoryDataFetchingError ?
                     <div className="chart-container">
-                        {props.stock && props.stock.shortName}
+                        <div className="chart-container__stock-info">
+                            <div className="chart-container__stock-title">
+                                {props.stock && props.stock.shortName}
+                            </div>
+                            <div className="chart-container__stock-last-price">
+                                Цена: {props.stock && props.stock.prevPrice}р.
+                            </div>
+                        </div>
                         <D3chart stockHistoryData={props.stockHistoryData} />
                     </div> :
                     <div className="chart-container__no-data">Нет данных</div>
