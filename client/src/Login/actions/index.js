@@ -3,6 +3,7 @@ export const RESET_INPUT = 'login/RESET_INPUT';
 export const LOGIN_REQUEST = 'login/LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'login/LOGIN_FAILURE';
+export const RESET_ERROR = 'login/RESET_ERROR';
 
 export const handleInput = (field, text) => ({
     type: HANDLE_INPUT,
@@ -32,4 +33,8 @@ export const loginFailure = (error) => ({
     payload: {
         error
     }
+});
+
+export const resetError = (error) => ({
+    type: RESET_ERROR
 });

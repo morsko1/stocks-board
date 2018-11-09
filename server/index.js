@@ -23,7 +23,7 @@ app.post('/api/register', (req, res) => {
             username: req.body.username
         }, (err, user) => {
             if (user !== null) {
-                res.send({success: false, error: 'username has already reserved'});
+                res.send({success: false, error: 'Имя уже занято'});
                 client.close();
                 return;
             }
@@ -55,7 +55,7 @@ app.post('/api/login', (req, res) => {
             username: req.body.username
         }, (err, user) => {
             if (user === null) {
-                res.send({success: false, error: 'user does not exist'});
+                res.send({success: false, error: 'Пользователя с таким именем не существует'});
                 client.close();
                 return;
             }
@@ -70,7 +70,7 @@ app.post('/api/login', (req, res) => {
                 res.send({success: true, user: userToSend, token: token});
                 client.close();
             } else {
-                res.send({success: false, error: 'incorrect password'});
+                res.send({success: false, error: 'Неверный пароль'});
                 client.close();
                 return;
             }

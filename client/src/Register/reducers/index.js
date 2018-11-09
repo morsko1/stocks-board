@@ -67,6 +67,12 @@ export default (state = initialState, action) => {
                 registerError: action.payload.error
             };
 
+        case actionsRegister.RESET_ERROR:
+            return {
+                ...state,
+                registerError: null
+            };
+
         default:
             return state;
     }

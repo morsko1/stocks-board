@@ -33,12 +33,7 @@
 .mobile-control__login,
 .mobile-control__user-icon,
 .mobile-control__menu-button {
-    display: inline-block;
-    text-align: center;
-    font-size: 1.2em;
-    min-width: 44px;
-    height: 44px;
-    line-height: 44px;
+    @include icon-button();
 }
 
 .mobile-control__user-menu-wrapper {

@@ -101,7 +101,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 filters: util.resetFilters(state.filters),
-                filteredStocks: state.stocks
+                filteredStocks: state.stocks,
+                numberRowsToShow: numberRowsToShow
             };
 
         case actionsHome.GET_CURRENCIES_REQUEST:
@@ -120,13 +121,22 @@ export default (state = initialState, action) => {
         case actionsHome.EXPAND_TABLE:
             return {
                 ...state,
-                numberRowsToShow: state.numberRowsToShow + numberRowsToShow
+                numberRowsToShow: Math.min(
+                    state.numberRowsToShow + numberRowsToShow,
+                    state.filteredStocks.data.length
+                )
             };
 
         case actionsHome.COLLAPSE_TABLE:
             return {
                 ...state,
-                numberRowsToShow: Math.max(state.numberRowsToShow - numberRowsToShow, numberRowsToShow)
+                numberRowsToShow: Math.max(
+                    Math.min(
+                        state.numberRowsToShow - numberRowsToShow,
+                        state.filteredStocks.data.length - numberRowsToShow
+                    ),
+                    numberRowsToShow
+                )
             };
 
         default:

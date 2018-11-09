@@ -1,11 +1,16 @@
 import React from 'react';
 import './Header.scss';
 import MediaQuery from 'react-responsive';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {
+    faUser
+} from '@fortawesome/free-solid-svg-icons';
 
 const getUserView = (props) => {
     const username = props.user.user.username;
     return (
         <div className={'header__user'}>
+            <FontAwesomeIcon icon={faUser} />
             <span className={'header__username'}>{username}</span>
             <span
                 className={'header__logout-link'}

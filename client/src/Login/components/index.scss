@@ -59,6 +59,16 @@
     user-select: none;
 }
 
+.login-container__loader {
+    @include loader();
+}
+
+.login-container__error {
+    text-align: center;
+    color: $color-error;
+    padding: 1em;
+}
+
 @media only screen and (max-width: 480px) {
     .login-container__inner {
         max-width: none;

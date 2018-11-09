@@ -9,8 +9,8 @@ import * as navigation from '~/common/navigation.js';
 
 class Login extends Component {
 
-    componentDidMount() {
-        console.log('Login did mount');
+    componentWillUnmount() {
+       this.props.resetError();
     }
 
     render() {
@@ -19,6 +19,8 @@ class Login extends Component {
                 login={this.props.login}
                 input={this.props.input}
                 handleInput={this.props.handleInput}
+                isFetching={this.props.isFetching}
+                loginError={this.props.loginError}
                 goToRegisterPage={this.props.goToRegisterPage}
                 goToHomePage={this.props.goToHomePage}
             />
@@ -27,13 +29,16 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    input: state.login.input
+    input: state.login.input,
+    isFetching: state.login.isFetching,
+    loginError: state.login.loginError
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
         login: () => thunkLogin.login(),
         handleInput: (field, text) => actionsLogin.handleInput(field, text),
+        resetError: () => actionsLogin.resetError(),
         goToRegisterPage: navigation.goToRegisterPage,
         goToHomePage: navigation.goToHomePage
     },

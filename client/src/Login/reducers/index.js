@@ -50,6 +50,12 @@ export default (state = initialState, action) => {
                 loginError: action.payload.error
             };
 
+        case actionsLogin.RESET_ERROR:
+            return {
+                ...state,
+                loginError: null
+            };
+
         default:
             return state;
     }

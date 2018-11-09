@@ -5,6 +5,7 @@ export const RESET_PASSWORD_ERROR = 'register/RESET_PASSWORD_ERROR';
 export const REGISTER_REQUEST = 'register/REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'register/REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'register/REGISTER_FAILURE';
+export const RESET_ERROR = 'register/RESET_ERROR';
 
 export const handleInput = (field, text) => ({
     type: HANDLE_INPUT,
@@ -39,4 +40,8 @@ export const registerFailure = (error) => ({
     payload: {
         error
     }
+});
+
+export const resetError = (error) => ({
+    type: RESET_ERROR
 });

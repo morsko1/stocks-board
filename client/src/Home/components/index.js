@@ -7,10 +7,14 @@ import Layout from '~/common/components/Layout/Layout.js';
 const HomeView = props => {
     return (
         <Layout>
-            <div className={'home-container'}>
-                <CurrenciesView currencies={props.currencies} />
-                <FilteredTablesView stocks={props.stocks} />
-            </div>
+        {
+            props.stocksFetching && !props.stocks.data.length ?
+                <div className="home-container__loader" /> :
+                <div className="home-container">
+                    <CurrenciesView currencies={props.currencies} />
+                    <FilteredTablesView stocks={props.stocks} />
+                </div>
+        }
         </Layout>
     );
 }
