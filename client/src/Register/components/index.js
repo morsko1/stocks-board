@@ -4,7 +4,7 @@ import './index.scss';
 const getUserNameInput = (props) => {
     return (
         <div className={'register-container__username'}>
-            <label htmlFor={'register-container__username-input'}>username</label>
+            <label htmlFor={'register-container__username-input'}>Имя пользователя</label>
             <input
                 id={'register-container__username-input'}
                 type={'text'}
@@ -19,7 +19,7 @@ const getUserNameInput = (props) => {
 const getEmailInput = (props) => {
     return (
         <div className={'register-container__email'}>
-            <label htmlFor={'register-container__email-input'}>email</label>
+            <label htmlFor={'register-container__email-input'}>E-mail</label>
             <input
                 id={'register-container__email-input'}
                 type={'email'}
@@ -35,7 +35,7 @@ const getEmailInput = (props) => {
 const getPasswordInput = (props) => {
     return (
         <div className={'register-container__password'}>
-            <label htmlFor={'register-container__password-input'}>password</label>
+            <label htmlFor={'register-container__password-input'}>Пароль</label>
             <input
                 id={'register-container__password-input'}
                 type={'password'}
@@ -50,7 +50,7 @@ const getPasswordInput = (props) => {
 const getPasswordConfirmInput = (props) => {
     return (
         <div className={'register-container__password-confirm'}>
-            <label htmlFor={'register-container__password-confirm-input'}>confirm password</label>
+            <label htmlFor={'register-container__password-confirm-input'}>Подтвердите пароль</label>
             <input
                 id={'register-container__password-confirm-input'}
                 type={'password'}
@@ -69,7 +69,7 @@ const getRegisterButton = (props) => {
                 type={'submit'}
                 className={'register-container__submit-button'}
             >
-                register
+                Зарегистрироваться
             </button>
         </div>
     );
@@ -78,12 +78,12 @@ const getNavigationLinks = (props) => {
     return (
         <div>
             <div className={'register-container__link-to-login-wrapper'}>
-                or
+                или
                 <span
                     className={'register-container__link-to-login'}
                     onClick={()=>{props.goToLoginPage()}}
                 >
-                    login
+                    Войти
                 </span>
             </div>
             <div className={'register-container__link-to-home-wrapper'}>
@@ -91,7 +91,7 @@ const getNavigationLinks = (props) => {
                     className={'register-container__link-to-home'}
                     onClick={()=>{props.goToHomePage()}}
                 >
-                    home
+                    На главную
                 </span>
             </div>
         </div>
@@ -100,7 +100,7 @@ const getNavigationLinks = (props) => {
 const getRegisterContainer = (props) => {
     return (
         <div className={'register-container__inner'}>
-            <div className={'register-container__title'}>Register</div>
+            <div className={'register-container__title'}>Регистрация</div>
             <form
                 id={'register-container__form'}
                 className={'register-container__form'}

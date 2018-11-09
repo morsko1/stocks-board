@@ -4,7 +4,7 @@ import './index.scss';
 const getUserNameInput = (props) => {
     return (
         <div className={'login-container__username'}>
-            <label htmlFor={'login-container__username-input'}>username</label>
+            <label htmlFor={'login-container__username-input'}>Имя пользователя</label>
             <input
                 id={'login-container__username-input'}
                 type={'text'}
@@ -20,7 +20,7 @@ const getUserNameInput = (props) => {
 const getPasswordInput = (props) => {
     return (
         <div className={'login-container__password'}>
-            <label htmlFor={'login-container__password-input'}>password</label>
+            <label htmlFor={'login-container__password-input'}>Пароль</label>
             <input
                 id={'login-container__password-input'}
                 type={'password'}
@@ -36,12 +36,12 @@ const getNavigationLinks = (props) => {
     return (
         <div>
             <div className={'login-container__link-to-register-wrapper'}>
-                or
+                или 
                 <span
                     className={'login-container__link-to-register'}
                     onClick={()=>{props.goToRegisterPage()}}
                 >
-                    register
+                    Зарегистрироваться
                 </span>
             </div>
             <div className={'login-container__link-to-home-wrapper'}>
@@ -49,7 +49,7 @@ const getNavigationLinks = (props) => {
                     className={'login-container__link-to-home'}
                     onClick={()=>{props.goToHomePage()}}
                 >
-                    home
+                    На главную
                 </span>
             </div>
         </div>
@@ -63,7 +63,7 @@ const getLoginButton = (props) => {
                 type={'submit'}
                 className={'login-container__submit-button'}
             >
-                login
+                Войти
             </button>
         </div>
     );
@@ -72,7 +72,7 @@ const getLoginButton = (props) => {
 const getLoginContainer = (props) => {
     return (
         <div className={'login-container__inner'}>
-            <div className={'login-container__title'}>Login</div>
+            <div className={'login-container__title'}>Авторизация</div>
             <form
                 id={'login-container__form'}
                 className={'login-container__form'}
