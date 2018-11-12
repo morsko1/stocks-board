@@ -1,4 +1,4 @@
-import * as actionsChart from '../actions';
+import * as actionsStockPage from '../actions';
 import * as util from '~/common/util';
 import * as urls from '~/common/urls';
 import axios from 'axios';
@@ -12,15 +12,15 @@ export const getStockHistoryData = () => (dispatch, getState) => {
     const pathname = getState().router.location.pathname;
     const ticker = pathname.slice(pathname.lastIndexOf('/') + 1);
 
-    dispatch(actionsChart.getStockHistoryDataRequest());
+    dispatch(actionsStockPage.getStockHistoryDataRequest());
 
     axios.get(urls.getUrlDailyChart(ticker))
         .then((response) => {
             const convertedData = util.convertStockHistoryDataResponseToStockHistoryData(response.data);
-            dispatch(actionsChart.getStockHistoryDataSuccess(convertedData));
+            dispatch(actionsStockPage.getStockHistoryDataSuccess(convertedData));
         })
         .catch((error) => {
-            dispatch(actionsChart.getStockHistoryDataFailure(error));
+            dispatch(actionsStockPage.getStockHistoryDataFailure(error));
         });
 };
 
@@ -29,18 +29,18 @@ export const getStock = () => (dispatch, getState) => {
     const pathname = getState().router.location.pathname;
     const ticker = pathname.slice(pathname.lastIndexOf('/') + 1);
 
-    dispatch(actionsChart.getStockRequest());
+    dispatch(actionsStockPage.getStockRequest());
 
     axios.get(urls.getUrlStock(ticker))
         .then((response) => {
             const convertedData = util.convertStockResponseToStock(response.data);
-            dispatch(actionsChart.getStockSuccess(convertedData));
+            dispatch(actionsStockPage.getStockSuccess(convertedData));
         })
         .catch((error) => {
-            dispatch(actionsChart.getStockFailure(error));
+            dispatch(actionsStockPage.getStockFailure(error));
         });
 };
 
 export const reset = () => (dispatch) => {
-    dispatch(actionsChart.reset());
+    dispatch(actionsStockPage.reset());
 }

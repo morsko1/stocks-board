@@ -66,7 +66,7 @@ const getTable = (stock) => {
     );
 }
 
-const ChartView = (props) => {
+const StockPageView = (props) => {
     return (
         <Layout>
     {
@@ -87,4 +87,4 @@ const ChartView = (props) => {
     );
 }
 
-export default ChartView;
+export default StockPageView;
