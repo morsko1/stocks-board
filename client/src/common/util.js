@@ -1,4 +1,4 @@
-export const convertStocksResponseToStocks = (data, sort) => {
+const convertStocksHelper = (data) => {
     let securities = data.securities.data.map(item => {
         return {
             ticker: item[0],
@@ -20,7 +20,6 @@ export const convertStocksResponseToStocks = (data, sort) => {
             change: change,
         }
     });
-
     let result = [];
     for (let i = 0; i < securities.length; i++) {
         let item = {
@@ -29,6 +28,11 @@ export const convertStocksResponseToStocks = (data, sort) => {
         }
         result.push(item);
     }
+    return result;
+}
+
+export const convertStocksResponseToStocks = (data, sort) => {
+    let result = convertStocksHelper(data);
 
     result = result.filter(item => item.prevPrice !== null);
     if (sort) {
@@ -200,11 +204,5 @@ export const convertStockHistoryDataResponseToStockHistoryData = (data) => {
 }
 
 export const convertStockResponseToStock = (data) => {
-    const item = data.securities.data[0];
-    return {
-        ticker: item[0],
-        shortName: item[1],
-        prevPrice: item[2],
-        fullName: item[3]
-    };
+    return convertStocksHelper(data)[0];
 }

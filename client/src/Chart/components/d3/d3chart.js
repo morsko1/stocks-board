@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import './index.scss';
 import MediaQuery from 'react-responsive';
 
 class D3chart extends React.Component {
@@ -92,14 +93,14 @@ class D3chart extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="d3chart">
                 <MediaQuery minWidth={768}>
-                    <div className="d3chart">
+                    <div className="d3chart__chart">
                         <svg id="d3chart" width="768" height="460" />
                     </div>
                 </MediaQuery>
                 <MediaQuery maxWidth={767}>
-                    <div className="d3chart">
+                    <div className="d3chart__chart">
                         <svg id="d3chart" width="360" height="216" />
                     </div>
                 </MediaQuery>
