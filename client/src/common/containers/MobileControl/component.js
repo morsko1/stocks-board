@@ -1,5 +1,5 @@
 import React from 'react';
-import './MobileControl.scss';
+import './style.scss';
 import OutsideClick from '~/common/components/OutsideClick/OutsideClick.js';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {

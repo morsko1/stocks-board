@@ -6,6 +6,7 @@ import fullTable from './FullTable/reducers';
 import user from './User/reducers';
 import register from './Register/reducers';
 import login from './Login/reducers';
+import searchStocks from './common/containers/SearchStocks/reducers.js';
 
 export default combineReducers({
     router: routerReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     fullTable,
     user,
     register,
-    login
+    login,
+    searchStocks
 });
