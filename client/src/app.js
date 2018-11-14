@@ -4,7 +4,7 @@ import {
     Switch
 } from 'react-router-dom';
 import Home from './Home';
-import Chart from './Chart';
+import StockPage from './StockPage';
 import FullTable from './FullTable';
 import Register from './Register';
 import Login from './Login';
@@ -18,7 +18,7 @@ const App = () => (
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/stocks' component={FullTable} />
-                <Route exact path='/stocks/:ticker' component={Chart} />
+                <Route exact path='/stocks/:ticker' component={StockPage} />
                 <Route component={NotFound} />
             </Switch>
         </main>

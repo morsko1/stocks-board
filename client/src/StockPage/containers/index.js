@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as thunkChart from '../thunks';
-import ChartView from '../components';
+import * as thunkStockPage from '../thunks';
+import StockPageView from '../components';
 
-class Chart extends Component {
+class StockPage extends Component {
     componentDidMount() {
         this.props.init();
     }
@@ -15,7 +15,7 @@ class Chart extends Component {
 
     render() {
         return (
-            <ChartView
+            <StockPageView
                 stock={this.props.stock}
                 stockFetching={this.props.stockFetching}
                 stockFetchingError={this.props.stockFetchingError}
@@ -28,20 +28,20 @@ class Chart extends Component {
 }
 
 const mapStateToProps = state => ({
-    stock: state.chart.stock,
-    stockFetching: state.chart.stockFetching,
-    stockFetchingError: state.chart.stockFetchingError,
-    stockHistoryData: state.chart.stockHistoryData,
-    stockHistoryDataFetching: state.chart.stockHistoryDataFetching,
-    stockHistoryDataFetchingError: state.chart.stockHistoryDataFetchingError
+    stock: state.stockPage.stock,
+    stockFetching: state.stockPage.stockFetching,
+    stockFetchingError: state.stockPage.stockFetchingError,
+    stockHistoryData: state.stockPage.stockHistoryData,
+    stockHistoryDataFetching: state.stockPage.stockHistoryDataFetching,
+    stockHistoryDataFetchingError: state.stockPage.stockHistoryDataFetchingError
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        init: () => thunkChart.init(),
-        reset: () => thunkChart.reset(),
+        init: () => thunkStockPage.init(),
+        reset: () => thunkStockPage.reset(),
     },
     dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(StockPage);

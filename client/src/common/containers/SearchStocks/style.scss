@@ -1,0 +1,73 @@
+@import 'common/styles/common';
+
+.search-stocks__inline-block {
+    display: inline-block;
+}
+
+.search-stocks__search-container {
+    display: inline-block;
+    position: relative;
+}
+
+.search-stocks__search-form {
+    display: inline-flex;
+    padding: 0.2em;
+    background-color: $color-main * 0.96;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.search-stocks__search-input {
+    flex-grow: 2;
+    border: none;
+    max-width: 8em;
+    background-color: $color-main * 0.96;
+}
+
+.search-stocks__search-input:focus {
+    outline: 0;
+}
+
+.search-stocks__search-icon {
+    color: $color-link;
+}
+
+.search-stocks__search-result {
+    position: absolute;
+    right: 0;
+    background-color: $color-white;
+    min-width: 10em;
+    padding: 0.3em;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 1px 5px 10px $color-grey;
+}
+
+.search-stocks__search-result-item {
+    padding: 0.3em;
+    border-bottom: 1px solid $color-light-grey;
+}
+
+.search-stocks__search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-stocks-mobile__right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 1em;
+    padding-right: 1em;
+}
+
+.search-stocks-mobile__search-icon-container {
+    font-size: 1.1em;
+    color: $color-link;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 53px;
+    width: 53px;
+    text-align: center;
+    line-height: 53px;
+}

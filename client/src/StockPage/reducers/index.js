@@ -1,4 +1,4 @@
-import * as actionsChart from '../actions';
+import * as actionsStockPage from '../actions';
 
 const initialState = {
     stock: null,
@@ -11,14 +11,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case actionsChart.GET_STOCK_HISTORY_DATA_REQUEST:
+        case actionsStockPage.GET_STOCK_HISTORY_DATA_REQUEST:
             return {
                 ...state,
                 stockHistoryDataFetching: true,
                 stockHistoryDataFetchingError: null
             };
 
-        case actionsChart.GET_STOCK_HISTORY_DATA_SUCCESS:
+        case actionsStockPage.GET_STOCK_HISTORY_DATA_SUCCESS:
             return {
                 ...state,
                 stockHistoryDataFetching: false,
@@ -26,21 +26,21 @@ export default (state = initialState, action) => {
                 stockHistoryData: action.payload.data
             };
 
-        case actionsChart.GET_STOCK_HISTORY_DATA_FAILURE:
+        case actionsStockPage.GET_STOCK_HISTORY_DATA_FAILURE:
             return {
                 ...state,
                 stockHistoryDataFetching: false,
                 stockHistoryDataFetchingError: action.payload.error,
             };
 
-        case actionsChart.GET_STOCK_REQUEST:
+        case actionsStockPage.GET_STOCK_REQUEST:
             return {
                 ...state,
                 stockFetching: true,
                 stockFetchingError: null
             };
 
-        case actionsChart.GET_STOCK_SUCCESS:
+        case actionsStockPage.GET_STOCK_SUCCESS:
             return {
                 ...state,
                 stockFetching: false,
@@ -48,14 +48,14 @@ export default (state = initialState, action) => {
                 stock: action.payload.data
             };
 
-        case actionsChart.GET_STOCK_FAILURE:
+        case actionsStockPage.GET_STOCK_FAILURE:
             return {
                 ...state,
                 stockFetching: false,
                 stockFetchingError: action.payload.error,
             };
 
-        case actionsChart.RESET:
+        case actionsStockPage.RESET:
             return {
                 ...initialState
             };

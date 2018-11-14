@@ -1,15 +1,16 @@
 import React from 'react';
-import './Header.scss';
+import './style.scss';
 import MediaQuery from 'react-responsive';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
     faUser
 } from '@fortawesome/free-solid-svg-icons';
+import SearchStocks from '../SearchStocks';
 
 const getUserView = (props) => {
     const username = props.user.user.username;
     return (
-        <div className={'header__user'}>
+        <span className={'header__user'}>
             <FontAwesomeIcon icon={faUser} />
             <span className={'header__username'}>{username}</span>
             <span
@@ -18,13 +19,13 @@ const getUserView = (props) => {
             >
                 Выход
             </span>
-        </div>
+        </span>
     );
 }
 
 const getAuthView = (props) => {
     return (
-        <div className={'header__link-container'}>
+        <span className={'header__link-container'}>
             <span
                 className={'header__link-to-register'}
                 onClick={()=>{props.goToRegisterPage()}}
@@ -37,7 +38,7 @@ const getAuthView = (props) => {
             >
                 Вход
             </span>
-        </div>
+        </span>
     );
 }
 
@@ -46,6 +47,7 @@ const getMobileHeader = (props) => {
         <div className={'header-mobile'}>
             <div className={'header-mobile__inner'}>
                 <span className={'header-mobile__title'}>MOEX</span>
+                <SearchStocks />
             </div>
         </div>
     );
@@ -71,6 +73,7 @@ const getDesktopHeader = props => {
                 </div>
                 <span className={'header__title'}>MOEX</span>
                 <div className={'header__right'}>
+                <SearchStocks />
                 {
                     props.user.isFetching ?
                         null :
