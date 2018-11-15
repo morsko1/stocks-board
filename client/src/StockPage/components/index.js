@@ -70,7 +70,7 @@ const StockPageView = (props) => {
     return (
         <Layout>
     {
-        props.stockHistoryDataFetching ?
+        props.stockFetching || props.stockHistoryDataFetching ?
             <div className="stock-page__loader" /> :
             (
                 !props.stockHistoryDataFetchingError ?

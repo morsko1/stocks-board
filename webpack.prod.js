@@ -56,7 +56,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([outputDirectory]),
         new HtmlWebpackPlugin({
-            title: 'stock-board',
             template: path.join(__dirname, '/client/public/index.html'),
             alwaysWriteToDisk: true
         }),

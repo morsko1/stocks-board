@@ -9,6 +9,12 @@ class StockPage extends Component {
         this.props.init();
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.location.pathname !== window.location.pathname) {
+            this.props.init();
+        }
+    }
+
     componentWillUnmount() {
         this.props.reset();
     }

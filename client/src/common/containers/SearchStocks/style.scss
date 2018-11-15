@@ -36,7 +36,7 @@
     position: absolute;
     right: 0;
     background-color: $color-white;
-    min-width: 10em;
+    min-width: 12em;
     padding: 0.3em;
     max-height: 400px;
     overflow-y: auto;
@@ -44,7 +44,7 @@
 }
 
 .search-stocks__search-result-item {
-    padding: 0.3em;
+    padding: 0.5em;
     border-bottom: 1px solid $color-light-grey;
 }
 

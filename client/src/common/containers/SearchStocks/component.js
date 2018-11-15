@@ -11,6 +11,7 @@ import {
 const getSearchForm = (props) => {
     return (
         <form
+            autoComplete="off"
             className="search-stocks__search-form"
             onSubmit={(e) => e.preventDefault()}
         >
@@ -59,7 +60,7 @@ const getSearchResultList = (props) => {
                                 props.goToStockPage(stock.ticker);
                             }}
                         >
-                            {stock.shortName}
+                            {`${stock.shortName} (${stock.ticker})`}
                         </div>
                     );
                 }) :
