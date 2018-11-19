@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as thunkHome from '../thunks';
 import * as thunkUser from '~/User/thunks';
+import * as thunkMarketData from '~/common/containers/marketData/thunks';
 import HomeView from '../components';
 import * as util from '~/common/util';
 import * as navigation from '~/common/navigation.js';
@@ -33,18 +33,18 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    stocks: state.home.stocks,
-    stocksFetching: state.home.stocksFetching,
-    stocksFetchingError: state.home.stocksFetchingError,
-    currencies: state.home.currencies,
+    stocks: state.marketData.stocks,
+    stocksFetching: state.marketData.stocksFetching,
+    stocksFetchingError: state.marketData.stocksFetchingError,
+    currencies: state.marketData.currencies,
     user: state.user
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
         goToStockPage: navigation.goToStockPage,
-        getStocks: () => thunkHome.getStocks(),
-        getCurrencies: () => thunkHome.getCurrencies(),
+        getStocks: () => thunkMarketData.getStocks(),
+        getCurrencies: () => thunkMarketData.getCurrencies(),
         goToRegisterPage: navigation.goToRegisterPage,
         goToLoginPage: navigation.goToLoginPage,
         logout: () => thunkUser.logout()

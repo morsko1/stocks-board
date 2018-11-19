@@ -7,6 +7,7 @@ import user from './User/reducers';
 import register from './Register/reducers';
 import login from './Login/reducers';
 import searchStocks from './common/containers/SearchStocks/reducers.js';
+import marketData from './common/containers/marketData/reducers';
 
 export default combineReducers({
     router: routerReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     user,
     register,
     login,
-    searchStocks
+    searchStocks,
+    marketData
 });
