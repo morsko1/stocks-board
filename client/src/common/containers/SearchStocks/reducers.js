@@ -39,6 +39,12 @@ export default (state = initialState, action) => {
                 foundStocks: action.payload.stocks
             };
 
+         case actionsSearchStocks.RESET_FOUND_STOCKS:
+            return {
+                ...state,
+                foundStocks: []
+            };
+
         default:
             return state;
     }

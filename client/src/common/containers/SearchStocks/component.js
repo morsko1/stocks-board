@@ -19,6 +19,7 @@ const getSearchForm = (props) => {
                 type="text"
                 id="search-stocks__search-input"
                 className="search-stocks__search-input"
+                placeholder="Поиск"
                 value={props.searchInput}
                 onChange={(e) => {props.searchStocks(e.target.value)}}
             />

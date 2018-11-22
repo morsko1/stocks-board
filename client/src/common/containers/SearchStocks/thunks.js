@@ -22,6 +22,8 @@ export const searchStocks = (text) => (dispatch, getState) => {
                 result = filterStocks(data, text);
                 result.length && dispatch(actionsSearchStocks.setFoundStocks(result));
             });
+        } else {
+            dispatch(actionsSearchStocks.resetFoundStocks());
         }
     }
 }

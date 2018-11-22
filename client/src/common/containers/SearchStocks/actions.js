@@ -3,6 +3,7 @@ export const HIDE_SEARCH = 'searchStocks/HIDE_SEARCH';
 export const HANDLE_INPUT = 'searchStocks/HANDLE_INPUT';
 export const RESET_INPUT = 'searchStocks/RESET_INPUT';
 export const SET_FOUND_STOCKS = 'searchStocks/SET_FOUND_STOCKS';
+export const RESET_FOUND_STOCKS = 'searchStocks/RESET_FOUND_STOCKS';
 
 
 export const showSearch = () => ({
@@ -29,4 +30,8 @@ export const setFoundStocks = (stocks) => ({
     payload: {
         stocks
     }
+});
+
+export const resetFoundStocks = () => ({
+    type: RESET_FOUND_STOCKS
 });
