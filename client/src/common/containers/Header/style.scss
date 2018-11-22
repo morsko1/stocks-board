@@ -30,6 +30,7 @@
 
 .header__link-to-home,
 .header__link-to-allstocks,
+.header__link-to-watch-list,
 .header__logout-link,
 .header__link-to-register,
 .header__link-to-login, {
@@ -39,7 +40,8 @@
 .header__logout-link,
 .header__link-to-login,
 .header__link-to-home,
-.header__link-to-allstocks {
+.header__link-to-allstocks,
+.header__link-to-watch-list {
     padding-left: 0.5em;
 }
 

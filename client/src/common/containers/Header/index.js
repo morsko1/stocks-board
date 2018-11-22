@@ -13,6 +13,7 @@ class Header extends Component {
                 goToRegisterPage={this.props.goToRegisterPage}
                 goToLoginPage={this.props.goToLoginPage}
                 goToAllStocksPage={this.props.goToAllStocksPage}
+                goToWatchListPage={this.props.goToWatchListPage}
                 user={this.props.user}
                 logout={this.props.logout}
             />
@@ -30,6 +31,7 @@ const mapDispatchToProps = dispatch =>
         goToRegisterPage: navigation.goToRegisterPage,
         goToLoginPage: navigation.goToLoginPage,
         goToAllStocksPage: navigation.goToAllStocksPage,
+        goToWatchListPage: navigation.goToWatchListPage,
         logout: () => thunkUser.logout()
     },
     dispatch

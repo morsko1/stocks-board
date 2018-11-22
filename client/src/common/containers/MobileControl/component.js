@@ -63,6 +63,12 @@ const getUserMenu = props => {
                     >
                         Все акции
                     </div>
+                    <div
+                        className={'mobile-control__user-menu-item'}
+                        onClick={props.goToWatchListPage}
+                    >
+                        Вотч-лист
+                    </div>
                     {
                         props.user.user && props.user.user.username ?
                             <div

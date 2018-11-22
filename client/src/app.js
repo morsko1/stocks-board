@@ -9,6 +9,7 @@ import FullTable from './FullTable';
 import Register from './Register';
 import Login from './Login';
 import NotFound from './NotFound';
+import WatchList from './WatchList';
 
 const App = () => (
     <div className={'container'}>
@@ -19,6 +20,7 @@ const App = () => (
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/stocks' component={FullTable} />
                 <Route exact path='/stocks/:ticker' component={StockPage} />
+                <Route exact path='/watchlist' component={WatchList} />
                 <Route component={NotFound} />
             </Switch>
         </main>

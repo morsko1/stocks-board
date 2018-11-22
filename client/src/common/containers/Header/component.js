@@ -70,6 +70,12 @@ const getDesktopHeader = props => {
                     >
                         Все акции
                     </span>
+                    <span
+                        className={'header__link-to-watch-list'}
+                        onClick={props.goToWatchListPage}
+                    >
+                        Вотч-лист
+                    </span>
                 </div>
                 <span className={'header__title'}>MOEX</span>
                 <div className={'header__right'}>

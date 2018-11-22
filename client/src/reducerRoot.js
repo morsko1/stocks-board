@@ -6,6 +6,7 @@ import fullTable from './FullTable/reducers';
 import user from './User/reducers';
 import register from './Register/reducers';
 import login from './Login/reducers';
+import watchList from './WatchList/reducers';
 import searchStocks from './common/containers/SearchStocks/reducers.js';
 import marketData from './common/containers/marketData/reducers';
 
@@ -18,5 +19,6 @@ export default combineReducers({
     register,
     login,
     searchStocks,
-    marketData
+    marketData,
+    watchList
 });

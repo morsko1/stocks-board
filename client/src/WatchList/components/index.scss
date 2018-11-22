@@ -1,0 +1,115 @@
+@import 'common/styles/common';
+
+.watch-list {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.watch-list__title {
+    text-align: center;
+    padding: 1em;
+}
+
+.watch-list__search-container {
+    text-align: right;
+    position: relative;
+    padding: 0.5em;
+}
+
+.watch-list__add-stock-form {
+    display: inline-flex;
+    padding: 0.2em;
+    background-color: $color-main * 0.96;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.watch-list__add-stock-input {
+    flex-grow: 2;
+    border: none;
+    max-width: 8em;
+    background-color: $color-main * 0.96;
+}
+
+.watch-list__add-stock-input:focus {
+    outline: 0;
+}
+
+.watch-list__search-icon,
+.watch-list__clear-icon {
+    color: $color-link;
+}
+
+.watch-list__search-result {
+    position: absolute;
+    right: 0;
+    background-color: $color-white;
+    min-width: 12em;
+    padding: 0.3em;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 1px 5px 10px $color-grey;
+    z-index: 100;
+}
+
+.watch-list__search-result-item {
+    display: flex;
+    border-bottom: 1px solid $color-light-grey;
+}
+.watch-list__search-result-item-text {
+    text-align: center;
+    padding: 0.5em;
+}
+.watch-list__search-result-add-icon {
+    padding: 0.5em;
+    margin-left: auto;
+}
+
+.watch-list__search-result-item:last-child {
+    border-bottom: none;
+}
+
+.watch-list__table-stocks-container table, th, td {
+    border: 1px solid $color-light-black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.watch-list__table-stocks th {
+    background-color: $color-light-grey;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.watch-list__table-stocks td {
+    text-align: center;
+    padding: 0.3em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.watch-list__table-stocks tr:nth-child(odd) td {
+    background-color: $color-main;
+}
+.watch-list__table-stocks tr:nth-child(even) td {
+    background-color: $color-white;
+}
+.watch-list__table-stocks tr:hover {
+    background-color: $color-grey;
+}
+
+.watch-list__link-to-stock {
+    @include link-main();
+    color: $color-font;
+}
+
+.watch-list__empty {
+    text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+    .watch-list__search-result {
+        max-height: 300px;
+    }
+}
