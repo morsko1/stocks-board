@@ -1,4 +1,4 @@
-import * as actionsHome from '../actions';
+import * as actionsFullTable from '../actions';
 import * as util from '~/common/util';
 
 const numberRowsToShow = 30;
@@ -31,14 +31,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case actionsHome.GET_STOCKS_REQUEST:
+        case actionsFullTable.GET_STOCKS_REQUEST:
             return {
                 ...state,
                 stocksFetching: true,
                 stocksFetchingError: null
             };
 
-        case actionsHome.GET_STOCKS_SUCCESS:
+        case actionsFullTable.GET_STOCKS_SUCCESS:
             return {
                 ...state,
                 stocksFetching: false,
@@ -59,14 +59,14 @@ export default (state = initialState, action) => {
                 }
             };
 
-        case actionsHome.GET_STOCKS_FAILURE:
+        case actionsFullTable.GET_STOCKS_FAILURE:
             return {
                 ...state,
                 stocksFetching: false,
                 stocksFetchingError: action.payload.error,
             };
 
-        case actionsHome.SET_SORT_PARAMETERS:
+        case actionsFullTable.SET_SORT_PARAMETERS:
             return {
                 ...state,
                 sort: {
@@ -75,13 +75,13 @@ export default (state = initialState, action) => {
                 }
             };
 
-        case actionsHome.SHOW_OR_HIDE_FILTERS:
+        case actionsFullTable.SHOW_OR_HIDE_FILTERS:
             return {
                 ...state,
                 isFiltersVisible: !state.isFiltersVisible
             };
 
-        // case actionsHome.HANDLE_INPUT:
+        // case actionsFullTable.HANDLE_INPUT:
         //     return {
         //         ...state,
         //         filters: util.setFiltersState(
@@ -92,12 +92,12 @@ export default (state = initialState, action) => {
         //         )
         //     };
 
-        case actionsHome.APPLY_FILTERS:
+        case actionsFullTable.APPLY_FILTERS:
             return {
                 ...state,
                 filters: util.convertFiltersValues(action.payload.filters)
             };
-        case actionsHome.RESET_FILTERS:
+        case actionsFullTable.RESET_FILTERS:
             return {
                 ...state,
                 filters: util.resetFilters(state.filters),
@@ -105,12 +105,12 @@ export default (state = initialState, action) => {
                 numberRowsToShow: numberRowsToShow
             };
 
-        case actionsHome.GET_CURRENCIES_REQUEST:
+        case actionsFullTable.GET_CURRENCIES_REQUEST:
             return {
                 ...state,
             };
 
-        case actionsHome.GET_CURRENCIES_SUCCESS:
+        case actionsFullTable.GET_CURRENCIES_SUCCESS:
             return {
                 ...state,
                 currencies: {
@@ -118,7 +118,7 @@ export default (state = initialState, action) => {
                 }
             };
 
-        case actionsHome.EXPAND_TABLE:
+        case actionsFullTable.EXPAND_TABLE:
             return {
                 ...state,
                 numberRowsToShow: Math.min(
@@ -127,7 +127,7 @@ export default (state = initialState, action) => {
                 )
             };
 
-        case actionsHome.COLLAPSE_TABLE:
+        case actionsFullTable.COLLAPSE_TABLE:
             return {
                 ...state,
                 numberRowsToShow: Math.max(
