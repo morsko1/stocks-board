@@ -7,6 +7,7 @@ import {
     faTimes,
     faPlus
 } from '@fortawesome/free-solid-svg-icons';
+import * as util from '~/common/util.js';
 
 const getSearchForm = (props) => {
     return (
@@ -87,15 +88,36 @@ const getSearchView = (props) => {
     );
 }
 
+const getTableHead = (props) => {
+    return (
+        <thead>
+            <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
+                <th className="watch-list__col_fixed">Тикер</th>
+                <th>Наим.</th>
+                <th>Цена,<br/>закр<br/></th>
+                <th>Цена,<br/>откр<br/></th>
+                <th>Цена,<br/>посл<br/></th>
+                <th>изм,<br/>%</th>
+                <th>Объем,<br/>млн р<br/></th>
+                <th>Кап-ция,<br/>млрд р<br/></th>
+                <th></th>
+            </tr>
+        </thead>
+    );
+}
+
 const getTableBody = (props) => {
+    const tickersWatch = props.stocksWatch.map(stock => stock.ticker);
+    const filteredStocks = props.stocks.data.filter(stock => tickersWatch.includes(stock.ticker));
+
     return (
         <tbody>
         {
-            props.stocks.map((stock) => {
+            filteredStocks.map((stock) => {
                 return (
                     <tr key={stock.ticker}>
                         <td
-                            className={'watch-list__link-to-stock'}
+                            className={'watch-list__col_fixed watch-list__link-to-stock'}
                             onClick={() => {props.goToStockPage(stock.ticker)}}
                         >
                             {stock.ticker}
@@ -106,6 +128,20 @@ const getTableBody = (props) => {
                         >
                             {stock.shortName}
                         </td>
+                        <td key={`col_prev${stock.ticker}`}>{stock.prevPrice}</td>
+                        <td key={`col_open${stock.ticker}`}>{stock.open}</td>
+                        <td
+                            key={`col_last${stock.ticker}`}
+                            className={util.getClassNameForCellColor(stock.last - stock.previousPrice)}>
+                            {stock.last}
+                        </td>
+                        <td
+                            key={`col_change${stock.ticker}`}
+                            className={util.getClassNameForChangeFont(stock.change)}>
+                            {stock.change ? stock.change + ' %' : ''}
+                        </td>
+                        <td key={`col_volume${stock.ticker}`}>{(stock.volumeToday / 1000000).toFixed(2)}</td>
+                        <td key={`col_cap${stock.ticker}`}>{(stock.capitalization / 1000000000).toFixed(3)}</td>
                         <td>
                             <FontAwesomeIcon
                                 icon={faTimes}
@@ -125,13 +161,7 @@ const getTableView = (props) => {
     return (
         <div className="watch-list__table-stocks-container">
             <table className="watch-list__table-stocks">
-                <thead>
-                    <tr>
-                        <th>Тикер</th>
-                        <th>Наим.</th>
-                        <th></th>
-                    </tr>
-                </thead>
+                {getTableHead(props)}
                 {getTableBody(props)}
             </table>
         </div>
@@ -146,7 +176,7 @@ const WatchListView = props => {
                 <div className="watch-list__title">Вотч-лист</div>
                 {getSearchView(props)}
                 {
-                    props.stocks.length ?
+                    props.stocksWatch.length ?
                     getTableView(props) :
                     <div className="watch-list__empty">Вотч-лист пуст. Добавьте элементы.</div>}
             </div>

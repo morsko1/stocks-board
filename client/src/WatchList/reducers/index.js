@@ -3,8 +3,7 @@ import * as actionsWatchList from '../actions';
 const initialState = {
     searchInput: '',
     foundStocks: [],
-    stocks: []
-
+    stocksWatch: []
 };
 
 export default (state = initialState, action) => {
@@ -37,15 +36,15 @@ export default (state = initialState, action) => {
         case actionsWatchList.ADD_STOCK:
             return {
                 ...state,
-                stocks: [
-                    ...state.stocks,
+                stocksWatch: [
+                    ...state.stocksWatch,
                     action.payload.stock
                 ]
             };
         case actionsWatchList.DELETE_STOCK:
             return {
                 ...state,
-                stocks: state.stocks.filter(stock => stock.ticker !== action.payload.stock.ticker)
+                stocksWatch: state.stocksWatch.filter(stock => stock.ticker !== action.payload.stock.ticker)
             };
 
         default:

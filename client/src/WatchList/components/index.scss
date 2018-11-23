@@ -62,6 +62,7 @@
     padding: 0.5em;
 }
 .watch-list__search-result-add-icon {
+    color: $color-font-up;
     padding: 0.5em;
     margin-left: auto;
 }
@@ -104,6 +105,19 @@
     color: $color-font;
 }
 
+.watch-list__table-stocks .change-up-font {
+    color: $color-font-up;
+}
+
+.watch-list__table-stocks .change-down-font {
+    color: $color-font-down;
+}
+
+.watch-list__delete-stock-icon {
+    color: $color-font-down;
+    cursor: pointer;
+}
+
 .watch-list__empty {
     text-align: center;
 }
@@ -111,5 +125,10 @@
 @media only screen and (max-width: 767px) {
     .watch-list__search-result {
         max-height: 300px;
+    }
+    .watch-list__col_fixed {
+        position: sticky;
+        left: 0;
+        box-shadow: 1px 0 $color-light-black;
     }
 }

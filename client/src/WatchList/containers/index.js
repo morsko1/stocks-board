@@ -9,12 +9,16 @@ import * as util from '~/common/util';
 import * as navigation from '~/common/navigation.js';
 
 class WatchList extends Component {
+    componentDidMount () {
+        this.props.init();
+    }
+
     render() {
         return (
             <WatchListView
                 goToStockPage={this.props.goToStockPage}
-                testData={this.props.testData}
                 stocks={this.props.stocks}
+                stocksWatch={this.props.stocksWatch}
                 searchInput={this.props.searchInput}
                 resetInput={this.props.resetInput}
                 searchStocks={this.props.searchStocks}
@@ -27,15 +31,16 @@ class WatchList extends Component {
 }
 
 const mapStateToProps = state => ({
-    stocks: state.watchList.stocks,
+    stocks: state.marketData.stocks,
+    stocksWatch: state.watchList.stocksWatch,
     searchInput: state.watchList.searchInput,
     foundStocks: state.watchList.foundStocks,
-    testData: state.watchList.testData,
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
         goToStockPage: navigation.goToStockPage,
+        init: (text) => thunkWatchList.init(text),
         handleInput: () => actionsWatchList.handleInput(),
         resetInput: () => actionsWatchList.resetInput(),
         searchStocks: (text) => thunkWatchList.searchStocks(text),

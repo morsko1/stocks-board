@@ -1,5 +1,13 @@
 import * as actionsWatchList from '../actions';
 import * as thunksMarketData from '~/common/containers/marketData/thunks';
+import * as actionsMarketData from '~/common/containers/marketData/actions';
+
+export const init = () => (dispatch, getState) => {
+    const stocks = getState().marketData.stocks;
+    if (!stocks.data.length) {
+        dispatch(thunksMarketData.getStocks());
+    }
+}
 
 const filterStocks = (stocks, text) => {
     return stocks.filter((stock) => {
@@ -29,12 +37,15 @@ export const searchStocks = (text) => (dispatch, getState) => {
 }
 
 export const addStock = (stock) => (dispatch, getState) => {
-    const stocks = getState().watchList.stocks;
-    if (stocks.includes(stock)) {
+    const stocksWatch = getState().watchList.stocksWatch;
+    if (stocksWatch.find(elem => elem.ticker === stock.ticker)) {
         return;
     }
 
-    dispatch(actionsWatchList.addStock(stock));
+    const {ticker, shortName, fullName, last} = stock;
+    const stockToSave = {ticker, shortName, fullName, last, date: new Date()};
+
+    dispatch(actionsWatchList.addStock(stockToSave));
 }
 
 export const deleteStock = (stock) => (dispatch, getState) => {
