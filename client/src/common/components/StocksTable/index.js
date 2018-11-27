@@ -113,13 +113,13 @@ const getTableRow = (item, props) => {
         <tr key={`row_${item.ticker}`}>
             <td
                 className={'stocks-table__col_fixed stocks-table__link-to-stock'}
-                onClick={() => {props.goToStockPage(item.ticker)}}
+                onClick={() => {props.goToStockPage && props.goToStockPage(item.ticker)}}
             >
                 {item.ticker}
             </td>
             <td
                 className={'stocks-table__link-to-stock'}
-                onClick={() => {props.goToStockPage(item.ticker)}}
+                onClick={() => {props.goToStockPage && props.goToStockPage(item.ticker)}}
             >
                 {item.shortName}
             </td>
