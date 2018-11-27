@@ -71,53 +71,6 @@
     border-bottom: none;
 }
 
-.watch-list__table-stocks-container table, th, td {
-    border: 1px solid $color-light-black;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-.watch-list__table-stocks th {
-    background-color: $color-light-grey;
-    padding: 0.3em;
-    cursor: pointer;
-}
-
-.watch-list__table-stocks td {
-    text-align: center;
-    padding: 0.3em;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.watch-list__table-stocks tr:nth-child(odd) td {
-    background-color: $color-main;
-}
-.watch-list__table-stocks tr:nth-child(even) td {
-    background-color: $color-white;
-}
-.watch-list__table-stocks tr:hover {
-    background-color: $color-grey;
-}
-
-.watch-list__link-to-stock {
-    @include link-main();
-    color: $color-font;
-}
-
-.watch-list__table-stocks .change-up-font {
-    color: $color-font-up;
-}
-
-.watch-list__table-stocks .change-down-font {
-    color: $color-font-down;
-}
-
-.watch-list__delete-stock-icon {
-    color: $color-font-down;
-    cursor: pointer;
-}
-
 .watch-list__empty {
     text-align: center;
 }
@@ -125,10 +78,5 @@
 @media only screen and (max-width: 767px) {
     .watch-list__search-result {
         max-height: 300px;
-    }
-    .watch-list__col_fixed {
-        position: sticky;
-        left: 0;
-        box-shadow: 1px 0 $color-light-black;
     }
 }

@@ -9,133 +9,7 @@ import {
     faArrowUp,
     faArrowDown
 } from '@fortawesome/free-solid-svg-icons';
-
-const getTableHead = (props) => {
-    const getSortArrow = (parameter) => {
-        return props.sort.parameter === parameter ?
-            <FontAwesomeIcon icon={props.sort.orderByDesc ? faArrowUp : faArrowDown} /> :
-            null;
-    }
-    return (
-        <thead>
-            <tr onClick={(event) => {props.sortRowsBy(event.target.dataset.sortParameter)}}>
-                <th key={'head_ticker'} className={'all-stocks__col_fixed'}>{'Тикер'}</th>
-                <th key={'head_name'}>{'Наим.'}</th>
-                <th
-                    key={'head_prev'}
-                    className={getSortArrow('prevPrice') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'prevPrice'}>
-                    {'Цена,'}
-                    <br/>
-                    {'закр'}
-                    <br/>
-                    {
-                        getSortArrow('prevPrice')
-                    }
-                </th>
-                <th
-                    key={'head_open'}
-                    className={getSortArrow('open') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'open'}>
-                    {'Цена,'}
-                    <br/>
-                    {'откр'}
-                    <br/>
-                    {
-                        getSortArrow('open')
-                    }
-                </th>
-                <th
-                    key={'head_last'}
-                    className={getSortArrow('last') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'last'}>
-                    {'Цена,'}
-                    <br/>
-                    {'посл'}
-                    <br/>
-                    {
-                        getSortArrow('last')
-                    }
-                </th>
-                <th
-                    key={'head_change'}
-                    className={getSortArrow('change') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'change'}>
-                    {'изм,'}
-                    <br/>
-                    {'%'}
-                    <br/>
-                    {
-                        getSortArrow('change')
-                    }
-                </th>
-                <th
-                    key={'head_volume'}
-                    className={getSortArrow('volumeToday') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'volumeToday'}>
-                    {'Объем,'}
-                    <br/>
-                    {'млн р'}
-                    <br/>
-                    {
-                        getSortArrow('volumeToday')
-                    }
-                </th>
-                <th
-                    key={'head_cap'}
-                    className={getSortArrow('capitalization') ? 'all-stocks__table-stocks-head_active' : ''}
-                    data-sort-parameter={'capitalization'}>
-                    {'Кап-ция,'}
-                    <br/>
-                    {'млрд р'}
-                    <br/>
-                    {
-                        getSortArrow('capitalization')
-                    }
-                </th>
-            </tr>
-        </thead>
-    );
-}
-
-const getTableRow = (item, props) => {
-    // const usdRub = props.currencies.data.length &&
-    //     props.currencies.data.find(item => item.name === 'USD/RUB').value;
-    // const capToDollars = parseFloat(item.capitalization / (1000000000 * usdRub)).toFixed(3);
-
-    return (
-        <tr key={`row_${item.ticker}`}>
-            <td
-                key={`col_ticker${item.ticker}`}
-                className={'all-stocks__col_fixed all-stocks__link-to-stock'}
-                onClick={() => {props.goToStockPage(item.ticker)}}
-            >
-                {item.ticker}
-            </td>
-            <td
-                key={`col_name${item.ticker}`}
-                className={'all-stocks__link-to-stock'}
-                onClick={() => {props.goToStockPage(item.ticker)}}
-            >
-                {item.shortName}
-            </td>
-            <td key={`col_prev${item.ticker}`}>{item.prevPrice}</td>
-            <td key={`col_open${item.ticker}`}>{item.open}</td>
-            <td
-                key={`col_last${item.ticker}`}
-                className={util.getClassNameForCellColor(item.last - item.previousPrice)}>
-                {item.last}
-            </td>
-            <td
-                key={`col_change${item.ticker}`}
-                className={util.getClassNameForChangeFont(item.change)}>
-                {item.change ? item.change + ' %' : ''}
-            </td>
-            <td key={`col_volume${item.ticker}`}>{(item.volumeToday / 1000000).toFixed(2)}</td>
-            <td key={`col_cap${item.ticker}`}>{(item.capitalization / 1000000000).toFixed(3)}</td>
-        </tr>
-    );
-}
+import StocksTable from '~/common/components/StocksTable';
 
 const getFiltersView = (props) => {
     const filtersInput = JSON.parse(JSON.stringify(props.filtersInput));
@@ -252,40 +126,6 @@ const getFiltersButton = (props) => {
     );
 }
 
-const getTable = (props) => {
-    return (
-        props.stocks.data.length ?
-            <table className={'all-stocks__table-stocks'}>
-                {
-                    getTableHead(props)
-                }
-                <tbody>
-                {
-                    props.stocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
-                }
-                </tbody>
-            </table> :
-            null
-    );
-}
-
-const getTableFiltered = (props) => {
-    return (
-        props.filteredStocks.data.length ?
-            <table className={'all-stocks__table-stocks'}>
-                {
-                    getTableHead(props)
-                }
-                <tbody>
-                {
-                    props.filteredStocks.data.slice(0, props.numberRowsToShow).map(item => getTableRow(item, props))
-                }
-                </tbody>
-            </table> :
-            null
-    );
-}
-
 const getTableControls = (props) => {
     return (
         <div className={'all-stocks__table-controls'}>
@@ -314,15 +154,13 @@ const getStocksView = (props) => {
         {
             getFiltersView(props)
         }
-            <div className={'all-stocks__inner'}>
-                <div className={'all-stocks__table-stocks-container'}>
-                {
-                    props.isFiltersVisible ?
-                        getTableFiltered(props) :
-                        getTable(props)
-                }
-                </div>
-            </div>
+            <StocksTable
+                stocks={props.isFiltersVisible ? props.filteredStocks : props.stocks}
+                sort={props.sort}
+                sortRowsBy={props.sortRowsBy}
+                numberRowsToShow={props.numberRowsToShow}
+                goToStockPage={props.goToStockPage}
+            />
         {
             props.filteredStocks.data.length > 30 ?
                 getTableControls(props) :

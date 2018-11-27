@@ -1,0 +1,105 @@
+@import 'common/styles/common';
+
+.stocks-table__container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.stocks-table__table-stocks {
+    border: 1px solid $color-light-black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+.stocks-table__table-stocks th, td {
+    border: 1px solid $color-light-black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.stocks-table__table-stocks th {
+    background-color: $color-light-grey;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.stocks-table__table-stocks .stocks-table__table-stocks-head_active {
+    background-color: $color-grey;
+}
+
+.stocks-table__table-stocks td {
+    text-align: center;
+    padding: 0.3em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.stocks-table__table-stocks tr:nth-child(odd) td {
+    background-color: $color-main;
+}
+.stocks-table__table-stocks tr:nth-child(even) td {
+    background-color: $color-white;
+}
+.stocks-table__table-stocks tr:hover {
+    background-color: $color-grey;
+}
+
+.stocks-table__link-to-stock {
+    @include link-main();
+    color: $color-font;
+}
+
+.stocks-table__loader {
+    @include loader();
+}
+
+/*color price cell*/
+.stocks-table__table-stocks .price-upper {
+    background-color: $color-background-up !important;;
+    transition: all ease-out 1s;
+}
+.stocks-table__table-stocks .price-lower {
+    background-color: $color-background-down !important;
+    transition: all ease-out 1s;
+}
+/*color price cell end*/
+
+/*color change font*/
+.stocks-table__table-stocks .change-up-font {
+    color: $color-font-up;
+}
+.stocks-table__table-stocks .change-down-font {
+    color: $color-font-down;
+}
+/*color change font end*/
+
+
+.stocks-table__table-controls {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.stocks-table__table-controls-button {
+    @include icon-button();
+}
+
+.stocks-table__delete-stock-icon {
+    color: $color-font-down;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .stocks-table__col_fixed {
+        position: sticky;
+        left: 0;
+        box-shadow: 1px 0 $color-light-black;
+    }
+    .stocks-table__container {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: scroll;
+        overflow-y: visible;
+    }
+}

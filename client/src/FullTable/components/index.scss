@@ -1,11 +1,5 @@
 @import 'common/styles/common';
 
-.all-stocks__inner {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .full-table_header-wrapper {
     width: 100%;
     background-color: $color-main;
@@ -17,71 +11,9 @@
     padding-top: 1em;
 }
 
-.all-stocks__table-stocks-container table, th, td {
-    border: 1px solid $color-light-black;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-.all-stocks__table-stocks th {
-    background-color: $color-light-grey;
-    padding: 0.3em;
-    cursor: pointer;
-}
-
-.all-stocks__table-stocks .all-stocks__table-stocks-head_active {
-    background-color: $color-grey;
-}
-
-.all-stocks__table-stocks td {
-    text-align: center;
-    padding: 0.3em;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-h3 {
-    text-align: center;
-}
-
-.all-stocks__table-stocks tr:nth-child(odd) td {
-    background-color: $color-main;
-}
-.all-stocks__table-stocks tr:nth-child(even) td {
-    background-color: $color-white;
-}
-.all-stocks__table-stocks tr:hover {
-    background-color: $color-grey;
-}
-
-.all-stocks__link-to-stock {
-    @include link-main();
-    color: $color-font;
-}
-
 .all-stocks__loader {
     @include loader();
 }
-
-/*color price cell*/
-.all-stocks__table-stocks .price-upper {
-    background-color: $color-background-up !important;;
-    transition: all ease-out 1s;
-}
-.all-stocks__table-stocks .price-lower {
-    background-color: $color-background-down !important;
-    transition: all ease-out 1s;
-}
-/*color price cell end*/
-
-/*color change font*/
-.all-stocks__table-stocks .change-up-font {
-    color: $color-font-up;
-}
-.all-stocks__table-stocks .change-down-font {
-    color: $color-font-down;
-}
-/*color change font end*/
 
 /*filters*/
 .all-stocks__filters-form input[type="number"] {
@@ -184,18 +116,5 @@ h3 {
     .all-stocks__filters-form,
     .all-stocks__filters-button {
         font-size: 1.2em;
-    }
-    .all-stocks__inner {
-        width: 100%;
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        overflow-x: scroll;
-        overflow-y: visible;
-    }
-    .all-stocks__col_fixed {
-        position: sticky;
-        left: 0;
-        box-shadow: 1px 0 $color-light-black;
     }
 }
