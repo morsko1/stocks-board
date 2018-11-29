@@ -27,7 +27,7 @@ const getSearchForm = (props) => {
                 props.searchInput.length ?
                     <FontAwesomeIcon
                         icon={faTimes}
-                        className="search-stocks__search-icon"
+                        className="search-stocks__clear-icon"
                         onClick={() => {props.resetInput()}}
                     /> :
                     <FontAwesomeIcon

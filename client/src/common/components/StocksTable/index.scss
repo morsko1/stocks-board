@@ -34,10 +34,10 @@
 }
 
 .stocks-table__table-stocks tr:nth-child(odd) td {
-    background-color: $color-main;
+    background-color: $color-white;
 }
 .stocks-table__table-stocks tr:nth-child(even) td {
-    background-color: $color-white;
+    background-color: $color-main;
 }
 .stocks-table__table-stocks tr:hover {
     background-color: $color-grey;

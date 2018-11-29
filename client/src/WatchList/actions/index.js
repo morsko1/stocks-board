@@ -2,6 +2,7 @@ export const HANDLE_INPUT = 'watchList/HANDLE_INPUT';
 export const RESET_INPUT = 'watchList/RESET_INPUT';
 export const SET_FOUND_STOCKS = 'watchList/SET_FOUND_STOCKS';
 export const RESET_FOUND_STOCKS = 'watchList/RESET_FOUND_STOCKS';
+export const SET_STOCKS = 'watchList/SET_STOCKS';
 export const ADD_STOCK = 'watchList/ADD_STOCK';
 export const DELETE_STOCK = 'watchList/DELETE_STOCK';
 
@@ -25,6 +26,13 @@ export const setFoundStocks = (stocks) => ({
 
 export const resetFoundStocks = () => ({
     type: RESET_FOUND_STOCKS
+});
+
+export const setStocks = (stocks) => ({
+    type: SET_STOCKS,
+    payload: {
+        stocks
+    }
 });
 
 export const addStock = (stock) => ({

@@ -4,6 +4,10 @@ import * as actionsMarketData from '~/common/containers/marketData/actions';
 
 export const init = () => (dispatch, getState) => {
     const stocks = getState().marketData.stocks;
+    const stocksWatch = JSON.parse(localStorage.getItem('stocksWatch'));
+    if (stocksWatch && stocksWatch.length) {
+        dispatch(actionsWatchList.setStocks(stocksWatch));
+    }
     if (!stocks.data.length) {
         dispatch(thunksMarketData.getStocks());
     }
@@ -37,7 +41,7 @@ export const searchStocks = (text) => (dispatch, getState) => {
 }
 
 export const addStock = (stock) => (dispatch, getState) => {
-    const stocksWatch = getState().watchList.stocksWatch;
+    let stocksWatch = getState().watchList.stocksWatch;
     if (stocksWatch.find(elem => elem.ticker === stock.ticker)) {
         return;
     }
@@ -46,8 +50,12 @@ export const addStock = (stock) => (dispatch, getState) => {
     const stockToSave = {ticker, shortName, fullName, last, date: new Date()};
 
     dispatch(actionsWatchList.addStock(stockToSave));
+    stocksWatch = getState().watchList.stocksWatch;
+    localStorage.setItem('stocksWatch', JSON.stringify(stocksWatch));
 }
 
 export const deleteStock = (stock) => (dispatch, getState) => {
     dispatch(actionsWatchList.deleteStock(stock));
+    const stocksWatch = getState().watchList.stocksWatch;
+    localStorage.setItem('stocksWatch', JSON.stringify(stocksWatch));
 }

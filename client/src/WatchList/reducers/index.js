@@ -33,6 +33,12 @@ export default (state = initialState, action) => {
                 foundStocks: []
             };
 
+        case actionsWatchList.SET_STOCKS:
+            return {
+                ...state,
+                stocksWatch: action.payload.stocks
+            };
+
         case actionsWatchList.ADD_STOCK:
             return {
                 ...state,

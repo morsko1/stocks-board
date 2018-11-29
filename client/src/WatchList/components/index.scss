@@ -41,6 +41,10 @@
     color: $color-link;
 }
 
+.watch-list__clear-icon {
+    cursor: pointer;
+}
+
 .watch-list__search-result {
     position: absolute;
     right: 0;
@@ -65,6 +69,7 @@
     color: $color-font-up;
     padding: 0.5em;
     margin-left: auto;
+    cursor: pointer;
 }
 
 .watch-list__search-result-item:last-child {

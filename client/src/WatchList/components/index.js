@@ -92,6 +92,9 @@ const getSearchView = (props) => {
 const getTableView = (props) => {
     const tickersWatch = props.stocksWatch.map(stock => stock.ticker);
     const filteredStocks = props.stocks.data.filter(stock => tickersWatch.includes(stock.ticker));
+    filteredStocks.sort((a, b) => {
+        return tickersWatch.findIndex((e) => e === a.ticker) - tickersWatch.findIndex((e) => e === b.ticker);
+    });
     return (
         <StocksTable
             stocks={{data: filteredStocks}}
