@@ -79,7 +79,7 @@ app.post('/api/login', (req, res) => {
 });
 
 const tokenVerifier = (req, res, next) => {
-  const token = req.headers['authorization'] && req.headers['authorization'].replace('Bearer ', '');
+    const token = req.headers['authorization'] && req.headers['authorization'].replace('Bearer ', '');
 
     if (!token) {
         return res.sendFile(path.join(__dirname, pathToHtml));
@@ -122,6 +122,41 @@ app.get('/api/verifytoken', (req, res) => {
                     client.close();
                 }
             });
+        });
+    });
+});
+
+app.post('/api/savewatchlist', (req, res) => {
+    MongoClient.connect(connectionUrl, (err, client) => {
+        client.db(dbName).collection(collectionName).update({
+            username: req.body.username
+        }, {
+            $set: {stocksWatch: req.body.stocksWatch}
+        }, (err, data) => {
+            if (err) {
+                res.send({success: false, error: 'error has occured'});
+                client.close();
+                return;
+            }
+            res.send({success: true, stocksWatch: data.stocksWatch});
+            client.close();
+        });
+    });
+});
+
+app.get('/api/getwatchlist', (req, res) => {
+    MongoClient.connect(connectionUrl, (err, client) => {
+        client.db(dbName).collection(collectionName).findOne({
+            username: req.query.username
+        }, (err, user) => {
+            if (user === null) {
+                res.send({success: false, error: 'can not find user'});
+                client.close();
+                return;
+            } else {
+                res.send({success: true, stocksWatch: user.stocksWatch});
+                client.close();
+            }
         });
     });
 });

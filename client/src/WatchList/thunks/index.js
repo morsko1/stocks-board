@@ -1,13 +1,42 @@
 import * as actionsWatchList from '../actions';
 import * as thunksMarketData from '~/common/containers/marketData/thunks';
 import * as actionsMarketData from '~/common/containers/marketData/actions';
+import axios from 'axios';
+import {getUser} from '~/User/thunks';
+
+const getStocksWatch = (username) => (dispatch) => {
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {Authorization: `Bearer ${token}`},
+        params: {username: username}
+    };
+    axios.get('/api/getwatchlist', config)
+        .then(response => {
+            dispatch(actionsWatchList.setStocks(response.data.stocksWatch));
+            localStorage.removeItem('stocksWatch');
+        })
+        .catch(error => {
+        });
+}
 
 export const init = () => (dispatch, getState) => {
-    const stocks = getState().marketData.stocks;
-    const stocksWatch = JSON.parse(localStorage.getItem('stocksWatch'));
-    if (stocksWatch && stocksWatch.length) {
-        dispatch(actionsWatchList.setStocks(stocksWatch));
+    const state = getState();
+    const stocks = state.marketData.stocks;
+    const username = state.user.user && state.user.user.username;
+    const token = localStorage.getItem('token');
+    if (username) {
+        dispatch(getStocksWatch(username));
+    } else if (!username && token) {
+        dispatch(getUser()).then(data => {
+            dispatch(getStocksWatch(data));
+        });
+    } else {
+        const stocksWatch = JSON.parse(localStorage.getItem('stocksWatch'));
+        if (stocksWatch && stocksWatch.length) {
+            dispatch(actionsWatchList.setStocks(stocksWatch));
+        }
     }
+
     if (!stocks.data.length) {
         dispatch(thunksMarketData.getStocks());
     }
@@ -40,6 +69,30 @@ export const searchStocks = (text) => (dispatch, getState) => {
     }
 }
 
+const saveWatchList = () => (dispatch, getState) => {
+    const state = getState();
+    const stocksWatch = state.watchList.stocksWatch;
+    const token = localStorage.getItem('token');
+    if (!token) {
+        localStorage.setItem('stocksWatch', JSON.stringify(stocksWatch));
+        return;
+    } else {
+        const username = state.user.user.username;
+        const body = {
+            username,
+            stocksWatch
+        };
+        axios.post(
+            '/api/savewatchlist',
+            body,
+            {headers: {Authorization: `Bearer ${token}`}}
+        ).then((response) => {
+            dispatch(actionsWatchList.setStocks(resonse.data.stocksWatch));
+        }).catch((error) => {
+        });
+    }
+}
+
 export const addStock = (stock) => (dispatch, getState) => {
     let stocksWatch = getState().watchList.stocksWatch;
     if (stocksWatch.find(elem => elem.ticker === stock.ticker)) {
@@ -50,12 +103,10 @@ export const addStock = (stock) => (dispatch, getState) => {
     const stockToSave = {ticker, shortName, fullName, last, date: new Date()};
 
     dispatch(actionsWatchList.addStock(stockToSave));
-    stocksWatch = getState().watchList.stocksWatch;
-    localStorage.setItem('stocksWatch', JSON.stringify(stocksWatch));
+    dispatch(saveWatchList());
 }
 
 export const deleteStock = (stock) => (dispatch, getState) => {
     dispatch(actionsWatchList.deleteStock(stock));
-    const stocksWatch = getState().watchList.stocksWatch;
-    localStorage.setItem('stocksWatch', JSON.stringify(stocksWatch));
+    dispatch(saveWatchList());
 }

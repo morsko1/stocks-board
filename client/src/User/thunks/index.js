@@ -7,7 +7,7 @@ export const getUser = () => (dispatch) => {
         return;
     }
     dispatch(actionsUser.getUserRequest());
-    axios.get('/api/verifytoken', {
+    return axios.get('/api/verifytoken', {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -18,6 +18,7 @@ export const getUser = () => (dispatch) => {
         }
         dispatch(actionsUser.getUserSuccess());
         dispatch(actionsUser.setUser(response.data.user));
+        return Promise.resolve(response.data.user.username);
     }).catch((error) => {
         localStorage.removeItem('token');
         dispatch(actionsUser.getUserFailure(error));
